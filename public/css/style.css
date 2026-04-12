@@ -1,0 +1,18 @@
+
+body{
+    background-color: rgb(42, 42, 42);
+    color: #fff;
+    width: 100%;
+    min-height: 100vh;
+}
+.navbar{
+    min-height: 10vh;
+    background-color: #555555 !important;
+}
+.fa-compass{
+    color: #fe434d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #fff !important;
+}

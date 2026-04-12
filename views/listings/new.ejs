@@ -1,0 +1,79 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body>
+        <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow p-4">
+                <h2 class="mb-4 text-center">Add New Listing</h2>
+
+                <form method="post" action="/listings">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="title" 
+                            name="title" 
+                            placeholder="Enter title" 
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="description" 
+                            name="description" 
+                            placeholder="Enter description" 
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            id="price" 
+                            name="price" 
+                            placeholder="Enter price" 
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="location" 
+                            name="location" 
+                            placeholder="Enter location" 
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="country" 
+                            name="country" 
+                            placeholder="Enter country" 
+                            required
+                        >
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Add Listing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
