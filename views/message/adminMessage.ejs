@@ -1,0 +1,85 @@
+<% layout("layouts/boilerplate") -%>
+
+<body>
+
+  <div class="container mt-5">
+
+    <h2 class="text-center mb-4 fw-bold">📩 All User Messages</h2>
+
+    <% if (messages && messages.length > 0) { %>
+
+      <div class="table-responsive shadow-sm rounded">
+        <table class="table table-striped table-hover align-middle text-center">
+
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% messages.forEach((message, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+
+                <td class="fw-semibold">
+                  <i class="bi bi-person-fill text-primary me-1"></i>
+                  <%= message.name %>
+                </td>
+
+                <td>
+                  <i class="bi bi-envelope-fill text-success me-1"></i>
+                  <%= message.email %>
+                </td>
+
+                <td>
+                  <span class="badge bg-info text-dark">
+                    <%= message.subject %>
+                  </span>
+                </td>
+
+                <td style="max-width: 200px;">
+                  <span class="text-truncate d-inline-block w-100">
+                    <%= message.message %>
+                  </span>
+                </td>
+
+                <td>
+                  <!-- Edit -->
+                  <a href="/message/<%= message._id %>/edit" 
+                     class="btn btn-sm btn-outline-warning me-2">
+                    <i class="fa-solid fa-pen"></i>
+                  </a>
+
+                  <!-- Delete -->
+                  <form method="post" 
+                        action="/message/<%= message._id %>?_method=DELETE" 
+                        class="d-inline">
+                    <button class="btn btn-sm btn-outline-danger">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+
+        </table>
+      </div>
+
+    <% } else { %>
+
+      <div class="text-center mt-5">
+        <p class="text-muted">No messages found 😔</p>
+      </div>
+
+    <% } %>
+
+  </div>
+
+</body>
