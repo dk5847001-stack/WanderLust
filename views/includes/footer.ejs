@@ -1,28 +1,79 @@
-<footer class="bg-dark text-light py-4 mt-5">
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
   <div class="container">
-    <div class="row align-items-center text-center text-md-start">
-      
-      <!-- Left: Company -->
-      <div class="col-md-4 mb-3 mb-md-0">
-        <h5 class="mb-1">Wanderlust</h5>
-        <small>&copy; 2026 Wanderlust Private Limited</small>
+    <div class="row g-4">
+
+      <!-- 🔹 Company Info -->
+      <div class="col-md-4">
+        <h4 class="fw-bold">Wanderlust</h4>
+        <p class="text-muted small">
+          Explore the world with us. Discover amazing places, unique stays, and unforgettable experiences.
+        </p>
+        <small class="text-secondary">&copy; 2026 Wanderlust Private Limited</small>
       </div>
 
-      <!-- Center: Links -->
-      <div class="col-md-4 mb-3 mb-md-0">
-        <a href="/privacy" class="text-light text-decoration-none me-3">Privacy</a>
-        <a href="/terms" class="text-light text-decoration-none">Terms</a>
+      <!-- 🔹 Quick Links -->
+      <div class="col-md-4">
+        <h5 class="fw-semibold mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-light text-decoration-none d-block mb-2">Home</a></li>
+          <li><a href="/listings" class="text-light text-decoration-none d-block mb-2">Listings</a></li>
+          <li><a href="/privacy" class="text-light text-decoration-none d-block mb-2">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-light text-decoration-none d-block">Terms & Conditions</a></li>
+        </ul>
       </div>
+
+      <!-- 🔹 Newsletter -->
+      <div class="col-md-4">
+        <h5 class="fw-semibold mb-3">Subscribe</h5>
+        <p class="text-muted small">Get latest updates & offers</p>
+
+        <form method="post" action="/subscriber">
+          <div class="input-group shadow rounded-pill overflow-hidden subscribe-box">
+
+            <span class="input-group-text bg-white border-0">
+              <i class="bi bi-envelope-fill text-primary"></i>
+            </span>
+
+            <input 
+              type="text" 
+              name="email" 
+              class="form-control border-0" 
+              placeholder="Enter your email..." 
+              required
+            >
+
+            <button 
+              type="submit" 
+              class="btn btn-primary px-4 rounded-pill"
+            >
+              Subscribe
+            </button>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- 🔻 Bottom Section -->
+    <hr class="border-secondary my-4">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+      <!-- Left -->
+      <p class="mb-2 mb-md-0 text-secondary small">
+        Made with ❤️ by Wanderlust Team
+      </p>
 
       <!-- Right: Social Icons -->
-      <div class="col-md-4 text-md-end">
-        <a href="#" class="text-light me-3 fs-5">
+      <div>
+        <a href="#" class="text-light me-3 fs-5 social-icon">
           <i class="fa-brands fa-facebook"></i>
         </a>
-        <a href="#" class="text-light me-3 fs-5">
+        <a href="#" class="text-light me-3 fs-5 social-icon">
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="#" class="text-light fs-5">
+        <a href="#" class="text-light fs-5 social-icon">
           <i class="fa-brands fa-linkedin"></i>
         </a>
       </div>
@@ -30,3 +81,21 @@
     </div>
   </div>
 </footer>
+
+<!-- 🔥 Custom Styles -->
+<style>
+  .subscribe-box:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+  }
+
+  .social-icon:hover {
+    color: #0d6efd;
+    transform: translateY(-3px);
+    transition: 0.3s ease;
+  }
+
+  footer a:hover {
+    color: #0d6efd !important;
+  }
+</style>

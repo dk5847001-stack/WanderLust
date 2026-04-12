@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
+const Subscriber = require("./models/subscriber.js");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const path = require("path");
@@ -82,6 +83,25 @@ app.get("/listings/:id", async (req, res)=>{
     const listings = await Listing.findById(id)
     res.render("listings/show.ejs", {listings})
 })
+
+// subscriber routes
+app.post("/subscriber", async (req, res)=>{
+    try{
+        const {email} = req.body;
+        // basic validation
+        if(!email){
+            return res.status(400).send("Email is required");
+        }
+        // save to db
+        await Subscriber.create({email});
+        console.log('Subscriber created successfully');
+        // redirect or response
+        res.redirect("/")
+    } catch(err){
+        console.error(err);
+        res.status(500).send("something went wrong")
+    }
+});
 
 app.listen(PORT, ()=>{
     console.log(`Server is listening on PORT ${PORT}`);
