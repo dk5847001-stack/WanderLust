@@ -1,6 +1,6 @@
 
 body{
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(42, 42, 42) !important;
     color: #fff;
     width: 100%;
     min-height: 100vh;
@@ -15,4 +15,75 @@ body{
 }
 .nav-link{
     color: #fff !important;
+}
+.col-md-4 a:hover{
+    text-decoration: underline !important;
+}
+.a a:hover{
+    text-decoration: none !important;
+}
+
+/* Card hover lift + shadow */
+.listing-card {
+  transition: all 0.3s ease;
+}
+.listing-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+/* Image zoom effect */
+.listing-card img {
+  transition: transform 0.4s ease;
+}
+.listing-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Wishlist icon hover */
+.wishlist-btn i {
+  transition: all 0.3s ease;
+}
+.wishlist-btn:hover i {
+  color: red;
+  transform: scale(1.2);
+}
+
+/* Button hover polish */
+.listing-card .btn {
+  transition: all 0.3s ease;
+}
+.listing-card .btn:hover {
+  transform: scale(1.03);
+}
+
+/* Optional: smooth overlay fade */
+.card-img-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.listing-card:hover .card-img-overlay {
+  opacity: 1;
+}
+.wishlist-btn i {
+  transition: all 0.3s ease;
+}
+.wishlist-btn:active i {
+  transform: scale(1.3);
+}
+.card .btns{
+    padding: 4px 6px !important;
+}
+/* Hide button by default */
+.card .btns {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show button on hover */
+.card:hover .btns {
+  opacity: 1;
+}
+.dk{
+    color: #555555 !important;
 }
