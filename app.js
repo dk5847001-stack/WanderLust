@@ -214,15 +214,28 @@ app.delete("/message/:id", asyncWrap(async (req, res) => {
 
 // ================== Reviews Routes ==================
 app.post("/listings/:id/reviews", asyncWrap(async (req, res) => {
-    const listings = await Listing.findById(req.params.id);
+  const { id } = req.params;
 
-    const review = new Review(req.body.review);
+  if (!req.body.review) {
+    throw new ExpressError(400, "Review data missing");
+  }
 
-    await review.save();
-    listings.reviews.push(review);
-    await listings.save();
+  const listing = await Listing.findById(id);
+  if (!listing) {
+    throw new ExpressError(404, "Listing not found");
+  }
 
-    res.redirect(`/listings/${req.params.id}`);
+  const newReview = new Review({
+    comment: req.body.review.comment.trim(),
+    rating: req.body.review.rating
+  });
+
+  await newReview.save();
+
+  listing.reviews.push(newReview);
+  await listing.save();
+
+  res.redirect(`/listings/${id}`);
 }));
 
 app.delete("/listings/:id/reviews/:reviewId", asyncWrap(async (req, res) => {

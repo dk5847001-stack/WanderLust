@@ -1,136 +1,158 @@
 <% layout("/layouts/boilerplate") -%>
 
-<body class="bg-light">
-
 <div class="container py-5">
 
   <!-- Title -->
-  <div class="mb-3">
-    <h2 class="fw-bold"><%= listings.title %></h2>
-    <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
-  </div>
-
-  <div class="row g-4">
-
-    <!-- Image -->
-    <div class="col-lg-8">
-      <div class="position-relative rounded-4 overflow-hidden shadow-sm">
-        <img src="<%= listings.image.url %>" class="w-100" style="height:400px;object-fit:cover;">
-      </div>
-
-      <div class="mt-4">
-        <h5>About this place</h5>
-        <p class="text-muted"><%= listings.description %></p>
-      </div>
-    </div>
-
-    <!-- Booking -->
-    <div class="col-lg-4">
-      <div class="card p-4 shadow rounded-4 sticky-top" style="top:100px;">
-        <h4 class="fw-bold">
-          ₹ <%= listings.price?.toLocaleString("en-IN") || "N/A" %>
-          <span class="fs-6 text-muted">/night</span>
-        </h4>
-
-        <input type="date" class="form-control my-2">
-        <input type="date" class="form-control my-2">
-        <input type="number" class="form-control my-2" placeholder="Guests">
-
-        <button class="btn btn-danger w-100 rounded-pill mt-2">Reserve</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Actions -->
-  <div class="mt-4 d-flex gap-3">
-    <a href="/listings/<%= listings._id %>/edit" class="btn btn-outline-primary rounded-pill">Edit</a>
-
-    <form method="post" action="/listings/<%= listings._id %>?_method=DELETE">
-      <button class="btn btn-outline-danger rounded-pill">Delete</button>
-    </form>
-  </div>
+  <h2 class="fw-bold"><%= listings.title %></h2>
+  <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
 
   <hr>
 
-  <!-- Reviews -->
-  <div class="mt-5">
+  <!-- ⭐ Reviews -->
+  <h4>⭐ Reviews</h4>
 
-    <h4 class="fw-bold">⭐ Reviews</h4>
+  <p class="text-muted">
+    Average:
+    <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong>
+  </p>
 
-    <!-- Average -->
-    <p class="text-muted">
-      Average:
-      <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong>
-    </p>
+  <!-- ================= REVIEW FORM ================= -->
+  <form action="/listings/<%= listings._id %>/reviews" method="post" class="needs-validation" novalidate>
 
-    <!-- Form -->
-    <div class="card p-4 shadow-sm rounded-4 mb-5">
-      <h5 class="mb-3">Leave a Review</h5>
+    <!-- ⭐ Rating -->
+    <div class="mb-3">
+      <label class="fw-semibold">Rating</label>
 
-      <form action="/listings/<%= listings._id %>/reviews" method="post">
+      <div class="star-rating">
+  <% for(let i = 1; i <= 5; i++) { %>
+    <input 
+      type="radio" 
+      class="rating-input"
+      id="star<%= i %>" 
+      name="review[rating]" 
+      value="<%= i %>">
+    <label for="star<%= i %>">★</label>
+  <% } %>
+</div>
 
-        <!-- ⭐ STAR FIXED (IMPORTANT) -->
-        <div class="mb-3">
-          <label class="fw-semibold">Rating</label>
+      <div class="invalid-feedback d-block" id="ratingError" style="display:none;">
+       
+        <div class="valid-feedback">
+        Looks good!
+      </div>
+      </div>
+    </div>
 
-          <div class="star-rating">
+    <!-- 📝 Comment -->
+    <div class="mb-3">
+      <textarea 
+        name="review[comment]" 
+        class="form-control" 
+        rows="3" 
+        placeholder="Write your review..." 
+        required 
+        minlength="10"></textarea>
 
-            <!-- ⚠️ ORDER FIXED (1 → 5) -->
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+
+      <div class="invalid-feedback">
+        Comment must be at least 10 characters long.
+      </div>
+    </div>
+
+    <button class="btn btn-dark">Submit</button>
+  </form>
+
+  <hr>
+
+  <!-- ================= REVIEW LIST ================= -->
+  <% if(listings.reviews.length > 0) { %>
+    <% listings.reviews.forEach(review => { %>
+
+      <div class="card p-3 mb-3">
+        <div class="d-flex justify-content-between">
+          <strong>👤 User</strong>
+
+          <span class="text-warning">
             <% for(let i = 1; i <= 5; i++) { %>
-              <input type="radio" id="star<%= i %>" name="review[rating]" value="<%= i %>">
-              <label for="star<%= i %>">★</label>
+              <%= i <= review.rating ? "★" : "☆" %>
             <% } %>
-
-          </div>
+          </span>
         </div>
 
-        <textarea name="review[comment]" class="form-control mb-3" rows="3" required></textarea>
+        <p><%= review.comment %></p>
 
-        <button class="btn btn-dark rounded-pill">Submit</button>
-      </form>
-    </div>
+        <form method="post" action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE">
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
 
-    <!-- Reviews List -->
-    <div class="row g-4">
-
-      <% if(listings.reviews && listings.reviews.length > 0) { %>
-
-        <% listings.reviews.forEach(review => { %>
-
-          <div class="col-md-6">
-            <div class="card p-3 shadow-sm rounded-4 h-100">
-
-              <div class="d-flex justify-content-between">
-                <h6>👤 Anonymous</h6>
-
-                <!-- ⭐ DISPLAY FIXED -->
-                <div class="text-warning">
-                  <% for(let i = 1; i <= 5; i++) { %>
-                    <%= i <= review.rating ? "★" : "☆" %>
-                  <% } %>
-                </div>
-              </div>
-
-              <p class="text-muted mt-2"><%= review.comment %></p>
-
-              <form method="post" action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE">
-                <button class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
-              </form>
-
-            </div>
-          </div>
-
-        <% }) %>
-
-      <% } else { %>
-        <p class="text-muted">No reviews yet.</p>
-      <% } %>
-
-    </div>
-
-  </div>
+    <% }) %>
+  <% } else { %>
+    <p>No reviews yet.</p>
+  <% } %>
 
 </div>
 
-</body>
+<!-- ================= VALIDATION JS ================= -->
+<script>
+(() => {
+
+  const forms = document.querySelectorAll(".needs-validation");
+
+  forms.forEach(form => {
+
+    const ratingInputs = form.querySelectorAll(".rating-input");
+    const ratingError = form.querySelector("#ratingError");
+    const textarea = form.querySelector("textarea");
+
+    form.addEventListener("submit", function(e) {
+
+      let ratingChecked = Array.from(ratingInputs).some(input => input.checked);
+      let commentValid = textarea.value.trim().length >= 10;
+
+      if (!ratingChecked || !commentValid) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // ⭐ rating error
+      if (ratingError) {
+        ratingError.style.display = ratingChecked ? "none" : "block";
+      }
+
+      // 📝 comment validation
+      if (!commentValid) {
+        textarea.classList.add("is-invalid");
+        textarea.classList.remove("is-valid");
+      } else {
+        textarea.classList.add("is-valid");
+        textarea.classList.remove("is-invalid");
+      }
+
+    });
+
+    // ⭐ instant fix
+    ratingInputs.forEach(input => {
+      input.addEventListener("change", () => {
+        if (ratingError) ratingError.style.display = "none";
+      });
+    });
+
+    // 📝 live validation
+    textarea.addEventListener("input", () => {
+      if (textarea.value.trim().length >= 10) {
+        textarea.classList.add("is-valid");
+        textarea.classList.remove("is-invalid");
+      } else {
+        textarea.classList.add("is-invalid");
+        textarea.classList.remove("is-valid");
+      }
+    });
+
+  });
+
+})();
+</script>
