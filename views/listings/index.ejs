@@ -25,7 +25,11 @@
                                 <!-- Price Badge -->
                                 <div class="position-absolute bottom-0 start-0 m-2">
                                     <span class="badge bg-dark bg-opacity-75 px-3 py-2 rounded-pill">
-                                        &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                                        <% if (listing.price) { %>
+                                            ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+                                                <% } else { %>
+                                                    Price not available
+                                                    <% } %>
                                     </span>
                                 </div>
                             </div>

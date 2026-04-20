@@ -2,76 +2,41 @@
 
 <body class="bg-light">
 
-<div class="show container py-5">
+<div class="container py-5">
 
-  <!-- Title + Location -->
+  <!-- Title -->
   <div class="mb-3">
-    <h2 class="dk fw-bold"><%= listings.title %></h2>
-    <p class="dk text-muted mb-0">
-      📍 <%= listings.location %>, <%= listings.country %>
-    </p>
+    <h2 class="fw-bold"><%= listings.title %></h2>
+    <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
   </div>
 
-  <!-- Image + Side Card -->
   <div class="row g-4">
 
-    <!-- Main Image -->
+    <!-- Image -->
     <div class="col-lg-8">
       <div class="position-relative rounded-4 overflow-hidden shadow-sm">
-        <img 
-          src="<%= listings.image.url %>" 
-          class="w-100"
-          style="height: 400px; object-fit: cover;"
-        >
-
-        <!-- Wishlist -->
-        <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-3 shadow wishlist-btn">
-          <i class="fa-regular fa-heart"></i>
-        </button>
+        <img src="<%= listings.image.url %>" class="w-100" style="height:400px;object-fit:cover;">
       </div>
 
-      <!-- Description -->
       <div class="mt-4">
-        <h5 class="fw-semibold">About this place</h5>
-        <p class="text-muted">
-          <%= listings.description %>
-        </p>
+        <h5>About this place</h5>
+        <p class="text-muted"><%= listings.description %></p>
       </div>
     </div>
 
-    <!-- Booking Card -->
+    <!-- Booking -->
     <div class="col-lg-4">
-      <div class="card border-0 shadow rounded-4 p-4 sticky-top" style="top: 100px;">
-        
-        <h4 class="fw-bold mb-3">
-          &#8377; <%= listings.price.toLocaleString("en-IN") %>
-          <span class="fs-6 text-muted">/ night</span>
+      <div class="card p-4 shadow rounded-4 sticky-top" style="top:100px;">
+        <h4 class="fw-bold">
+          ₹ <%= listings.price?.toLocaleString("en-IN") || "N/A" %>
+          <span class="fs-6 text-muted">/night</span>
         </h4>
 
-        <!-- Fake booking UI -->
-        <div class="mb-3">
-          <label class="form-label small">Check-in</label>
-          <input type="date" class="form-control">
-        </div>
+        <input type="date" class="form-control my-2">
+        <input type="date" class="form-control my-2">
+        <input type="number" class="form-control my-2" placeholder="Guests">
 
-        <div class="mb-3">
-          <label class="form-label small">Check-out</label>
-          <input type="date" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label small">Guests</label>
-          <input type="number" class="form-control" placeholder="1 guest">
-        </div>
-
-        <button class="btn btn-danger w-100 rounded-pill fw-semibold mb-2">
-          Reserve
-        </button>
-
-        <small class="text-muted text-center d-block">
-          You won't be charged yet
-        </small>
-
+        <button class="btn btn-danger w-100 rounded-pill mt-2">Reserve</button>
       </div>
     </div>
 
@@ -79,16 +44,91 @@
 
   <!-- Actions -->
   <div class="mt-4 d-flex gap-3">
-    <a href="/listings/<%= listings._id %>/edit" 
-       class="btn btn-outline-primary rounded-pill px-4">
-      ✏️ Edit
-    </a>
+    <a href="/listings/<%= listings._id %>/edit" class="btn btn-outline-primary rounded-pill">Edit</a>
 
     <form method="post" action="/listings/<%= listings._id %>?_method=DELETE">
-      <button type="submit" class="btn btn-outline-danger rounded-pill px-4">
-        🗑 Delete
-      </button>
+      <button class="btn btn-outline-danger rounded-pill">Delete</button>
     </form>
+  </div>
+
+  <hr>
+
+  <!-- Reviews -->
+  <div class="mt-5">
+
+    <h4 class="fw-bold">⭐ Reviews</h4>
+
+    <!-- Average -->
+    <p class="text-muted">
+      Average:
+      <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong>
+    </p>
+
+    <!-- Form -->
+    <div class="card p-4 shadow-sm rounded-4 mb-5">
+      <h5 class="mb-3">Leave a Review</h5>
+
+      <form action="/listings/<%= listings._id %>/reviews" method="post">
+
+        <!-- ⭐ STAR FIXED (IMPORTANT) -->
+        <div class="mb-3">
+          <label class="fw-semibold">Rating</label>
+
+          <div class="star-rating">
+
+            <!-- ⚠️ ORDER FIXED (1 → 5) -->
+            <% for(let i = 1; i <= 5; i++) { %>
+              <input type="radio" id="star<%= i %>" name="review[rating]" value="<%= i %>">
+              <label for="star<%= i %>">★</label>
+            <% } %>
+
+          </div>
+        </div>
+
+        <textarea name="review[comment]" class="form-control mb-3" rows="3" required></textarea>
+
+        <button class="btn btn-dark rounded-pill">Submit</button>
+      </form>
+    </div>
+
+    <!-- Reviews List -->
+    <div class="row g-4">
+
+      <% if(listings.reviews && listings.reviews.length > 0) { %>
+
+        <% listings.reviews.forEach(review => { %>
+
+          <div class="col-md-6">
+            <div class="card p-3 shadow-sm rounded-4 h-100">
+
+              <div class="d-flex justify-content-between">
+                <h6>👤 Anonymous</h6>
+
+                <!-- ⭐ DISPLAY FIXED -->
+                <div class="text-warning">
+                  <% for(let i = 1; i <= 5; i++) { %>
+                    <%= i <= review.rating ? "★" : "☆" %>
+                  <% } %>
+                </div>
+              </div>
+
+              <p class="text-muted mt-2"><%= review.comment %></p>
+
+              <form method="post" action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
+              </form>
+
+            </div>
+          </div>
+
+        <% }) %>
+
+      <% } else { %>
+        <p class="text-muted">No reviews yet.</p>
+      <% } %>
+
+    </div>
+
   </div>
 
 </div>

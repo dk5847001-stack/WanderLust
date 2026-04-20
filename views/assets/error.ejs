@@ -1,0 +1,48 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+    <div class="card shadow-lg border-0" style="max-width: 500px; width: 100%;">
+        
+        <!-- Header -->
+        <div class="card-header bg-danger text-white text-center py-3">
+            <h4 class="mb-0 fw-bold">
+                ⚠️ Error Occurred
+            </h4>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body text-center p-4">
+
+            <!-- Icon -->
+            <div class="mb-3">
+                <div class="rounded-circle bg-danger bg-opacity-10 d-inline-flex align-items-center justify-content-center" 
+                     style="width: 70px; height: 70px;">
+                    <span style="font-size: 2rem;">🚨</span>
+                </div>
+            </div>
+
+            <!-- Message -->
+            <h5 class="fw-semibold text-danger mb-3">
+                <%= message %>
+            </h5>
+
+            <p class="text-muted mb-4">
+                Something went wrong. Please try again or go back to the previous page.
+            </p>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                    Go Back
+                </a>
+                <a href="/" class="btn btn-danger">
+                    Home
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

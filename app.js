@@ -1,204 +1,268 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
+const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
+
 const Listing = require("./models/listing.js");
 const Subscriber = require("./models/subscriber.js");
 const Message = require("./models/message.js");
-const methodOverride = require("method-override");
-const ejsMate = require("ejs-mate");
-const path = require("path");
-const PORT = 3000;
+const Review = require("./models/review.js");
+
+const asyncWrap = require("./utils/asyncWrapp.js");
+const ExpressError = require("./ExpressError.js");
+const { listingSchema } = require("./schema.js");
+
 const app = express();
-
+const PORT = 3000;
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-main()
-.then(()=>{
-    console.log('Mongodb connected successfully');
-})
-.catch((err)=>{
-    console.log(err);
-})
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
-app.use(express.static(path.join(__dirname, "public/css")));
-app.use(express.static(path.join(__dirname, "public/js")));
-
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-
-app.engine("ejs", ejsMate);
-
-async function main(){
+// ================= DB CONNECTION =================
+async function main() {
     await mongoose.connect(MONGO_URL);
 }
 
-app.get("/", (req, res)=>{
+main()
+    .then(() => console.log("MongoDB connected successfully"))
+    .catch((err) => console.log(err));
+
+// ================= APP CONFIG =================
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.engine("ejs", ejsMate);
+
+// ================= MIDDLEWARE =================
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(methodOverride("_method"));
+
+// request logger
+app.use((req, res, next) => {
+    req.time = new Date().toLocaleString();
+    console.log(req.time, req.method, req.url);
+    next();
+});
+
+// ================= VALIDATION =================
+const validateListing = (req, res, next) => {
+    const { error } = listingSchema.validate(req.body);
+
+    if (error) {
+        const msg = error.details.map(el => el.message).join(", ");
+        return next(new ExpressError(400, msg));
+    }
+
+    next();
+};
+
+// ================= HOME =================
+app.get("/", (req, res) => {
     res.render("home");
 });
 
-//index route
-app.get("/listings", async (req, res)=>{
-   const allListings = await Listing.find({})
-   res.render("listings/index", {allListings})
-})
+// ================= LISTINGS ROUTES =================
 
-// new routes
-app.get("/listings/new", async (req, res)=>{
-    res.render("listings/new.ejs");
-})
+// INDEX
+app.get("/listings", asyncWrap(async (req, res) => {
+    const allListings = await Listing.find({});
+    res.render("listings/index", { allListings });
+}));
 
-// create routes
-app.post("/listings", async (req, res)=>{
-    const {title, description, price, location, country} = req.body;
-    await Listing.create({title, description, price, location, country})
-    res.redirect("/listings")
-})
+// NEW
+app.get("/listings/new", (req, res) => {
+    res.render("listings/new");
+});
 
-// edit routes
-app.get("/listings/:id/edit", async (req, res)=>{
-    const {id} = req.params;
-    const listings = await Listing.findById(id)
-    res.render("listings/edit.ejs", {listings})
-})
+// CREATE
+app.post("/listings", validateListing, asyncWrap(async (req, res) => {
 
-// update routes
-app.put("/listings/:id", async (req, res)=>{
-    const {id} = req.params;
-    const {title, description, price, location, country} = req.body;
-    await Listing.findByIdAndUpdate(id, {title, description, price, location, country})
-    res.redirect("/listings")
-})
+    const listingData = req.body.listing;
 
-// delete routes
-app.delete("/listings/:id", async (req, res)=>{
-    const {id} = req.params;
-    await Listing.findByIdAndDelete(id)
-    res.redirect("/listings");
-})
-
-// show routes
-app.get("/listings/:id", async (req, res)=>{
-    const {id} = req.params;
-    const listings = await Listing.findById(id)
-    res.render("listings/show.ejs", {listings})
-})
-// ========================================= SUBSCRIBER ===============================================
-// subscriber routes
-app.post("/subscriber", async (req, res)=>{
-    try{
-        const {email} = req.body;
-        // basic validation
-        if(!email){
-            return res.status(400).send("Email is required");
-        }
-        // save to db
-       await Subscriber.create({email});
-        console.log('Subscriber created successfully');
-        // redirect or response
-        res.redirect("/subscriber");
-    } catch(err){
-        console.error(err);
-        res.status(500).send("something went wrong")
+    if (!listingData) {
+        throw new ExpressError(400, "Invalid listing data");
     }
-});
 
-// all subscriber route
-app.get("/subscriber", async (req, res) => {
-  try {
-    const subscriber = await Subscriber.find(); // ✅ array
+    if (!listingData.image?.url?.trim()) {
+        listingData.image = {
+            url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=60"
+        };
+    }
 
-    console.log("DATA:", subscriber); // debug
+    await Listing.create(listingData);
 
-    res.render("subscriber/subscriber", { subscriber }); // ✅ pass karo
-  } catch (err) {
-    console.error(err);
-    res.send("Error loading subscribers");
-  }
-});
+    res.redirect("/listings");
+}));
 
-// subscriber edit route
-app.get("/subscriber/:id/edit", async (req, res)=>{
-    const {id} = req.params;
-    const subscriber = await Subscriber.findById(id);
-    res.render("subscriber/edit", {subscriber});
-});
+// SHOW
+app.get("/listings/:id", asyncWrap(async (req, res) => {
+    const listings = await Listing.findById(req.params.id).populate("reviews");
 
-// update subscriber route
-app.put("/subscriber/:id", async (req, res)=>{
-    const {id} = req.params;
-    const {email} = req.body;
-    await Subscriber.findByIdAndUpdate(id, {email});
+    if (!listings) {
+        throw new ExpressError(404, "Listing not found");
+    }
+
+    // ⭐ Average Rating
+    let avgRating = 0;
+    if (listings.reviews.length > 0) {
+        avgRating =
+            listings.reviews.reduce((acc, r) => acc + r.rating, 0) /
+            listings.reviews.length;
+    }
+
+    res.render("listings/show", { listings, avgRating });
+}));
+
+// EDIT
+app.get("/listings/:id/edit", asyncWrap(async (req, res) => {
+    const listing = await Listing.findById(req.params.id);
+    res.render("listings/edit", { listing });
+}));
+
+// UPDATE
+app.put("/listings/:id", validateListing, asyncWrap(async (req, res) => {
+    await Listing.findByIdAndUpdate(req.params.id, {
+        ...req.body.listing
+    });
+
+    res.redirect("/listings");
+}));
+
+// DELETE
+app.delete("/listings/:id", asyncWrap(async (req, res) => {
+    await Listing.findByIdAndDelete(req.params.id);
+    res.redirect("/listings");
+}));
+
+// ================= SUBSCRIBER ROUTES =================
+
+// CREATE
+app.post("/subscriber", asyncWrap(async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        throw new ExpressError(400, "Email is required");
+    }
+
+    await Subscriber.create({ email });
     res.redirect("/subscriber");
-})
+}));
 
-// delete subscriber route
-app.delete("/subscriber/:id", async (req, res)=>{
-    const {id} = req.params;
-    await Subscriber.findByIdAndDelete(id);
+// READ ALL
+app.get("/subscriber", asyncWrap(async (req, res) => {
+    const subscriber = await Subscriber.find({});
+    res.render("subscriber/subscriber", { subscriber });
+}));
+
+// EDIT
+app.get("/subscriber/:id/edit", asyncWrap(async (req, res) => {
+    const subscriber = await Subscriber.findById(req.params.id);
+    res.render("subscriber/edit", { subscriber });
+}));
+
+// UPDATE
+app.put("/subscriber/:id", asyncWrap(async (req, res) => {
+    await Subscriber.findByIdAndUpdate(req.params.id, {
+        email: req.body.email
+    });
+
     res.redirect("/subscriber");
-})
+}));
 
-// =================================== MESSAGE ROUTE ==================================
-app.get("/message", async (req, res)=>{
-    res.render("message/message")
-})
+// DELETE
+app.delete("/subscriber/:id", asyncWrap(async (req, res) => {
+    await Subscriber.findByIdAndDelete(req.params.id);
+    res.redirect("/subscriber");
+}));
 
+// ================= MESSAGE ROUTES =================
 
-// create message route
-app.post("/message", async (req, res)=>{
-    const {name, email, subject, message} = req.body;
-    await Message.create({name, email, subject, message});
+// FORM
+app.get("/message", (req, res) => {
+    res.render("message/message");
+});
+
+// CREATE
+app.post("/message", asyncWrap(async (req, res) => {
+    await Message.create(req.body);
     res.redirect("/message/read");
-})
+}));
 
-// read message route
-app.get("/message/read", async (req, res)=>{
+// READ
+app.get("/message/read", asyncWrap(async (req, res) => {
     const messages = await Message.find({});
-    res.render("message/adminMessage", {messages});
-})
+    res.render("message/adminMessage", { messages });
+}));
 
-// edit message route
-app.get("/message/:id/edit", async (req, res)=>{
-    const {id} = req.params;
-    const message = await Message.findById(id);
-    res.render("message/edit", {message});
-})
+// EDIT
+app.get("/message/:id/edit", asyncWrap(async (req, res) => {
+    const message = await Message.findById(req.params.id);
+    res.render("message/edit", { message });
+}));
 
-// update message route
-app.put("/message/:id", async (req, res)=>{
-    const {id} = req.params;
-    const {name, email, subject, message} = req.body;
-    await Message.findByIdAndUpdate(id, {name, email, subject, message});
+// UPDATE
+app.put("/message/:id", asyncWrap(async (req, res) => {
+    await Message.findByIdAndUpdate(req.params.id, req.body);
     res.redirect("/message/read");
-})
+}));
 
-// delete message route
-app.delete("/message/:id", async (req,res)=>{
-    const {id} = req.params;
-    await Message.findByIdAndDelete(id)
-    res.redirect("/message/read")
-})
+// DELETE
+app.delete("/message/:id", asyncWrap(async (req, res) => {
+    await Message.findByIdAndDelete(req.params.id);
+    res.redirect("/message/read");
+}));
 
-app.listen(PORT, ()=>{
-    console.log(`Server is listening on PORT ${PORT}`);
+// ================== Reviews Routes ==================
+app.post("/listings/:id/reviews", asyncWrap(async (req, res) => {
+    const listings = await Listing.findById(req.params.id);
+
+    const review = new Review(req.body.review);
+
+    await review.save();
+    listings.reviews.push(review);
+    await listings.save();
+
+    res.redirect(`/listings/${req.params.id}`);
+}));
+
+app.delete("/listings/:id/reviews/:reviewId", asyncWrap(async (req, res) => {
+    const { id, reviewId } = req.params;
+
+    await Listing.findByIdAndUpdate(id, {
+        $pull: { reviews: reviewId }
+    });
+
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+}));
+
+
+// ================= 404 =================
+app.use((req, res) => {
+    res.status(404).render("assets/404");
 });
 
+// ================= ERROR HANDLER =================
+app.use((err, req, res, next) => {
+    let { status = 500, message = "Something went wrong!" } = err;
 
+    if (err.name === "ValidationError") {
+        message = Object.values(err.errors)
+            .map(e => e.message)
+            .join(", ");
+        status = 400;
+    }
 
+    if (err.details) {
+        message = err.details.map(e => e.message).join(", ");
+        status = 400;
+    }
 
+    res.status(status).render("assets/error", { message });
+});
 
-
-// app.get("/testListing", async (req, res)=>{
-//     const sampleListings = new listing({
-//         title: "My new villa",
-//         description: "By the beach",
-//         price: 1200,
-//         location: "Calanguate, Goa",
-//         country: "India"
-//     })
-//     await sampleListings.save();
-//     console.log('sample listing is seved successfully');
-//     res.send("listing created successfully")
-// })
+// ================= SERVER =================
+app.listen(PORT, () => {
+    console.log(`Server running on PORT ${PORT}`);
+});
