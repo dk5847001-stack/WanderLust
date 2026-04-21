@@ -2,13 +2,50 @@
 
 <div class="container py-5">
 
-  <!-- Title -->
+  <!-- ================= LISTING DETAILS ================= -->
+
   <h2 class="fw-bold"><%= listings.title %></h2>
   <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
 
+  <!-- ✅ ACTION BUTTONS -->
+  <div class="d-flex gap-2 mt-3 mb-3">
+    <a href="/listings/<%= listings._id %>/edit" 
+       class="btn btn-outline-primary rounded-pill">
+      ✏️ Edit
+    </a>
+
+    <form method="post" 
+          action="/listings/<%= listings._id %>?_method=DELETE"
+          onsubmit="return confirm('Are you sure you want to delete this listing?');">
+      <button class="btn btn-outline-danger rounded-pill">
+        🗑️ Delete
+      </button>
+    </form>
+  </div>
+
+  <div class="row mt-4">
+
+    <!-- 🖼️ Image -->
+    <div class="col-md-8">
+      <img src="<%= listings.image.url %>" 
+           class="img-fluid rounded shadow-sm"
+           style="height:400px; width:100%; object-fit:cover;">
+    </div>
+
+    <!-- 💰 Price + Info -->
+    <div class="col-md-4">
+      <div class="card p-3 shadow-sm">
+        <h4>₹ <%= listings.price %> / night</h4>
+        <p class="text-muted mt-2"><%= listings.description %></p>
+      </div>
+    </div>
+
+  </div>
+
   <hr>
 
-  <!-- ⭐ Reviews -->
+  <!-- ================= REVIEWS ================= -->
+
   <h4>⭐ Reviews</h4>
 
   <p class="text-muted">
@@ -17,29 +54,27 @@
   </p>
 
   <!-- ================= REVIEW FORM ================= -->
-  <form action="/listings/<%= listings._id %>/reviews" method="post" class="needs-validation" novalidate>
+  <form action="/listings/<%= listings._id %>/reviews" 
+        method="post" 
+        class="needs-validation" 
+        novalidate>
 
     <!-- ⭐ Rating -->
     <div class="mb-3">
       <label class="fw-semibold">Rating</label>
 
       <div class="star-rating">
-  <% for(let i = 1; i <= 5; i++) { %>
-    <input 
-      type="radio" 
-      class="rating-input"
-      id="star<%= i %>" 
-      name="review[rating]" 
-      value="<%= i %>">
-    <label for="star<%= i %>">★</label>
-  <% } %>
-</div>
-
-      <div class="invalid-feedback d-block" id="ratingError" style="display:none;">
-       
-        <div class="valid-feedback">
-        Looks good!
+        <% for(let i = 1; i <= 5; i++) { %>
+          <input type="radio" 
+                 class="rating-input" 
+                 name="review[rating]" 
+                 value="<%= i %>">
+          <label>★</label>
+        <% } %>
       </div>
+
+      <div class="text-danger" id="ratingError" style="display:none;">
+        Please select a rating.
       </div>
     </div>
 
@@ -53,46 +88,53 @@
         required 
         minlength="10"></textarea>
 
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-
       <div class="invalid-feedback">
         Comment must be at least 10 characters long.
       </div>
     </div>
 
-    <button class="btn btn-dark">Submit</button>
+    <button class="btn btn-dark rounded-pill">Submit</button>
   </form>
 
   <hr>
 
   <!-- ================= REVIEW LIST ================= -->
-  <% if(listings.reviews.length > 0) { %>
-    <% listings.reviews.forEach(review => { %>
+  <div class="row g-4">
 
-      <div class="card p-3 mb-3">
-        <div class="d-flex justify-content-between">
-          <strong>👤 User</strong>
+    <% if(listings.reviews.length > 0) { %>
+      <% listings.reviews.forEach(review => { %>
 
-          <span class="text-warning">
-            <% for(let i = 1; i <= 5; i++) { %>
-              <%= i <= review.rating ? "★" : "☆" %>
-            <% } %>
-          </span>
+        <div class="col-md-6">
+          <div class="card p-3 shadow-sm h-100">
+
+            <div class="d-flex justify-content-between">
+              <strong>👤 User</strong>
+
+              <span class="text-warning">
+                <% for(let i = 1; i <= 5; i++) { %>
+                  <%= i <= review.rating ? "★" : "☆" %>
+                <% } %>
+              </span>
+            </div>
+
+            <p class="mt-2"><%= review.comment %></p>
+
+            <form method="post" 
+                  action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-outline-danger rounded-pill">
+                Delete
+              </button>
+            </form>
+
+          </div>
         </div>
 
-        <p><%= review.comment %></p>
+      <% }) %>
+    <% } else { %>
+      <p>No reviews yet.</p>
+    <% } %>
 
-        <form method="post" action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE">
-          <button class="btn btn-sm btn-danger">Delete</button>
-        </form>
-      </div>
-
-    <% }) %>
-  <% } else { %>
-    <p>No reviews yet.</p>
-  <% } %>
+  </div>
 
 </div>
 
@@ -100,58 +142,35 @@
 <script>
 (() => {
 
-  const forms = document.querySelectorAll(".needs-validation");
+  const form = document.querySelector(".needs-validation");
+  const ratingInputs = document.querySelectorAll(".rating-input");
+  const ratingError = document.getElementById("ratingError");
+  const textarea = document.querySelector("textarea");
 
-  forms.forEach(form => {
+  form.addEventListener("submit", function(e) {
 
-    const ratingInputs = form.querySelectorAll(".rating-input");
-    const ratingError = form.querySelector("#ratingError");
-    const textarea = form.querySelector("textarea");
+    let ratingChecked = Array.from(ratingInputs).some(input => input.checked);
+    let commentValid = textarea.value.trim().length >= 10;
 
-    form.addEventListener("submit", function(e) {
+    if (!ratingChecked || !commentValid) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
-      let ratingChecked = Array.from(ratingInputs).some(input => input.checked);
-      let commentValid = textarea.value.trim().length >= 10;
+    ratingError.style.display = ratingChecked ? "none" : "block";
 
-      if (!ratingChecked || !commentValid) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+    if (!commentValid) {
+      textarea.classList.add("is-invalid");
+    } else {
+      textarea.classList.remove("is-invalid");
+    }
 
-      // ⭐ rating error
-      if (ratingError) {
-        ratingError.style.display = ratingChecked ? "none" : "block";
-      }
+  });
 
-      // 📝 comment validation
-      if (!commentValid) {
-        textarea.classList.add("is-invalid");
-        textarea.classList.remove("is-valid");
-      } else {
-        textarea.classList.add("is-valid");
-        textarea.classList.remove("is-invalid");
-      }
-
+  ratingInputs.forEach(input => {
+    input.addEventListener("change", () => {
+      ratingError.style.display = "none";
     });
-
-    // ⭐ instant fix
-    ratingInputs.forEach(input => {
-      input.addEventListener("change", () => {
-        if (ratingError) ratingError.style.display = "none";
-      });
-    });
-
-    // 📝 live validation
-    textarea.addEventListener("input", () => {
-      if (textarea.value.trim().length >= 10) {
-        textarea.classList.add("is-valid");
-        textarea.classList.remove("is-invalid");
-      } else {
-        textarea.classList.add("is-invalid");
-        textarea.classList.remove("is-valid");
-      }
-    });
-
   });
 
 })();
