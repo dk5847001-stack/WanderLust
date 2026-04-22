@@ -20,7 +20,6 @@ router.get("/new", (req, res) => {
 // ================= CREATE =================
 router.post("/", validateListing, asyncWrap(async (req, res) => {
     const listingData = req.body.listing;
-
     if (!listingData) {
         throw new ExpressError(400, "Invalid listing data");
     }
@@ -30,7 +29,7 @@ router.post("/", validateListing, asyncWrap(async (req, res) => {
             url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b"
         };
     }
-
+    req.flash("success", "New Listion created successfully!"); // Flash success message
     await Listing.create(listingData);
     res.redirect("/listings");
 }));
@@ -40,7 +39,8 @@ router.get("/:id", asyncWrap(async (req, res) => {
     const listing = await Listing.findById(req.params.id).populate("reviews");
 
     if (!listing) {
-        throw new ExpressError(404, "Listing not found");
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings"); // ✅ fix
     }
 
     let avgRating = 0;
@@ -50,10 +50,9 @@ router.get("/:id", asyncWrap(async (req, res) => {
             listing.reviews.length;
     }
 
-    // 👇 IMPORTANT FIX (dual variable)
     res.render("listings/show", { 
         listing,
-        listings: listing,   // 👈 EJS compatibility fix
+        listings: listing,
         avgRating
     });
 }));
@@ -63,7 +62,10 @@ router.get("/:id/edit", asyncWrap(async (req, res) => {
     const listing = await Listing.findById(req.params.id);
 
     if (!listing) {
-        throw new ExpressError(404, "Listing not found");
+        if (!listing) {
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings"); // ✅ fix
+    }
     }
 
     res.render("listings/edit", { listing });
@@ -72,12 +74,14 @@ router.get("/:id/edit", asyncWrap(async (req, res) => {
 // ================= UPDATE =================
 router.put("/:id", validateListing, asyncWrap(async (req, res) => {
     await Listing.findByIdAndUpdate(req.params.id, req.body.listing);
+    req.flash("success", "Listing updated successfully!"); // Flash success message
     res.redirect("/listings");
 }));
 
 // ================= DELETE =================
 router.delete("/:id", asyncWrap(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
+    req.flash("error", "Listing deleted successfully!"); // Flash error message
     res.redirect("/listings");
 }));
 

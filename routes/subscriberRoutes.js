@@ -10,11 +10,13 @@ router.post("/", asyncWrap(async (req, res) => {
     const { email } = req.body;
 
     if (!email || !email.trim()) {
-        throw new ExpressError(400, "Email is required");
+        req.flash("error", "Email is required!"); // ✅ add
+        return res.redirect("/subscriber");       // ✅ return important
     }
 
     await Subscriber.create({ email: email.trim() });
 
+    req.flash("success", "Subscribed successfully!"); // ✅ add
     res.redirect("/subscriber");
 }));
 
@@ -51,13 +53,14 @@ router.put("/:id", asyncWrap(async (req, res) => {
     await Subscriber.findByIdAndUpdate(req.params.id, {
         email: email.trim()
     });
-
+    req.flash("success", "Subscriber updated successfully!"); // Flash success message
     res.redirect("/subscriber");
 }));
 
 // ================= DELETE =================
 router.delete("/:id", asyncWrap(async (req, res) => {
     await Subscriber.findByIdAndDelete(req.params.id);
+    req.flash("error", "Subscriber deleted successfully!"); // Flash error message
     res.redirect("/subscriber");
 }));
 

@@ -19,3 +19,12 @@
 })()
 
 
+// <!-- ================= AUTO HIDE ALERT ================= -->
+
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.classList.remove('show');
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 3000); // 3 sec

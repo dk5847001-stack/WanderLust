@@ -4,6 +4,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const cookiesParser = require("cookie-parser");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 // ================= ROUTES =================
 const listingRoutes = require("./routes/listingRoutes");
@@ -36,6 +38,7 @@ app.engine("ejs", ejsMate);
 
 // ================= MIDDLEWARE =================
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public/js")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -45,6 +48,28 @@ app.use((req, res, next) => {
     console.log(`[${new Date().toLocaleString()}] ${req.method} ${req.url}`);
     next();
 });
+
+// session Middleware
+const sessionOftion = {
+    secret: "wanderlustSecretKey",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        httpOnly: true
+    }
+};
+
+app.use(session(sessionOftion));
+app.use(flash());
+
+// Flash Middleware - make flash messages available in all views
+app.use((req, res, next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+})
 
 // ================= ROUTES =================
 
