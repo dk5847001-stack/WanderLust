@@ -6,13 +6,16 @@ const ejsMate = require("ejs-mate");
 const cookiesParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
+const {isLoggedIn} = require("./middleware/middleware");
 // ================= ROUTES =================
 const listingRoutes = require("./routes/listingRoutes");
 const subscriberRoutes = require("./routes/subscriberRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-
+const userRoutes = require("./routes/userRoutes");
 // ================= APP INIT =================
 const app = express();
 const PORT = 3000;
@@ -50,7 +53,7 @@ app.use((req, res, next) => {
 });
 
 // session Middleware
-const sessionOftion = {
+const sessionOption = {
     secret: "wanderlustSecretKey",
     resave: false,
     saveUninitialized: true,
@@ -61,13 +64,21 @@ const sessionOftion = {
     }
 };
 
-app.use(session(sessionOftion));
+app.use(session(sessionOption));
 app.use(flash());
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Flash Middleware - make flash messages available in all views
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user; // Make current user available in all views
     next();
 })
 
@@ -77,6 +88,21 @@ app.use((req, res, next)=>{
 app.get("/", (req, res) => {
     res.render("home");
 });
+
+// app.get("/demoUser", async (req, res, next) => {
+//     try {
+//         let fakeUser3 = new User({
+//             email: "dk@examples3.com",
+//             username: "demoUser",
+//         });
+
+//         let newUser = await User.register(fakeUser3, "password123");
+//         res.send(`Demo user created: ${newUser}`);
+//     } catch (err) {
+//         next(err);
+//     }
+// });
+
 
 // Listings
 app.use("/listings", listingRoutes);
@@ -89,6 +115,9 @@ app.use("/subscriber", subscriberRoutes);
 
 // Message
 app.use("/message", messageRoutes);
+
+// User
+app.use("/", userRoutes); // ✅ changed from "/users" to "/" for cleaner URLs (e.g., /register instead of /users/register)
 
 // ================= 404 HANDLER =================
 app.use((req, res, next) => {

@@ -1,32 +1,87 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top shadow-sm">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="/">
+      <i class="fa-regular fa-compass"></i> Wanderlust
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/listings">All Listings</a>
+          <a class="nav-link" href="/listings">All Listings</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add New Listins</a>
+          <a class="nav-link" href="/listings/new">Add Listing</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="/subscriber">Subscribers</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/message">Contect Us</a>
+          <a class="nav-link" href="/message">Contact</a>
         </li>
+
+        <% if(currUser){ %>
         <li class="nav-item">
-          <a class="nav-link" href="/message/read">Message</a>
+          <a class="nav-link" href="/message/read">Messages</a>
         </li>
-        
+        <% } %>
+
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+
+      <!-- Search -->
+      <form class="d-flex me-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search listings..." />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+
+      <!-- Right Auth Links -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+
+        <% if(!currUser){ %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Sign Up</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+
+        <% } else { %>
+
+          <!-- Username -->
+          <li class="nav-item">
+            <span class="nav-link fw-semibold text-primary">
+              👋 <%= currUser.username %>
+            </span>
+          </li>
+          
+          <!-- Logout -->
+          <li class="nav-item">
+            <form action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
+              <button class="nav-link btn btn-link text-danger" style="border:none;">
+                Logout
+              </button>
+            </form>
+          </li>
+
+        <% } %>
+
+      </ul>
+
     </div>
   </div>
 </nav>

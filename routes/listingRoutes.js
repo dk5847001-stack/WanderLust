@@ -5,6 +5,7 @@ const Listing = require("../models/listing");
 const asyncWrap = require("../utils/asyncWrapp");
 const ExpressError = require("../ExpressError");
 const { validateListing } = require("../validation");
+const {isLoggedIn} = require("../middleware/middleware");
 
 // ================= INDEX =================
 router.get("/", asyncWrap(async (req, res) => {
@@ -13,12 +14,12 @@ router.get("/", asyncWrap(async (req, res) => {
 }));
 
 // ================= NEW =================
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
     res.render("listings/new");
 });
 
 // ================= CREATE =================
-router.post("/", validateListing, asyncWrap(async (req, res) => {
+router.post("/", isLoggedIn, validateListing, asyncWrap(async (req, res) => {
     const listingData = req.body.listing;
     if (!listingData) {
         throw new ExpressError(400, "Invalid listing data");
@@ -35,7 +36,7 @@ router.post("/", validateListing, asyncWrap(async (req, res) => {
 }));
 
 // ================= SHOW =================
-router.get("/:id", asyncWrap(async (req, res) => {
+router.get("/:id", isLoggedIn, asyncWrap(async (req, res) => {
     const listing = await Listing.findById(req.params.id).populate("reviews");
 
     if (!listing) {
@@ -57,8 +58,9 @@ router.get("/:id", asyncWrap(async (req, res) => {
     });
 }));
 
+
 // ================= EDIT =================
-router.get("/:id/edit", asyncWrap(async (req, res) => {
+router.get("/:id/edit", isLoggedIn, asyncWrap(async (req, res) => {
     const listing = await Listing.findById(req.params.id);
 
     if (!listing) {
@@ -72,14 +74,14 @@ router.get("/:id/edit", asyncWrap(async (req, res) => {
 }));
 
 // ================= UPDATE =================
-router.put("/:id", validateListing, asyncWrap(async (req, res) => {
+router.put("/:id", isLoggedIn, validateListing, asyncWrap(async (req, res) => {
     await Listing.findByIdAndUpdate(req.params.id, req.body.listing);
     req.flash("success", "Listing updated successfully!"); // Flash success message
     res.redirect("/listings");
 }));
 
 // ================= DELETE =================
-router.delete("/:id", asyncWrap(async (req, res) => {
+router.delete("/:id", isLoggedIn, asyncWrap(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
     req.flash("error", "Listing deleted successfully!"); // Flash error message
     res.redirect("/listings");
