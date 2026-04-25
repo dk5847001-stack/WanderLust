@@ -19,6 +19,8 @@
   <h2 class="fw-bold"><%= listings.title %></h2>
   <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
 
+    <%if(currUser && currUser._id.equals(listings.owner._id)){ %>
+
   <!-- ✅ ACTION BUTTONS -->
   <div class="d-flex gap-2 mt-3 mb-3">
     <a href="/listings/<%= listings._id %>/edit" 
@@ -34,6 +36,7 @@
       </button>
     </form>
   </div>
+<%}%>
 
   <div class="row mt-4">
 
@@ -64,7 +67,8 @@
     Average:
     <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong>
   </p>
-
+  <% if(currUser){ %>
+    <p class="text-muted">You cannot review your own listing.</p>
   <!-- ================= REVIEW FORM ================= -->
   <form action="/listings/<%= listings._id %>/reviews" 
         method="post" 
@@ -107,7 +111,7 @@
 
     <button class="btn btn-dark rounded-pill">Submit</button>
   </form>
-
+ <% } %>
   <hr>
 
   <!-- ================= REVIEW LIST ================= -->
@@ -120,7 +124,7 @@
           <div class="card p-3 shadow-sm h-100">
 
             <div class="d-flex justify-content-between">
-              <strong>👤 User</strong>
+              <strong>👤 <%= review.author.username %> </strong>
 
               <span class="text-warning">
                 <% for(let i = 1; i <= 5; i++) { %>

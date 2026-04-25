@@ -5,7 +5,8 @@ const Listing = require("../models/listing");
 const asyncWrap = require("../utils/asyncWrapp");
 const ExpressError = require("../ExpressError");
 const { validateListing } = require("../validation");
-const {isLoggedIn} = require("../middleware/middleware");
+const { isLoggedIn, isOwner } = require("../middleware/middleware");
+const { populate } = require("../models/review");
 
 // ================= INDEX =================
 router.get("/", asyncWrap(async (req, res) => {
@@ -21,6 +22,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 // ================= CREATE =================
 router.post("/", isLoggedIn, validateListing, asyncWrap(async (req, res) => {
     const listingData = req.body.listing;
+    listingData.owner = req.user._id; // Associate listing with logged-in user
     if (!listingData) {
         throw new ExpressError(400, "Invalid listing data");
     }
@@ -36,8 +38,14 @@ router.post("/", isLoggedIn, validateListing, asyncWrap(async (req, res) => {
 }));
 
 // ================= SHOW =================
-router.get("/:id", isLoggedIn, asyncWrap(async (req, res) => {
-    const listing = await Listing.findById(req.params.id).populate("reviews").populate("owner");
+router.get("/:id", asyncWrap(async (req, res) => {
+    const listing = await Listing.findById(req.params.id)
+        .populate({
+            path: "reviews",
+            populate: {
+            path: "author"
+        }})
+        .populate("owner");
 
     if (!listing) {
         req.flash("error", "Listing not found!");
@@ -51,7 +59,7 @@ router.get("/:id", isLoggedIn, asyncWrap(async (req, res) => {
             listing.reviews.length;
     }
 
-    res.render("listings/show", { 
+    res.render("listings/show", {
         listing,
         listings: listing,
         avgRating
@@ -60,28 +68,29 @@ router.get("/:id", isLoggedIn, asyncWrap(async (req, res) => {
 
 
 // ================= EDIT =================
-router.get("/:id/edit", isLoggedIn, asyncWrap(async (req, res) => {
+router.get("/:id/edit", isLoggedIn, isOwner, asyncWrap(async (req, res) => {
     const listing = await Listing.findById(req.params.id);
 
     if (!listing) {
         if (!listing) {
-        req.flash("error", "Listing not found!");
-        return res.redirect("/listings"); // ✅ fix
-    }
+            req.flash("error", "Listing not found!");
+            return res.redirect("/listings"); // ✅ fix
+        }
     }
 
     res.render("listings/edit", { listing });
 }));
 
 // ================= UPDATE =================
-router.put("/:id", isLoggedIn, validateListing, asyncWrap(async (req, res) => {
-    await Listing.findByIdAndUpdate(req.params.id, req.body.listing);
+router.put("/:id", isLoggedIn, isOwner, validateListing, asyncWrap(async (req, res) => {
+    let { id } = req.params;
+    await Listing.findByIdAndUpdate(id, req.body.listing);
     req.flash("success", "Listing updated successfully!"); // Flash success message
-    res.redirect("/listings");
+    res.redirect(`/listings/${id}`);
 }));
 
 // ================= DELETE =================
-router.delete("/:id", isLoggedIn, asyncWrap(async (req, res) => {
+router.delete("/:id", isLoggedIn, isOwner, asyncWrap(async (req, res) => {
     await Listing.findByIdAndDelete(req.params.id);
     req.flash("error", "Listing deleted successfully!"); // Flash error message
     res.redirect("/listings");

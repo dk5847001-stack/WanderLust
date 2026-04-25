@@ -7,11 +7,11 @@ const Review = require("../models/review");
 const asyncWrap = require("../utils/asyncWrapp");
 const ExpressError = require("../ExpressError");
 const { validateReview } = require("../validation");
+const { isLoggedIn } = require("../middleware/middleware");
 
 // ================= CREATE REVIEW =================
-router.post("/", validateReview, asyncWrap(async (req, res) => {
+router.post("/", isLoggedIn, validateReview, asyncWrap(async (req, res) => {
     const { id } = req.params;
-
     if (!req.body.review) {
         throw new ExpressError(400, "Review data missing");
     }
@@ -25,7 +25,7 @@ router.post("/", validateReview, asyncWrap(async (req, res) => {
         comment: req.body.review.comment.trim(),
         rating: req.body.review.rating
     });
-
+    newReview.author = req.user._id; // Associate review with logged-in user
     await newReview.save();
 
     listing.reviews.push(newReview);
