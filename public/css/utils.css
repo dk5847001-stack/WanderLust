@@ -1,0 +1,35 @@
+  .owner-btn {
+    background: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .owner-btn:hover {
+    background: #f1f1f1;
+    transform: translateY(-2px);
+  }
+
+  .owner-btn span {
+    margin-left: 5px;
+  }
+
+  /* Popover Styling */
+  .popover {
+    border-radius: 12px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  }
+
+  .popover-header {
+    font-weight: 600;
+    background: #f8f9fa;
+    border-bottom: none;
+  }
+
+  .popover-body {
+    font-size: 0.9rem;
+  }

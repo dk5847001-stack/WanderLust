@@ -4,6 +4,18 @@
 
   <!-- ================= LISTING DETAILS ================= -->
 
+<!-- Button -->
+<button type="button" 
+        class="owner-btn"
+        data-bs-toggle="popover"
+        data-bs-placement="right"
+        data-bs-html="true"
+        data-bs-title="👤 <%= listings.owner.username %>"
+        data-bs-content="<strong>Email:</strong> <%= listings.owner.email %>">
+        
+  👤 <span><%= listings.owner.username %></span>
+</button>
+
   <h2 class="fw-bold"><%= listings.title %></h2>
   <p class="text-muted">📍 <%= listings.location %>, <%= listings.country %></p>
 
