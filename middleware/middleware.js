@@ -25,3 +25,14 @@ module.exports.isOwner = async (req, res, next)=>{
     }
    next();
 }
+
+module.exports.isReviewAuthor = async (req, res, next)=>{
+    let {id, reviewId} = req.params;
+    let listing = await Listing.findById(id).populate("reviews");
+    let review = listing.reviews.find(r => r._id.equals(reviewId));
+    if(!review.author.equals(res.locals.currUser._id)){
+        req.flash("error", "You don't have permission to do that!");
+        return res.redirect(`/listings/${id}`);
+    }
+    next();
+}

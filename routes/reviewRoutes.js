@@ -7,7 +7,7 @@ const Review = require("../models/review");
 const asyncWrap = require("../utils/asyncWrapp");
 const ExpressError = require("../ExpressError");
 const { validateReview } = require("../validation");
-const { isLoggedIn } = require("../middleware/middleware");
+const { isLoggedIn, isReviewAuthor } = require("../middleware/middleware");
 
 // ================= CREATE REVIEW =================
 router.post("/", isLoggedIn, validateReview, asyncWrap(async (req, res) => {
@@ -35,7 +35,7 @@ router.post("/", isLoggedIn, validateReview, asyncWrap(async (req, res) => {
 }));
 
 // ================= DELETE REVIEW =================
-router.delete("/:reviewId", asyncWrap(async (req, res) => {
+router.delete("/:reviewId", isReviewAuthor, asyncWrap(async (req, res) => {
     const { id, reviewId } = req.params;
 
     await Listing.findByIdAndUpdate(id, {
