@@ -6,19 +6,18 @@ const asyncWrap = require("../utils/asyncWrapp");
 const ExpressError = require("../ExpressError");
 const subscriberController = require("../controllers/subscriberControllers");
 
-// ================= CREATE =================
-router.post("/", asyncWrap(subscriberController.createSubscriber));
-
-// ================= READ ALL =================
-router.get("/", asyncWrap(subscriberController.readSubscribers));
+router.route("/")
+.get(asyncWrap(subscriberController.readSubscribers))
+.post(asyncWrap(subscriberController.createSubscriber))
 
 // ================= EDIT =================
 router.get("/:id/edit", asyncWrap(subscriberController.editSubscriber));
 
-// ================= UPDATE =================
-router.put("/:id", asyncWrap(subscriberController.updateSubscriber));
+// ================= UPDATE AND DELETE ROUTES =================
+router.route("/:id")
+.put(asyncWrap(subscriberController.updateSubscriber))
+.delete(asyncWrap(subscriberController.deleteSubscriber))
 
-// ================= DELETE =================
-router.delete("/:id", asyncWrap(subscriberController.deleteSubscriber));
+
 
 module.exports = router;

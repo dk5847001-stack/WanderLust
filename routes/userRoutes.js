@@ -9,23 +9,21 @@ const { saveRedirectUrl } = require("../middleware/middleware");
 const userController = require("../controllers/userControllers");
 
 // ================= REGISTER =================
-router.get("/register", userController.renderRegisterForm);
-
-// ================= REGISTER =================
-router.post("/register", asyncWrap(userController.createRegisterForm));
-
-router.get("/login", userController.renderLoginForm);
+router.route("/register")
+.get(userController.renderRegisterForm)
+.post(asyncWrap(userController.createRegisterForm))
 
 // ================= LOGIN =================
-
-router.post("/login", 
+router.route("/login")
+.get(userController.renderLoginForm)
+.post( 
      saveRedirectUrl,
      passport.authenticate("local",
      { failureRedirect: "/login",
        failureFlash: true
      }),
        asyncWrap(userController.createLoginForm)
-);
+)
 
 // ================= LOGOUT =================
 router.post("/logout", userController.logout)

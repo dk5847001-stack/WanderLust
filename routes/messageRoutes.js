@@ -5,11 +5,10 @@ const Message = require("../models/message");
 const asyncWrap = require("../utils/asyncWrapp");
 const messageController = require("../controllers/messageControllers");
 
-// ================= FORM =================
-router.get("/", messageController.index);
-
-// ================= CREATE =================
-router.post("/", asyncWrap(messageController.createMessage));
+// ================= INDEX AND CREATE ROUTES =================
+router.route("/")
+.get(messageController.index)
+.post(asyncWrap(messageController.createMessage))
 
 // ================= READ =================
 router.get("/read", asyncWrap(messageController.readMessages));
@@ -17,10 +16,10 @@ router.get("/read", asyncWrap(messageController.readMessages));
 // ================= EDIT =================
 router.get("/:id/edit", asyncWrap(messageController.editMessage));
 
-// ================= UPDATE =================
-router.put("/:id", asyncWrap(messageController.updateMessage));
+// ================= UPDATE AND DELETE ROUTES =================
+router.route("/:id")
+.put(asyncWrap(messageController.updateMessage))
+.delete(asyncWrap(messageController.deleteMessage))
 
-// ================= DELETE =================
-router.delete("/:id", asyncWrap(messageController.deleteMessage));
 
 module.exports = router;
