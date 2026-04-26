@@ -9,26 +9,23 @@ const { isLoggedIn, isOwner } = require("../middleware/middleware");
 const { populate } = require("../models/review");
 const listingController = require("../controllers/listingControllers");
 
-// ================= INDEX =================
-router.get("/", asyncWrap(listingController.index));
+// =================INDEX AND CREATE ROUTES=================
+router
+.route("/")
+.get(asyncWrap(listingController.index))
+.post(isLoggedIn, validateListing, asyncWrap(listingController.createListing))
 
 // ================= NEW =================
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// ================= CREATE =================
-router.post("/", isLoggedIn, validateListing, asyncWrap(listingController.createListing));
-
-// ================= SHOW =================
-router.get("/:id", asyncWrap(listingController.showListing));
-
+// ================= SHOW, UPDATE, AND DELETE ROUTES =================
+router
+.route("/:id")
+.get(asyncWrap(listingController.showListing))
+.put("/:id", isLoggedIn, isOwner, validateListing, asyncWrap(listingController.updateListing))
+.delete("/:id", isLoggedIn, isOwner, asyncWrap(listingController.deleteListing))
 
 // ================= EDIT =================
 router.get("/:id/edit", isLoggedIn, isOwner, asyncWrap(listingController.editListing));
-
-// ================= UPDATE =================
-router.put("/:id", isLoggedIn, isOwner, validateListing, asyncWrap(listingController.updateListing));
-
-// ================= DELETE =================
-router.delete("/:id", isLoggedIn, isOwner, asyncWrap(listingController.deleteListing));
 
 module.exports = router;
