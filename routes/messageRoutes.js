@@ -3,43 +3,24 @@ const router = express.Router();
 
 const Message = require("../models/message");
 const asyncWrap = require("../utils/asyncWrapp");
+const messageController = require("../controllers/messageControllers");
 
 // ================= FORM =================
-router.get("/", (req, res) => {
-    res.render("message/message");
-});
+router.get("/", messageController.index);
 
 // ================= CREATE =================
-router.post("/", asyncWrap(async (req, res) => {
-    await Message.create(req.body);
-    req.flash("success", "Message sent successfully!"); // Flash success message
-    res.redirect("/message");
-}));
+router.post("/", asyncWrap(messageController.createMessage));
 
 // ================= READ =================
-router.get("/read", asyncWrap(async (req, res) => {
-    const messages = await Message.find({});
-    res.render("message/adminMessage", { messages });
-}));
+router.get("/read", asyncWrap(messageController.readMessages));
 
 // ================= EDIT =================
-router.get("/:id/edit", asyncWrap(async (req, res) => {
-    const message = await Message.findById(req.params.id);
-    res.render("message/edit", { message });
-}));
+router.get("/:id/edit", asyncWrap(messageController.editMessage));
 
 // ================= UPDATE =================
-router.put("/:id", asyncWrap(async (req, res) => {
-    await Message.findByIdAndUpdate(req.params.id, req.body);
-    req.flash("success", "Message updated successfully!"); // Flash success message
-    res.redirect("/message/read");
-}));
+router.put("/:id", asyncWrap(messageController.updateMessage));
 
 // ================= DELETE =================
-router.delete("/:id", asyncWrap(async (req, res) => {
-    await Message.findByIdAndDelete(req.params.id);
-req.flash("error", "Message deleted successfully!"); // Flash error message
-    res.redirect("/message/read");
-}));
+router.delete("/:id", asyncWrap(messageController.deleteMessage));
 
 module.exports = router;
