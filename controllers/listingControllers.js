@@ -10,6 +10,11 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createListing = async (req, res) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
+
+    console.log(url, ".........");
+    
     const listingData = req.body.listing;
     listingData.owner = req.user._id; // Associate listing with logged-in user
     if (!listingData) {
@@ -18,7 +23,8 @@ module.exports.createListing = async (req, res) => {
 
     if (!listingData.image?.url?.trim()) {
         listingData.image = {
-            url: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b"
+            url: url,
+            filename: filename
         };
     }
     req.flash("success", "New Listion created successfully!"); // Flash success message
@@ -69,7 +75,18 @@ module.exports.editListing = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, req.body.listing);
+    let listing = await Listing.findByIdAndUpdate(id, req.body.listing);
+
+     if (typeof req.file !== "undefined") {
+     let url = req.file.path;
+     let filename = req.file.filename;
+     
+        listing.image = {
+            url: url,
+            filename: filename
+        };
+    }
+    await listing.save();
     req.flash("success", "Listing updated successfully!"); // Flash success message
     res.redirect(`/listings/${id}`);
 }

@@ -37,3 +37,20 @@
       new bootstrap.Popover(el);
     });
   });
+
+  // image preview
+
+  const input = document.getElementById("imageInput");
+  const preview = document.getElementById("previewImage");
+
+  input.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => preview.src = reader.result;
+      reader.readAsDataURL(file);
+    }
+  });
+
+
