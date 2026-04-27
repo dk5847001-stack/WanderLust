@@ -162,10 +162,13 @@
                         <% } else { %>
                           <p class="text-muted">No reviews yet.</p>
                           <% } %>
-
                 </div>
+         </div>
 
-  </div>
+         <hr>
+<h4>📍 Location Map</h4>
+
+<div id="map" class="map-container"></div>
 
   <!-- ================= JS ================= -->
   <script>
@@ -203,3 +206,44 @@
 
     });
   </script>
+
+  <script>
+  const apiKey = "FmtEvoD5gfMXGun2J9YQ";
+  const place = "<%= listing.location %>, <%= listing.country %>";
+
+  async function loadMap() {
+    try {
+      const res = await fetch(`https://api.maptiler.com/geocoding/${encodeURIComponent(place)}.json?key=${apiKey}`);
+      const data = await res.json();
+
+      if (!data.features.length) return;
+
+      const coords = data.features[0].center;
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: `https://api.maptiler.com/maps/streets/style.json?key=${apiKey}`,
+        center: coords,
+        zoom: 12
+      });
+
+      // ✅ control yahi hona chahiye
+      map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+      const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
+        <h6><%= listing.title %></h6>
+        <p>📍 <%= listing.location %></p>
+      `);
+
+      new maplibregl.Marker({ color: "#ff385c" })
+        .setLngLat(coords)
+        .setPopup(popup)
+        .addTo(map);
+
+    } catch (err) {
+      console.log("Map error:", err);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadMap);
+</script>
