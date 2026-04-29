@@ -803,20 +803,6 @@ textarea:focus {
   background: transparent !important;
 }
 
-.navbar-toggler {
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 14px;
-  padding: 0.55rem 0.7rem;
-}
-
-.navbar-toggler:focus {
-  box-shadow: 0 0 0 0.2rem rgba(53, 208, 255, 0.14) !important;
-}
-
-.navbar-toggler-icon {
-  filter: invert(1) brightness(1.7);
-}
-
 .navbar-brand {
   display: inline-flex;
   align-items: center;

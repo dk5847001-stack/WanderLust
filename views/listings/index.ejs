@@ -1,53 +1,90 @@
 <% layout("/layouts/boilerplate") -%>
 
-<section class="page-stack">
-  <section class="hero-card">
-    <div class="section-heading mb-4">
-      <div>
-        <span class="eyebrow mb-3">
-          <i class="bi bi-grid-1x2"></i>
-          Curated inventory
-        </span>
-        <h1 class="page-title headline-gradient">Find the right stay faster with immersive filters.</h1>
-        <p class="page-subtitle mb-0">Browse premium properties, refine by category, and explore every destination with map-backed discovery.</p>
+<section class="mb-4">
+  <div class="p-4 p-md-5 bg-white border rounded-4 shadow-sm">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <span class="badge text-bg-primary mb-3">All Listings</span>
+        <h1 class="display-6 fw-bold mb-2">Explore properties with clean Bootstrap cards</h1>
+        <p class="text-muted mb-0">Search, filter, and browse listings with a simpler interface and better placeholder experience.</p>
       </div>
-    </div>
-
-    <div class="listing-shell">
-      <div class="toolbar-grid mb-4">
-        <div class="search-shell">
-          <i class="bi bi-search"></i>
-          <input type="text" id="searchInput" class="form-control" placeholder="Search by title, location, or country">
+      <div class="col-lg-4">
+        <div class="row g-3 text-center">
+          <div class="col-6">
+            <div class="border rounded-4 bg-light p-3 h-100">
+              <div class="fw-bold">Live</div>
+              <small class="text-muted">Filtering</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="border rounded-4 bg-light p-3 h-100">
+              <div class="fw-bold">Responsive</div>
+              <small class="text-muted">Cards</small>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="meta-row justify-content-lg-end">
-          <span class="stat-pill"><i class="bi bi-lightning-charge"></i> Live filtering</span>
-          <span class="stat-pill"><i class="bi bi-phone"></i> Responsive cards</span>
+<section class="card border-0 shadow-sm mb-4">
+  <div class="card-body p-3 p-md-4">
+    <div class="row g-3 align-items-center mb-3">
+      <div class="col-lg-6">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by title, location, or country">
+      </div>
+      <div class="col-lg-6">
+        <div id="filters" class="d-flex flex-wrap gap-2">
+          <% const filters = ["Trending","Rooms","Cities","Mountains","Pools","Camping","Farms","Homes"]; %>
+          <button class="btn btn-primary btn-sm filter-chip active" data-category="" type="button">All</button>
+          <% filters.forEach(f => { %>
+            <button class="btn btn-outline-primary btn-sm filter-chip" data-category="<%= f %>" type="button"><%= f %></button>
+          <% }) %>
         </div>
       </div>
-
-      <div id="filters" class="filter-bar mb-4">
-        <% const filters = ["Trending","Rooms","Cities","Mountains","Pools","Camping","Farms","Homes"]; %>
-        <button class="filter-chip active" data-category="" type="button">All</button>
-        <% filters.forEach(f => { %>
-          <button class="filter-chip" data-category="<%= f %>" type="button"><%= f %></button>
-        <% }) %>
-      </div>
-
-      <div class="listing-grid" id="listingContainer"></div>
     </div>
-  </section>
 
-  <section class="map-shell position-relative">
-    <div class="section-heading">
+    <div class="row g-4" id="listingContainer">
+      <% for(let i = 0; i < 8; i++) { %>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="card h-100 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder">
+              <rect width="100%" height="100%" fill="#dee2e6"></rect>
+              <text x="50%" y="50%" fill="#6c757d" dy=".3em" text-anchor="middle">Loading...</text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text placeholder-glow mb-2">
+                <span class="placeholder col-4"></span>
+              </p>
+              <h5 class="card-title placeholder-glow">
+                <span class="placeholder col-8"></span>
+              </h5>
+              <p class="card-text placeholder-glow mb-3">
+                <span class="placeholder col-10"></span>
+              </p>
+              <p class="card-text placeholder-glow mb-3">
+                <span class="placeholder col-5"></span>
+              </p>
+              <a class="btn btn-dark disabled placeholder col-12" aria-disabled="true"></a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="card border-0 shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
       <div>
-        <span class="mini-label">Geo view</span>
-        <h2>Explore the collection on the map</h2>
+        <h2 class="h4 mb-1">Explore on Map</h2>
+        <p class="text-muted mb-0">Location overview for all visible listings.</p>
       </div>
-      <p class="muted-copy mb-0">Use location context to spot clusters, cities, and destination-ready options faster.</p>
     </div>
-    <div class="map-frame" id="map"></div>
-  </section>
+    <div id="map" class="rounded-3 border" style="height: 400px;"></div>
+  </div>
 </section>
 
 <script>
@@ -62,6 +99,16 @@ function debounce(fn, delay) {
     clearTimeout(timeout);
     timeout = setTimeout(() => fn(...args), delay);
   };
+}
+
+function fallbackImage(title = "Listing") {
+  const safeTitle = String(title).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'>
+      <rect width='600' height='400' fill='%23dee2e6'/>
+      <text x='50%25' y='48%25' text-anchor='middle' fill='%236c757d' font-size='28' font-family='Arial'>WanderLust</text>
+      <text x='50%25' y='58%25' text-anchor='middle' fill='%236c757d' font-size='18' font-family='Arial'>${safeTitle}</text>
+    </svg>`;
 }
 
 async function fetchListings() {
@@ -80,40 +127,40 @@ function renderListings(listings) {
 
   if (!listings.length) {
     container.innerHTML = `
-      <div class="empty-state glass-panel" style="grid-column: 1 / -1;">
-        <i class="bi bi-search-heart"></i>
-        <h4 class="mt-3">No listings matched your search</h4>
-        <p class="muted-copy mb-0">Try a broader keyword or switch categories to continue exploring.</p>
+      <div class="col-12">
+        <div class="alert alert-secondary text-center mb-0">
+          <i class="bi bi-search me-2"></i>No listings matched your search.
+        </div>
       </div>
     `;
     return;
   }
 
   container.innerHTML = listings.map((listing) => `
-    <article class="listing-card">
-      <div class="listing-card-media">
-        <img src="${listing.image?.url || 'https://via.placeholder.com/600x400'}" alt="${listing.title}">
-      </div>
-      <div class="listing-card-body">
-        <div class="meta-row mb-2">
-          <span class="category-pill">${listing.category || "Featured"}</span>
-        </div>
-        <h5 class="fw-semibold mb-2">${listing.title}</h5>
-        <p class="muted-copy mb-3">${listing.location}, ${listing.country}</p>
-        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
-          <span class="price-tag">&#8377; ${Number(listing.price).toLocaleString("en-IN")} / night</span>
-          <a href="/listings/${listing._id}" class="btn btn-dark btn-sm">View Details</a>
+    <div class="col-xl-3 col-lg-4 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <img src="${listing.image?.url || fallbackImage(listing.title)}" class="card-img-top" alt="${listing.title}" style="height: 220px; object-fit: cover;">
+        <div class="card-body d-flex flex-column">
+          <span class="badge text-bg-light border text-dark mb-2 align-self-start">${listing.category || "Featured"}</span>
+          <h5 class="card-title">${listing.title}</h5>
+          <p class="card-text text-muted mb-2">${listing.location}, ${listing.country}</p>
+          <p class="fw-semibold text-success mb-3">&#8377; ${Number(listing.price).toLocaleString("en-IN")} / night</p>
+          <a href="/listings/${listing._id}" class="btn btn-dark mt-auto">View Details</a>
         </div>
       </div>
-    </article>
+    </div>
   `).join("");
 }
 
 document.querySelectorAll(".filter-chip").forEach((button) => {
   button.addEventListener("click", () => {
     currentCategory = button.dataset.category;
-    document.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.remove("active"));
-    button.classList.add("active");
+    document.querySelectorAll(".filter-chip").forEach((chip) => {
+      chip.classList.remove("btn-primary", "active");
+      chip.classList.add("btn-outline-primary");
+    });
+    button.classList.remove("btn-outline-primary");
+    button.classList.add("btn-primary", "active");
     fetchListings();
   });
 });
@@ -149,7 +196,7 @@ function updateMap(listings) {
       return;
     }
 
-    const marker = new maplibregl.Marker({ color: "#35d0ff" })
+    const marker = new maplibregl.Marker({ color: "#dc3545" })
       .setLngLat(listing.geometry.coordinates)
       .setPopup(new maplibregl.Popup().setHTML(`<strong>${listing.title}</strong><br>${listing.location}`))
       .addTo(map);

@@ -1,63 +1,50 @@
-<header class="navbar-shell">
-  <nav class="navbar navbar-expand-lg">
-    <div class="page-container">
-      <div class="container-fluid px-0">
-        <a class="navbar-brand fw-semibold" href="/">
-          <span class="brand-mark">
-            <i class="fa-regular fa-compass"></i>
-          </span>
-          <span>
-            WanderLust
-          </span>
-        </a>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <i class="fa-regular fa-compass text-danger me-2"></i>WanderLust
+    </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="/listings">Discover</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/listings/new">Host a Stay</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/subscriber">Subscribers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/message">Contact</a>
-            </li>
-            <% if(currUser){ %>
-              <li class="nav-item">
-                <a class="nav-link" href="/message/read">Inbox</a>
-              </li>
-            <% } %>
-          </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">All Listings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Add Listing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/subscriber">Subscribers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/message">Contact</a>
+        </li>
+        <% if(currUser){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/message/read">Messages</a>
+          </li>
+        <% } %>
+      </ul>
 
-          <form class="nav-search mx-lg-3" role="search" action="/listings" method="get">
-            <i class="bi bi-search"></i>
-            <input class="form-control" type="search" name="search" placeholder="Search cities, homes, escapes">
+      <form class="d-flex my-3 my-lg-0 me-lg-3" role="search" action="/listings" method="get">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search listings">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <% if(!currUser){ %>
+          <a class="btn btn-outline-primary" href="/register">Sign Up</a>
+          <a class="btn btn-primary" href="/login">Login</a>
+        <% } else { %>
+          <span class="badge text-bg-light border text-dark px-3 py-2"><%= currUser.username %></span>
+          <form action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
+            <button class="btn btn-outline-danger" type="submit">Logout</button>
           </form>
-
-          <div class="nav-auth">
-            <% if(!currUser){ %>
-              <a class="btn btn-outline-secondary" href="/register">Sign Up</a>
-              <a class="btn btn-primary" href="/login">Login</a>
-            <% } else { %>
-              <span class="user-chip">
-                <i class="bi bi-stars"></i>
-                <%= currUser.username %>
-              </span>
-              <form action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
-                <button class="btn btn-outline-danger" type="submit">Logout</button>
-              </form>
-            <% } %>
-          </div>
-        </div>
+        <% } %>
       </div>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>

@@ -1,148 +1,157 @@
 <% layout("/layouts/boilerplate") -%>
 
-<section class="page-stack">
-  <section class="hero-card">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow mb-3">
-          <i class="bi bi-geo-alt-fill"></i>
-          Listing spotlight
-        </span>
-        <h1 class="page-title headline-gradient"><%= listing.title %></h1>
-        <p class="page-subtitle mb-0"><%= listing.location %>, <%= listing.country %></p>
-      </div>
-      <div class="d-flex flex-wrap gap-2">
-        <button type="button" class="owner-btn btn btn-outline-secondary owner-badge"
-          data-bs-toggle="popover" data-bs-placement="left"
-          data-bs-title="<%= listing.owner?.username || 'Unknown host' %>"
-          data-bs-content="<%= listing.owner?.email || 'No email available' %>">
-          <i class="bi bi-person-badge"></i>
-          Hosted by <%= listing.owner?.username || "Unknown" %>
-        </button>
-        <span class="category-pill"><i class="bi bi-tag"></i> <%= listing.category || "Featured" %></span>
-      </div>
-    </div>
-
-    <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)){ %>
-      <div class="d-flex flex-wrap gap-2 mb-4">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary">Edit Listing</a>
-        <form method="post" action="/listings/<%= listing._id %>?_method=DELETE" onsubmit="return confirm('Are you sure?');">
-          <button class="btn btn-outline-danger" type="submit">Delete Listing</button>
-        </form>
-      </div>
-    <% } %>
-
-    <div class="detail-grid">
-      <div class="detail-image">
-        <img src="<%= listing.image?.url || '/default.jpg' %>" alt="<%= listing.title %>">
-      </div>
-
-      <aside class="detail-card">
-        <div class="meta-row mb-3">
-          <span class="stat-pill"><i class="bi bi-currency-rupee"></i> &#8377; <%= listing.price.toLocaleString('en-IN') %> / night</span>
-          <span class="stat-pill"><i class="bi bi-star-half"></i> <%= avgRating ? avgRating.toFixed(1) : "No rating yet" %></span>
-        </div>
-
-        <h4 class="fw-semibold mb-3">About this stay</h4>
-        <p class="muted-copy mb-4"><%= listing.description %></p>
-
-        <div class="content-grid">
-          <div class="metric-card">
-            <span class="mini-label">Location</span>
-            <h5 class="mb-1"><%= listing.location %></h5>
-            <p class="muted-copy mb-0"><%= listing.country %></p>
-          </div>
-          <div class="metric-card">
-            <span class="mini-label">Reviews</span>
-            <h5 class="mb-1"><%= listing.reviews.length %> insights</h5>
-            <p class="muted-copy mb-0">Guest feedback builds trust and discovery quality.</p>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="content-grid" style="gap: 1.5rem;">
-    <div class="review-form form-shell">
-      <div class="section-heading">
+<section class="mb-4">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
         <div>
-          <span class="mini-label">Guest feedback</span>
-          <h3>Reviews and ratings</h3>
+          <span class="badge text-bg-primary mb-2">Listing Details</span>
+          <h1 class="h2 fw-bold mb-1"><%= listing.title %></h1>
+          <p class="text-muted mb-0"><i class="bi bi-geo-alt me-1"></i><%= listing.location %>, <%= listing.country %></p>
         </div>
-        <span class="stat-pill">Average: <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong></span>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-outline-secondary"
+            data-bs-toggle="popover" data-bs-placement="left"
+            data-bs-title="<%= listing.owner?.username || 'Unknown host' %>"
+            data-bs-content="<%= listing.owner?.email || 'No email available' %>">
+            Host: <%= listing.owner?.username || "Unknown" %>
+          </button>
+          <span class="badge text-bg-light border text-dark px-3 py-2"><%= listing.category || "Featured" %></span>
+        </div>
+      </div>
+
+      <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)){ %>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary">Edit Listing</a>
+          <form method="post" action="/listings/<%= listing._id %>?_method=DELETE" onsubmit="return confirm('Are you sure?');">
+            <button class="btn btn-outline-danger" type="submit">Delete Listing</button>
+          </form>
+        </div>
+      <% } %>
+
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-8">
+          <img src="<%= listing.image?.url || 'https://via.placeholder.com/1200x700?text=WanderLust+Listing' %>"
+            alt="<%= listing.title %>" class="img-fluid rounded shadow-sm w-100" style="max-height: 500px; object-fit: cover;">
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <h3 class="h4 text-success fw-bold mb-3">&#8377; <%= listing.price.toLocaleString('en-IN') %> / night</h3>
+              <p class="mb-3"><%= listing.description %></p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light px-0">
+                  <strong>Average rating:</strong> <%= avgRating ? avgRating.toFixed(1) : "No rating yet" %>
+                </li>
+                <li class="list-group-item bg-light px-0">
+                  <strong>Total reviews:</strong> <%= listing.reviews.length %>
+                </li>
+                <li class="list-group-item bg-light px-0">
+                  <strong>Country:</strong> <%= listing.country %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-4">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+          <h2 class="h4 mb-1">Reviews</h2>
+          <p class="text-muted mb-0">Average: <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong></p>
+        </div>
       </div>
 
       <% if(currUser && (!listing.owner || !currUser._id.equals(listing.owner._id))){ %>
-        <form action="/listings/<%= listing._id %>/reviews" method="post" class="needs-validation" novalidate>
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Rating</label>
-            <fieldset class="starability-slot">
-              <input type="radio" name="review[rating]" value="1" checked>
-              <input type="radio" name="review[rating]" value="2">
-              <input type="radio" name="review[rating]" value="3">
-              <input type="radio" name="review[rating]" value="4">
-              <input type="radio" name="review[rating]" value="5">
-            </fieldset>
+        <form action="/listings/<%= listing._id %>/reviews" method="post" class="needs-validation mb-4" novalidate>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Rating</label>
+              <select class="form-select" name="review[rating]" required>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Very Good</option>
+                <option value="3">3 - Good</option>
+                <option value="2">2 - Fair</option>
+                <option value="1">1 - Poor</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Comment</label>
+              <textarea name="review[comment]" class="form-control" rows="4" required minlength="10"
+                placeholder="Write your review..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Submit Review</button>
+            </div>
           </div>
-
-          <div class="mb-3">
-            <textarea name="review[comment]" class="form-control" rows="4" required minlength="10"
-              placeholder="Share what made this stay memorable"></textarea>
-          </div>
-
-          <button class="btn btn-primary" type="submit">Submit Review</button>
         </form>
       <% } else if(currUser){ %>
-        <p class="muted-copy mb-0">You cannot review your own listing.</p>
+        <p class="text-muted">You cannot review your own listing.</p>
       <% } else { %>
-        <p class="muted-copy mb-0">Please login to write a review.</p>
+        <p class="text-muted">Please login to write a review.</p>
       <% } %>
-    </div>
 
-    <div class="review-list">
-      <% if(listing.reviews.length > 0){ %>
-        <% listing.reviews.forEach(review => { %>
-          <article class="review-card">
-            <div class="d-flex justify-content-between align-items-start gap-3 mb-3 flex-wrap">
-              <div>
-                <h5 class="mb-1"><%= review.author?.username || "Anonymous" %></h5>
-                <p class="muted-copy mb-0">Community review</p>
+      <div class="row g-4">
+        <% if(listing.reviews.length > 0){ %>
+          <% listing.reviews.forEach(review => { %>
+            <div class="col-md-6">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-2">
+                    <div>
+                      <h5 class="card-title mb-1"><%= review.author?.username || "Anonymous" %></h5>
+                      <small class="text-muted">Community review</small>
+                    </div>
+                    <span class="badge text-bg-warning">Rating: <%= review.rating %>/5</span>
+                  </div>
+
+                  <p class="card-text mb-3"><%= review.comment %></p>
+
+                  <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
+                    <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                      <button class="btn btn-outline-danger btn-sm" type="submit">Delete Review</button>
+                    </form>
+                  <% } %>
+                </div>
               </div>
-              <p class="starability-result mb-0" data-rating="<%= review.rating %>"></p>
             </div>
-
-            <p class="mb-3"><%= review.comment %></p>
-
-            <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
-              <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                <button class="btn btn-outline-danger btn-sm" type="submit">Delete Review</button>
-              </form>
-            <% } %>
-          </article>
-        <% }) %>
-      <% } else { %>
-        <div class="empty-state glass-panel" style="grid-column: 1 / -1;">
-          <i class="bi bi-chat-square-heart"></i>
-          <h4 class="mt-3">No reviews yet</h4>
-          <p class="muted-copy mb-0">Be the first guest to share an experience for this listing.</p>
-        </div>
-      <% } %>
-    </div>
-  </section>
-
-  <section class="map-shell position-relative">
-    <div class="section-heading">
-      <div>
-        <span class="mini-label">Map view</span>
-        <h3>See where this stay is located</h3>
+          <% }) %>
+        <% } else { %>
+          <div class="col-12">
+            <div class="alert alert-secondary mb-0">No reviews yet.</div>
+          </div>
+        <% } %>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="map-frame position-relative">
-      <div class="map-loader" id="mapLoader">Loading map...</div>
-      <div id="map" style="height:100%;"></div>
+<section>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+          <h2 class="h4 mb-1">Location Map</h2>
+          <p class="text-muted mb-0">Map view for this stay.</p>
+        </div>
+      </div>
+
+      <div class="position-relative">
+        <div class="position-absolute top-50 start-50 translate-middle bg-white border rounded px-3 py-2 shadow-sm z-1" id="mapLoader">
+          Loading map...
+        </div>
+        <div id="map" class="rounded-3 border" style="height: 400px;"></div>
+      </div>
     </div>
-  </section>
+  </div>
 </section>
 
 <script>
@@ -181,16 +190,10 @@ async function loadMap() {
       </div>
     `);
 
-    new maplibregl.Marker({ color: "#35d0ff" })
+    new maplibregl.Marker({ color: "#dc3545" })
       .setLngLat(coords)
       .setPopup(popup)
       .addTo(map);
-
-    map.flyTo({
-      center: coords,
-      zoom: 12,
-      speed: 1.1
-    });
 
     document.getElementById("mapLoader").style.display = "none";
   } catch (err) {
