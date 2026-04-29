@@ -1,14 +1,17 @@
 <% layout("/layouts/boilerplate") -%>
 
-<section class="error-wrap">
-  <div class="not-found-shell glass-panel text-center">
-    <span class="eyebrow mb-3"><i class="bi bi-signpost-split"></i> Route missing</span>
-    <h1 class="display-1 fw-bold headline-gradient">404</h1>
-    <h3 class="mb-3">Page not found</h3>
-    <p class="muted-copy mb-4">The destination you tried to reach does not exist or may have moved to a different route.</p>
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="/" class="btn btn-primary">Go Home</a>
-      <a href="javascript:history.back()" class="btn btn-outline-secondary">Go Back</a>
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm text-center">
+      <div class="card-body p-5">
+        <div class="display-1 fw-bold text-danger mb-3">404</div>
+        <h1 class="h3 fw-bold mb-3">Page Not Found</h1>
+        <p class="text-muted mb-4">The page you are looking for does not exist or may have been moved.</p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+          <a href="/" class="btn btn-primary">Go Home</a>
+          <a href="javascript:history.back()" class="btn btn-outline-secondary">Go Back</a>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>

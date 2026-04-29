@@ -1,30 +1,26 @@
 <% layout("layouts/boilerplate") -%>
 
-<section class="form-wrap">
-  <div class="form-shell">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow mb-3"><i class="bi bi-envelope-gear"></i> Subscriber editor</span>
-        <h1 class="page-title headline-gradient">Update subscriber information.</h1>
-        <p class="page-subtitle mb-0">Keep subscriber records accurate with a clean single-field editing flow.</p>
-      </div>
-    </div>
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-4 p-md-5">
+        <div class="mb-4">
+          <h1 class="h3 fw-bold mb-1">Edit Subscriber</h1>
+          <p class="text-muted mb-0">Update subscriber email information.</p>
+        </div>
 
-    <form method="post" action="/subscriber/<%= subscriber._id %>?_method=PUT">
-      <div class="row g-4">
-        <div class="col-12">
-          <label for="email" class="form-label fw-semibold">Email address</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+        <form method="post" action="/subscriber/<%= subscriber._id %>?_method=PUT">
+          <div class="mb-4">
+            <label for="email" class="form-label fw-semibold">Email address</label>
             <input type="email" name="email" class="form-control" value="<%= subscriber.email %>" required>
           </div>
-        </div>
 
-        <div class="col-12 d-flex flex-wrap gap-3">
-          <a href="/subscriber" class="btn btn-outline-secondary">Back</a>
-          <button type="submit" class="btn btn-primary">Update Subscriber</button>
-        </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="/subscriber" class="btn btn-outline-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Update Subscriber</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
-</section>
+</div>

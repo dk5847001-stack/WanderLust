@@ -1,56 +1,43 @@
 <% layout("layouts/boilerplate") -%>
 
-<section class="form-wrap">
-  <div class="form-shell">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow mb-3"><i class="bi bi-send"></i> Contact channel</span>
-        <h1 class="page-title headline-gradient">Send a message to the WanderLust team.</h1>
-        <p class="page-subtitle mb-0">Questions, collaborations, feedback, or guest support. We built the contact flow to stay clean and responsive everywhere.</p>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+          <h1 class="h3 fw-bold mb-2">Contact Us</h1>
+          <p class="text-muted mb-0">Send a message and our team will get back to you.</p>
+        </div>
+
+        <form method="post" action="/message">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Subject</label>
+              <input type="text" name="subject" class="form-control" placeholder="Enter subject" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold">Message</label>
+              <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap gap-3">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <a href="/" class="btn btn-outline-secondary">Back Home</a>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-
-    <form method="post" action="/message">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Name</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-            <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <label class="form-label fw-semibold">Email</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <label class="form-label fw-semibold">Subject</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-chat-left-text-fill"></i></span>
-            <input type="text" name="subject" class="form-control" placeholder="What would you like to discuss?" required>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <label class="form-label fw-semibold">Message</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-pencil-fill"></i></span>
-            <textarea name="message" class="form-control" rows="5" placeholder="Write your message here" required></textarea>
-          </div>
-        </div>
-
-        <div class="col-12 d-flex flex-wrap gap-3">
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-send-fill me-1"></i> Send Message
-          </button>
-          <a href="/" class="btn btn-outline-secondary">Back Home</a>
-        </div>
-      </div>
-    </form>
   </div>
-</section>
+</div>
