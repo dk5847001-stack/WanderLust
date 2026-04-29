@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const cookiesParser = require("cookie-parser");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -19,10 +19,11 @@ const subscriberRoutes = require("./routes/subscriberRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const userRoutes = require("./routes/userRoutes");
+const { error } = require('console');
 // ================= APP INIT =================
 const app = express();
 const PORT = 3000;
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/wanderlust";
 // ================= DB CONNECTION =================
 async function connectDB() {
     try {
@@ -54,14 +55,26 @@ app.use((req, res, next) => {
     next();
 });
 
-// session Middleware
+const store = MongoStore.create({
+    mongoUrl: MONGO_URL,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600,
+});
+
+store.on("error", ()=>{
+    console.log("ERROR IN MONGO SESSION STORE: ", error);
+});
+
 const sessionOption = {
-    secret: "wanderlustSecretKey",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     }
 };
