@@ -1,8 +1,5 @@
-if(process.env.NODE_ENV != "production"){
-    require('dotenv').config()
-}
-console.log(`Hello ${process.env.SECRET}`)
-
+require('dotenv').config()
+console.log("ENV CHECK 👉", process.env.MONGO_URI);
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -10,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const cookiesParser = require("cookie-parser");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -25,7 +23,6 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 const PORT = 3000;
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
 // ================= DB CONNECTION =================
 async function connectDB() {
     try {

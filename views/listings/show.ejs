@@ -1,249 +1,235 @@
 <% layout("/layouts/boilerplate") -%>
 
-  <div class="container py-5">
-
-    <!-- ================= OWNER ================= -->
-    <button type="button" class="owner-btn btn btn-light rounded-pill shadow-sm" data-bs-toggle="popover"
-      data-bs-placement="right" data-bs-title="👤 <%= listing.owner?.username || 'Unknown' %>"
-      data-bs-content="<%= listing.owner?.email || 'No email' %>">
-
-      👤 <span>
-        <%= listing.owner?.username || "Unknown" %>
-      </span>
-    </button>
-
-    <!-- Title -->
-    <h2 class="fw-bold mt-3">
-      <%= listing.title %>
-    </h2>
-    <p class="text-muted">📍 <%= listing.location %>, <%= listing.country %>
-    </p>
-
-    <!-- ================= ACTION BUTTONS ================= -->
-    <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)){ %>
-      <div class="d-flex gap-2 mt-3 mb-3">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary rounded-pill">✏️ Edit</a>
-
-        <form method="post" action="/listings/<%= listing._id %>?_method=DELETE"
-          onsubmit="return confirm('Are you sure?');">
-          <button class="btn btn-outline-danger rounded-pill">🗑️ Delete</button>
-        </form>
-      </div>
-      <% } %>
-
-        <!-- ================= IMAGE + INFO ================= -->
-        <div class="row mt-4">
-
-          <div class="col-md-8">
-            <img src="<%= listing.image?.url || '/default.jpg' %>" class="img-fluid rounded shadow-sm"
-              style="height:400px; width:100%; object-fit:cover;">
-          </div>
-
-          <div class="col-md-4">
-            <div class="card p-3 shadow-sm">
-              <h4>₹ <%= listing.price.toLocaleString('en-IN') %> / night</h4>
-              <p class="text-muted mt-2">
-                <%= listing.description %>
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <hr>
-
-        <!-- ================= REVIEWS ================= -->
-        <h4>⭐ Reviews</h4>
-
-        <p class="text-muted">
-          Average:
-          <strong>
-            <%= avgRating ? avgRating.toFixed(1) : "No rating" %>
-          </strong>
-        </p>
-
-        <!-- ================= REVIEW FORM ================= -->
-        <% if(currUser && (!listing.owner || !currUser._id.equals(listing.owner._id))){ %>
-
-          <form action="/listings/<%= listing._id %>/reviews" method="post" class="needs-validation" novalidate>
-
-            <!-- ⭐ Rating -->
-            <div class="mb-3">
-              <label class="fw-semibold">Rating</label>
-
-              <fieldset class="starability-slot">
-
-                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
-                  aria-label="No rating." />
-
-                <input type="radio" id="rate1" name="review[rating]" value="1" />
-                <label for="rate1" title="Terrible">1 star</label>
-
-                <input type="radio" id="rate2" name="review[rating]" value="2" />
-                <label for="rate2" title="Not good">2 stars</label>
-
-                <input type="radio" id="rate3" name="review[rating]" value="3" />
-                <label for="rate3" title="Average">3 stars</label>
-
-                <input type="radio" id="rate4" name="review[rating]" value="4" />
-                <label for="rate4" title="Very good">4 stars</label>
-
-                <input type="radio" id="rate5" name="review[rating]" value="5" />
-                <label for="rate5" title="Amazing">5 stars</label>
-
-              </fieldset>
-
-              <div class="text-danger" id="ratingError" style="display:none;">
-                Please select a rating.
-              </div>
-            </div>
-
-            <!-- Comment -->
-            <div class="mb-3">
-              <textarea name="review[comment]" class="form-control" rows="3" required minlength="10"
-                placeholder="Write your review..."></textarea>
-
-              <div class="invalid-feedback">
-                Comment must be at least 10 characters.
-              </div>
-            </div>
-
-            <button class="btn btn-dark rounded-pill">Submit</button>
-          </form>
-
-          <% } else if(currUser){ %>
-            <p class="text-muted">You cannot review your own listing.</p>
-            <% } else { %>
-              <p class="text-muted">Please login to write a review.</p>
-              <% } %>
-
-                <hr>
-
-                <!-- ================= REVIEW LIST ================= -->
-                <div class="row g-4">
-
-                  <% if(listing.reviews.length> 0){ %>
-
-                    <% listing.reviews.forEach(review=> { %>
-
-                      <div class="col-md-6">
-                        <div class="card p-3 shadow-sm h-100">
-
-                          <div class="d-flex justify-content-between">
-
-                            <strong>
-                              👤 <%= review.author?.username || "Anonymous" %>
-                            </strong>
-
-                            <!-- ✅ FIXED -->
-                            <p class="starability-result" data-rating="<%= review.rating %>">
-                            </p>
-
-                          </div>
-
-                          <p class="mt-2">
-                            <%= review.comment %>
-                          </p>
-
-                          <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
-                            <form method="post"
-                              action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                              <button class="btn btn-sm btn-outline-danger rounded-pill">
-                                Delete
-                              </button>
-                            </form>
-                            <% } %>
-
-                        </div>
-                      </div>
-
-                      <% }) %>
-
-                        <% } else { %>
-                          <p class="text-muted">No reviews yet.</p>
-                          <% } %>
-                </div>
-         </div>
-
-         <hr>
-<h4>📍 Location Map</h4>
-
-<div id="map" class="map-container"></div>
-
-  <!-- ================= JS ================= -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
-      popovers.forEach(el => new bootstrap.Popover(el));
-
-      const form = document.querySelector(".needs-validation");
-
-      if (form) {
-        const ratingInputs = form.querySelectorAll("input[type='radio']");
-        const ratingError = document.getElementById("ratingError");
-        const textarea = form.querySelector("textarea");
-
-        form.addEventListener("submit", function (e) {
-
-          let ratingChecked = Array.from(ratingInputs).some(input => input.checked);
-          let commentValid = textarea.value.trim().length >= 10;
-
-          if (!ratingChecked || !commentValid) {
-            e.preventDefault();
-          }
-
-          ratingError.style.display = ratingChecked ? "none" : "block";
-          textarea.classList.toggle("is-invalid", !commentValid);
-        });
-
-        ratingInputs.forEach(input => {
-          input.addEventListener("change", () => {
-            ratingError.style.display = "none";
-          });
-        });
-      }
-
-    });
-  </script>
-
-  <script>
-  const apiKey = "FmtEvoD5gfMXGun2J9YQ";
-  const place = "<%= listing.location %>, <%= listing.country %>";
-
-  async function loadMap() {
-    try {
-      const res = await fetch(`https://api.maptiler.com/geocoding/${encodeURIComponent(place)}.json?key=${apiKey}`);
-      const data = await res.json();
-
-      if (!data.features.length) return;
-
-      const coords = data.features[0].center;
-
-      const map = new maplibregl.Map({
-        container: "map",
-        style: `https://api.maptiler.com/maps/streets/style.json?key=${apiKey}`,
-        center: coords,
-        zoom: 12
-      });
-
-      // ✅ control yahi hona chahiye
-      map.addControl(new maplibregl.NavigationControl(), "top-right");
-
-      const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
-        <h6><%= listing.title %></h6>
-        <p>📍 <%= listing.location %></p>
-      `);
-
-      new maplibregl.Marker({ color: "#ff385c" })
-        .setLngLat(coords)
-        .setPopup(popup)
-        .addTo(map);
-
-    } catch (err) {
-      console.log("Map error:", err);
-    }
+<style>
+  .map-container {
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
   }
 
-  document.addEventListener("DOMContentLoaded", loadMap);
+  .map-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    z-index: 10;
+    font-weight: 500;
+  }
+
+  .owner-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .card {
+    border-radius: 16px;
+  }
+</style>
+
+<div class="container py-5">
+
+  <!-- OWNER -->
+  <button type="button"
+    class="owner-btn btn btn-light rounded-pill shadow-sm"
+    data-bs-toggle="popover"
+    data-bs-placement="right"
+    data-bs-title="👤 <%= listing.owner?.username || 'Unknown' %>"
+    data-bs-content="<%= listing.owner?.email || 'No email' %>">
+
+    👤 <span><%= listing.owner?.username || "Unknown" %></span>
+  </button>
+
+  <!-- TITLE -->
+  <h2 class="fw-bold mt-3"><%= listing.title %></h2>
+  <p class="text-muted">📍 <%= listing.location %>, <%= listing.country %></p>
+
+  <!-- ACTION -->
+  <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)){ %>
+    <div class="d-flex gap-2 mt-3 mb-3">
+      <a href="/listings/<%= listing._id %>/edit"
+         class="btn btn-outline-primary rounded-pill">✏️ Edit</a>
+
+      <form method="post"
+            action="/listings/<%= listing._id %>?_method=DELETE"
+            onsubmit="return confirm('Are you sure?');">
+        <button class="btn btn-outline-danger rounded-pill">🗑️ Delete</button>
+      </form>
+    </div>
+  <% } %>
+
+  <!-- IMAGE + INFO -->
+  <div class="row mt-4">
+    <div class="col-md-8">
+      <img src="<%= listing.image?.url || '/default.jpg' %>"
+           class="img-fluid rounded shadow-sm"
+           style="height:400px; width:100%; object-fit:cover;">
+    </div>
+
+    <div class="col-md-4">
+      <div class="card p-3 shadow-sm">
+        <h4>₹ <%= listing.price.toLocaleString('en-IN') %> / night</h4>
+        <p class="text-muted mt-2"><%= listing.description %></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- REVIEWS -->
+  <h4>⭐ Reviews</h4>
+  <p class="text-muted">
+    Average: <strong><%= avgRating ? avgRating.toFixed(1) : "No rating" %></strong>
+  </p>
+
+  <!-- REVIEW FORM -->
+  <% if(currUser && (!listing.owner || !currUser._id.equals(listing.owner._id))){ %>
+    <form action="/listings/<%= listing._id %>/reviews"
+          method="post"
+          class="needs-validation"
+          novalidate>
+
+      <div class="mb-3">
+        <label class="fw-semibold">Rating</label>
+        <fieldset class="starability-slot">
+          <input type="radio" name="review[rating]" value="1" checked />
+          <input type="radio" name="review[rating]" value="2" />
+          <input type="radio" name="review[rating]" value="3" />
+          <input type="radio" name="review[rating]" value="4" />
+          <input type="radio" name="review[rating]" value="5" />
+        </fieldset>
+      </div>
+
+      <div class="mb-3">
+        <textarea name="review[comment]"
+                  class="form-control"
+                  rows="3"
+                  required minlength="10"
+                  placeholder="Write your review..."></textarea>
+      </div>
+
+      <button class="btn btn-dark rounded-pill">Submit</button>
+    </form>
+  <% } else if(currUser){ %>
+    <p class="text-muted">You cannot review your own listing.</p>
+  <% } else { %>
+    <p class="text-muted">Please login to write a review.</p>
+  <% } %>
+
+  <hr>
+
+  <!-- REVIEW LIST -->
+  <div class="row g-4">
+    <% if(listing.reviews.length > 0){ %>
+      <% listing.reviews.forEach(review => { %>
+
+        <div class="col-md-6">
+          <div class="card p-3 shadow-sm h-100">
+
+            <div class="d-flex justify-content-between">
+              <strong>👤 <%= review.author?.username || "Anonymous" %></strong>
+              <p class="starability-result" data-rating="<%= review.rating %>"></p>
+            </div>
+
+            <p class="mt-2"><%= review.comment %></p>
+
+            <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
+              <form method="post"
+                action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
+              </form>
+            <% } %>
+
+          </div>
+        </div>
+
+      <% }) %>
+    <% } else { %>
+      <p class="text-muted">No reviews yet.</p>
+    <% } %>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- MAP -->
+<div class="container mb-5">
+  <h4>📍 Location Map</h4>
+
+  <div class="map-container">
+    <div class="map-loader" id="mapLoader">Loading map...</div>
+    <div id="map" style="height:100%;"></div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Popover
+  document.querySelectorAll('[data-bs-toggle="popover"]')
+    .forEach(el => new bootstrap.Popover(el));
+
+  loadMap();
+});
+
+const apiKey = "FmtEvoD5gfMXGun2J9YQ"; // 🔴 replace
+
+async function loadMap() {
+  try {
+    const place = "<%= listing.location %>, <%= listing.country %>";
+
+    const res = await fetch(
+      `https://api.maptiler.com/geocoding/${encodeURIComponent(place)}.json?key=${apiKey}`
+    );
+
+    const data = await res.json();
+
+    if (!data.features.length) {
+      document.getElementById("mapLoader").innerText = "Map not available";
+      return;
+    }
+
+    const coords = data.features[0].center;
+
+    const map = new maplibregl.Map({
+      container: "map",
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${apiKey}`,
+      center: coords,
+      zoom: 12
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+    const popup = new maplibregl.Popup({ offset: 25 })
+      .setHTML(`
+        <div style="font-size:14px">
+          <strong>${"<%= listing.title %>"}</strong><br/>
+          📍 ${"<%= listing.location %>"}
+        </div>
+      `);
+
+    new maplibregl.Marker({ color: "#ff385c" })
+      .setLngLat(coords)
+      .setPopup(popup)
+      .addTo(map);
+
+    // Smooth zoom animation
+    map.flyTo({
+      center: coords,
+      zoom: 12,
+      speed: 1.2
+    });
+
+    // remove loader
+    document.getElementById("mapLoader").style.display = "none";
+
+  } catch (err) {
+    document.getElementById("mapLoader").innerText = "Map failed to load";
+    console.log("Map error:", err);
+  }
+}
 </script>

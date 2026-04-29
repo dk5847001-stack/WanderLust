@@ -3,36 +3,70 @@ const router = express.Router();
 
 const Listing = require("../models/listing");
 const asyncWrap = require("../utils/asyncWrapp");
-const ExpressError = require("../ExpressError");
 const { validateListing } = require("../validation");
 const { isLoggedIn, isOwner } = require("../middleware/middleware");
-const { populate } = require("../models/review");
 const listingController = require("../controllers/listingControllers");
-const multer  = require('multer')
-const {storage} = require("../cloudConfig");
+
+const multer = require("multer");
+const { storage } = require("../cloudConfig");
 const upload = multer({ storage });
 
-// =================INDEX AND CREATE ROUTES=================
-router
-.route("/")
+// ================= API (SEARCH + FILTER + PRICE) =================
+router.get("/api", asyncWrap(async (req, res) => {
+    let { category, search, price } = req.query;
+
+    let filter = {};
+
+    if (category) filter.category = category;
+
+    if (search) {
+        filter.$or = [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { country: { $regex: search, $options: "i" } }
+        ];
+    }
+
+    if (price) {
+        filter.price = { $lte: Number(price) };
+    }
+
+    const listings = await Listing.find(filter);
+
+    res.json(listings);
+}));
+
+// ================= MAIN =================
+router.route("/")
 .get(asyncWrap(listingController.index))
-.post(isLoggedIn,
-     validateListing,
-     upload.single('listing[image][url]'),
-     asyncWrap(listingController.createListing))
+.post(
+    isLoggedIn,
+    upload.single("listing[image][url]"),
+    validateListing,
+    asyncWrap(listingController.createListing)
+);
 
-
-// ================= NEW =================
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// ================= SHOW, UPDATE, AND DELETE ROUTES =================
-router
-.route("/:id")
+router.route("/:id")
 .get(asyncWrap(listingController.showListing))
-.put(isLoggedIn, isOwner, upload.single('listing[image][url]'), validateListing, asyncWrap(listingController.updateListing))
-.delete(isLoggedIn, isOwner, asyncWrap(listingController.deleteListing))
+.put(
+    isLoggedIn,
+    isOwner,
+    upload.single("listing[image][url]"),
+    validateListing,
+    asyncWrap(listingController.updateListing)
+)
+.delete(
+    isLoggedIn,
+    isOwner,
+    asyncWrap(listingController.deleteListing)
+);
 
-// ================= EDIT =================
-router.get("/:id/edit", isLoggedIn, isOwner, asyncWrap(listingController.editListing));
+router.get("/:id/edit",
+    isLoggedIn,
+    isOwner,
+    asyncWrap(listingController.editListing)
+);
 
 module.exports = router;
