@@ -1,122 +1,56 @@
 <% layout("layouts/boilerplate") -%>
 
-<body>
-
-  <div class="container mt-5">
-
-    <div class="row justify-content-center">
-      <div class="col-md-7">
-
-        <div class="card shadow border-0">
-          <div class="card-body p-4">
-
-            <h3 class="text-center mb-3 fw-bold">📩 Contact Us</h3>
-            <!-- ================= FLASH MESSAGES ================= -->
-
-    <% if (success && success.length > 0) { %>
-        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
-            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <div><%= success[0] %></div>
-            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
-        </div>
-    <% } %>
-
-    <% if (error && error.length > 0) { %>
-        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
-            <div><%= error[0] %></div>
-            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
-        </div>
-    <% } %>
-            <p class="text-muted text-center mb-4">
-              Send us a message and our team will contact you as soon as possible!
-            </p>
-
-            <form method="post" action="/message">
-
-              <!-- Name -->
-              <div class="mb-3">
-                <label class="form-label fw-semibold">Name</label>
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="bi bi-person-fill"></i>
-                  </span>
-                  <input 
-                    type="text" 
-                    name="name" 
-                    class="form-control" 
-                    placeholder="Enter your name..." 
-                    required
-                  >
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="mb-3">
-                <label class="form-label fw-semibold">Email</label>
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="bi bi-envelope-fill"></i>
-                  </span>
-                  <input 
-                    type="email" 
-                    name="email" 
-                    class="form-control" 
-                    placeholder="Enter your email..." 
-                    required
-                  >
-                </div>
-              </div>
-
-              <!-- Subject -->
-              <div class="mb-3">
-                <label class="form-label fw-semibold">Subject</label>
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="bi bi-chat-left-text-fill"></i>
-                  </span>
-                  <input 
-                    type="text" 
-                    name="subject" 
-                    class="form-control" 
-                    placeholder="Enter subject..." 
-                    required
-                  >
-                </div>
-              </div>
-
-              <!-- Message -->
-              <div class="mb-3">
-                <label class="form-label fw-semibold">Message</label>
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="bi bi-pencil-fill"></i>
-                  </span>
-                  <textarea 
-                    name="message" 
-                    class="form-control" 
-                    rows="4" 
-                    placeholder="Write your message..." 
-                    required
-                  ></textarea>
-                </div>
-              </div>
-
-              <!-- Button -->
-              <div class="text-end">
-                <button type="submit" class="btn btn-primary px-4">
-                  <i class="bi bi-send-fill me-1"></i> Send Message
-                </button>
-              </div>
-
-            </form>
-
-          </div>
-        </div>
-
+<section class="form-wrap">
+  <div class="form-shell">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow mb-3"><i class="bi bi-send"></i> Contact channel</span>
+        <h1 class="page-title headline-gradient">Send a message to the WanderLust team.</h1>
+        <p class="page-subtitle mb-0">Questions, collaborations, feedback, or guest support. We built the contact flow to stay clean and responsive everywhere.</p>
       </div>
     </div>
 
-  </div>
+    <form method="post" action="/message">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+            <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+          </div>
+        </div>
 
-</body>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold">Subject</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-chat-left-text-fill"></i></span>
+            <input type="text" name="subject" class="form-control" placeholder="What would you like to discuss?" required>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold">Message</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-pencil-fill"></i></span>
+            <textarea name="message" class="form-control" rows="5" placeholder="Write your message here" required></textarea>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex flex-wrap gap-3">
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-send-fill me-1"></i> Send Message
+          </button>
+          <a href="/" class="btn btn-outline-secondary">Back Home</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

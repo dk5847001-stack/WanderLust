@@ -1,101 +1,45 @@
-<footer class="bg-dark text-light pt-5 pb-3 mt-5">
-  <div class="container">
-    <div class="row g-4">
-
-      <!-- 🔹 Company Info -->
-      <div class="col-md-4">
-        <h4 class="fw-bold">Wanderlust</h4>
-        <p class="text-muted small">
-          Explore the world with us. Discover amazing places, unique stays, and unforgettable experiences.
+<footer class="footer-shell">
+  <div class="page-container">
+    <div class="footer-grid">
+      <section>
+        <span class="eyebrow mb-3">Next-Gen Travel</span>
+        <h4 class="fw-bold mb-3">Stay discovery, reimagined for modern explorers.</h4>
+        <p class="muted-copy mb-3">
+          WanderLust blends curated destinations, elegant hosting tools, and immersive discovery into a single travel platform.
         </p>
-        <small class="text-secondary">&copy; 2026 Wanderlust Private Limited</small>
-      </div>
+        <div class="social-row">
+          <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </section>
 
-      <!-- 🔹 Quick Links -->
-      <div class="col-md-4">
-        <h5 class="fw-semibold mb-3">Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="/" class="text-light text-decoration-none d-block mb-2">Home</a></li>
-          <li><a href="/listings" class="text-light text-decoration-none d-block mb-2">Listings</a></li>
-          <li><a href="/privacy" class="text-light text-decoration-none d-block mb-2">Privacy Policy</a></li>
-          <li><a href="/terms" class="text-light text-decoration-none d-block">Terms & Conditions</a></li>
-        </ul>
-      </div>
+      <section>
+        <h5 class="fw-semibold mb-3">Explore</h5>
+        <a href="/" class="footer-link"><i class="bi bi-house"></i> Home</a>
+        <a href="/listings" class="footer-link"><i class="bi bi-grid"></i> Listings</a>
+        <a href="/listings/new" class="footer-link"><i class="bi bi-plus-circle"></i> Add Listing</a>
+        <a href="/message" class="footer-link"><i class="bi bi-chat-left-dots"></i> Contact</a>
+      </section>
 
-      <!-- 🔹 Newsletter -->
-      <div class="col-md-4">
-        <h5 class="fw-semibold mb-3">Subscribe</h5>
-        <p class="text-muted small">Get latest updates & offers</p>
-
+      <section>
+        <h5 class="fw-semibold mb-3">Get updates</h5>
+        <p class="muted-copy mb-3">Receive launch notes, stay trends, and new destination drops.</p>
         <form method="post" action="/subscriber">
-          <div class="input-group shadow rounded-pill overflow-hidden subscribe-box">
-
-            <span class="input-group-text bg-white border-0">
-              <i class="bi bi-envelope-fill text-primary"></i>
+          <div class="input-group subscribe-box">
+            <span class="input-group-text border-0">
+              <i class="bi bi-envelope-paper"></i>
             </span>
-
-            <input 
-              type="text" 
-              name="email" 
-              class="form-control border-0" 
-              placeholder="Enter your email..." 
-              required
-            >
-
-            <button 
-              type="submit" 
-              class="btn btn-primary px-4 rounded-pill"
-            >
-              Subscribe
-            </button>
-
+            <input type="email" name="email" class="form-control border-0" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-4">Join</button>
           </div>
         </form>
-      </div>
-
+      </section>
     </div>
 
-    <!-- 🔻 Bottom Section -->
-    <hr class="border-secondary my-4">
-
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-
-      <!-- Left -->
-      <p class="mb-2 mb-md-0 text-secondary small">
-        Made with ❤️ by Wanderlust Team
-      </p>
-
-      <!-- Right: Social Icons -->
-      <div>
-        <a href="#" class="text-light me-3 fs-5 social-icon">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="#" class="text-light me-3 fs-5 social-icon">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="#" class="text-light fs-5 social-icon">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-      </div>
-
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <p class="mb-0 muted-copy">© 2026 WanderLust. Crafted for immersive travel experiences.</p>
+      <p class="mb-0 muted-copy">Responsive across mobile, tablet, and desktop.</p>
     </div>
   </div>
 </footer>
-
-<!-- 🔥 Custom Styles -->
-<style>
-  .subscribe-box:hover {
-    transform: scale(1.03);
-    transition: 0.3s ease;
-  }
-
-  .social-icon:hover {
-    color: #0d6efd;
-    transform: translateY(-3px);
-    transition: 0.3s ease;
-  }
-
-  footer a:hover {
-    color: #0d6efd !important;
-  }
-</style>

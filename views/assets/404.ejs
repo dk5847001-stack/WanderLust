@@ -1,28 +1,14 @@
 <% layout("/layouts/boilerplate") -%>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-
-    <div class="text-center">
-
-        <!-- Big 404 -->
-        <h1 class="display-1 fw-bold text-danger">404</h1>
-
-        <h3 class="mb-3 fw-semibold">Page Not Found</h3>
-
-        <p class="text-muted mb-4">
-            The page you're looking for doesn't exist or has been moved.
-        </p>
-
-        <!-- Buttons -->
-        <div class="d-flex justify-content-center gap-2">
-            <a href="/" class="btn btn-danger px-4">
-                Go Home
-            </a>
-            <a href="javascript:history.back()" class="btn btn-outline-secondary px-4">
-                Go Back
-            </a>
-        </div>
-
+<section class="error-wrap">
+  <div class="not-found-shell glass-panel text-center">
+    <span class="eyebrow mb-3"><i class="bi bi-signpost-split"></i> Route missing</span>
+    <h1 class="display-1 fw-bold headline-gradient">404</h1>
+    <h3 class="mb-3">Page not found</h3>
+    <p class="muted-copy mb-4">The destination you tried to reach does not exist or may have moved to a different route.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="/" class="btn btn-primary">Go Home</a>
+      <a href="javascript:history.back()" class="btn btn-outline-secondary">Go Back</a>
     </div>
-
-</div>
+  </div>
+</section>

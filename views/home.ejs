@@ -1,177 +1,118 @@
 <% layout("/layouts/boilerplate") -%>
 
-<section class="hero-section d-flex align-items-center">
-    <div class="container py-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <span class="badge rounded-pill text-bg-danger px-3 py-2 mb-3">
-                    Find Your Perfect Stay
-                </span>
+<section class="page-stack">
+  <section class="page-hero">
+    <div class="hero-card">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow mb-3">
+            <i class="bi bi-stars"></i>
+            Futuristic travel stays
+          </span>
 
-                <h1 class="display-4 fw-bold text-dark mb-3">
-                    Discover Amazing Places for Your Next Journey
-                </h1>
+          <h1 class="page-title headline-gradient mb-3">
+            Discover extraordinary stays with a cinematic, next-gen booking vibe.
+          </h1>
 
-                <p class="lead text-secondary mb-4">
-                    Browse handpicked listings, explore beautiful destinations, and
-                    book places that match your comfort, style, and budget.
-                </p>
+          <p class="page-subtitle mb-4">
+            Browse curated destinations, premium homes, mountain escapes, and city hideouts through an immersive platform designed for modern explorers and smart hosts.
+          </p>
 
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="/listings" class="btn btn-danger btn-lg px-4 rounded-pill shadow-sm">
-                        Explore Listings
-                    </a>
-                    <a href="/listings/new" class="btn btn-outline-dark btn-lg px-4 rounded-pill">
-                        Add Listing
-                    </a>
-                </div>
+          <div class="d-flex flex-wrap gap-3 responsive-stack">
+            <a href="/listings" class="btn btn-primary btn-lg">Explore Listings</a>
+            <a href="/listings/new" class="btn btn-outline-secondary btn-lg">Launch a New Listing</a>
+          </div>
 
-                <div class="row mt-5 text-center text-lg-start">
-                    <div class="col-4">
-                        <h4 class="fw-bold mb-0">500+</h4>
-                        <small class="text-muted">Listings</small>
-                    </div>
-                    <div class="col-4">
-                        <h4 class="fw-bold mb-0">100+</h4>
-                        <small class="text-muted">Locations</small>
-                    </div>
-                    <div class="col-4">
-                        <h4 class="fw-bold mb-0">24/7</h4>
-                        <small class="text-muted">Support</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="hero-image-wrapper shadow-lg">
-                    <img 
-                        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
-                        alt="Luxury Stay"
-                        class="img-fluid hero-image"
-                    >
-                </div>
-            </div>
+          <div class="stats-grid mt-4">
+            <article class="metric-card">
+              <span class="mini-label">Live inventory</span>
+              <h3 class="mb-1">500+</h3>
+              <p class="muted-copy mb-0">High-quality listings with detailed discovery.</p>
+            </article>
+            <article class="metric-card">
+              <span class="mini-label">Locations</span>
+              <h3 class="mb-1">100+</h3>
+              <p class="muted-copy mb-0">Destinations from cities to nature-forward stays.</p>
+            </article>
+            <article class="metric-card">
+              <span class="mini-label">Support</span>
+              <h3 class="mb-1">24/7</h3>
+              <p class="muted-copy mb-0">Always-on help for hosts, guests, and explorers.</p>
+            </article>
+          </div>
         </div>
+
+        <div class="hero-visual">
+          <div class="hero-shot">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80"
+              alt="Luxury stay exterior">
+          </div>
+
+          <div class="floating-chip top">
+            <i class="bi bi-geo-alt-fill text-primary"></i>
+            <span>Location intelligence with MapTiler</span>
+          </div>
+
+          <div class="floating-chip bottom">
+            <i class="bi bi-shield-check text-success"></i>
+            <span>Secure sessions, reviews, hosting tools</span>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="py-5 bg-white">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Why Choose Us</h2>
-            <p class="text-muted mb-0">
-                We make finding the right place simple, fast, and reliable.
-            </p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4 feature-card">
-                    <div class="feature-icon bg-danger bg-opacity-10 text-danger mx-auto mb-3">
-                        <i class="bi bi-house-door-fill"></i>
-                    </div>
-                    <h5 class="fw-semibold">Premium Listings</h5>
-                    <p class="text-muted mb-0">
-                        Explore quality stays with complete details, pricing, and trusted information.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4 feature-card">
-                    <div class="feature-icon bg-primary bg-opacity-10 text-primary mx-auto mb-3">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <h5 class="fw-semibold">Top Locations</h5>
-                    <p class="text-muted mb-0">
-                        Find properties in great destinations that suit your travel and lifestyle needs.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4 feature-card">
-                    <div class="feature-icon bg-success bg-opacity-10 text-success mx-auto mb-3">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h5 class="fw-semibold">Trusted Platform</h5>
-                    <p class="text-muted mb-0">
-                        Enjoy a smooth and secure experience while browsing and managing listings.
-                    </p>
-                </div>
-            </div>
-        </div>
+  <section>
+    <div class="section-heading">
+      <div>
+        <span class="mini-label">Why WanderLust</span>
+        <h2>Designed to feel premium on every screen.</h2>
+      </div>
+      <p class="muted-copy mb-0">Fast discovery, rich listing details, and clean host workflows across laptop, tablet, and mobile.</p>
     </div>
-</section>
 
-<section class="cta-section py-5">
-    <div class="container">
-        <div class="rounded-4 p-5 text-center cta-box shadow-sm">
-            <h2 class="fw-bold text-white mb-3">Ready to Explore the Best Stays?</h2>
-            <p class="text-white-50 mb-4">
-                Start your journey today and discover places that feel just right for you.
-            </p>
-            <a href="/listings" class="btn btn-light btn-lg rounded-pill px-4">
-                Browse Now
-            </a>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="owner-badge mb-3">
+          <i class="bi bi-house-heart text-danger"></i>
+          Premium inventory
         </div>
+        <h5 class="fw-semibold">Curated stays with visual depth</h5>
+        <p class="muted-copy mb-0">Each listing is built for confident browsing with imagery, pricing, categories, and destination context.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="owner-badge mb-3">
+          <i class="bi bi-compass text-primary"></i>
+          Smart exploration
+        </div>
+        <h5 class="fw-semibold">Search, filters, and live map discovery</h5>
+        <p class="muted-copy mb-0">Move from broad inspiration to precise destination selection with category-based browsing and geo hints.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="owner-badge mb-3">
+          <i class="bi bi-rocket-takeoff text-success"></i>
+          Host-ready platform
+        </div>
+        <h5 class="fw-semibold">Launch and manage listings smoothly</h5>
+        <p class="muted-copy mb-0">Owners can add, update, and control properties using a clean publishing flow built on secure authentication.</p>
+      </article>
     </div>
+  </section>
+
+  <section>
+    <div class="cta-shell hero-card">
+      <div class="section-heading mb-0">
+        <div>
+          <span class="mini-label">Ready to begin</span>
+          <h2 class="headline-gradient">Start exploring the next wave of travel stays.</h2>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="/listings" class="btn btn-light">Browse now</a>
+          <a href="/register" class="btn btn-outline-secondary">Create account</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
-
-<style>
-    .hero-section {
-        min-height: 90vh;
-        background: linear-gradient(to right, #fff8f6, #ffffff);
-    }
-
-    .hero-image-wrapper {
-        border-radius: 24px;
-        overflow: hidden;
-        background: #fff;
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-        display: block;
-    }
-
-    .feature-card {
-        transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .feature-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-    }
-
-    .cta-section {
-        background: #f8f9fa;
-    }
-
-    .cta-box {
-        background: linear-gradient(135deg, #ff385c, #d63384);
-    }
-
-    @media (max-width: 991px) {
-        .hero-section {
-            min-height: auto;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-
-        .hero-image {
-            height: 320px;
-        }
-    }
-</style>

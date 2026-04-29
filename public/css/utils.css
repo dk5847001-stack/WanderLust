@@ -1,64 +1,37 @@
-  .owner-btn {
-    background: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-weight: 500;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .owner-btn:hover {
-    background: #f1f1f1;
-    transform: translateY(-2px);
-  }
-
-  .owner-btn span {
-    margin-left: 5px;
-  }
-
-  /* Popover Styling */
-  .popover {
-    border-radius: 12px !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-  }
-
-  .popover-header {
-    font-weight: 600;
-    background: #f8f9fa;
-    border-bottom: none;
-  }
-
-  .popover-body {
-    font-size: 0.9rem;
-  }
-  /* image preview */
-  .image-upload-card {
-  border: 2px dashed #ddd;
-  border-radius: 15px;
-  background: #fafafa;
-  transition: all 0.3s ease;
+.soft-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  margin: 1.5rem 0;
 }
 
-.image-upload-card:hover {
-  border-color: #0d6efd;
-  background: #f0f8ff;
+.surface-blur {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.preview-img {
-  height: 220px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.accent-ring {
+  box-shadow: 0 0 0 1px rgba(53, 208, 255, 0.18), 0 0 25px rgba(53, 208, 255, 0.08);
 }
 
-/* map */
-.map-container {
-  height: 420px;
-  border-radius: 16px;
+.mini-label {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table-shell {
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  border: 1px solid #eee;
+}
+
+.inline-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }

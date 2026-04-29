@@ -1,23 +1,17 @@
-<!-- ================= FLASH MESSAGES ================= -->
-    <div class="mt-3">
-      <% if (success && success.length> 0) { %>
-        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
-          <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-          <div>
-            <%= success[0] %>
-          </div>
-          <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
-        </div>
-        <% } %>
+<div class="flash-stack">
+  <% if (success && success.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
+      <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+      <div><%= success[0] %></div>
+      <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
 
-          <% if (error && error.length> 0) { %>
-            <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center shadow-sm"
-              role="alert">
-              <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
-              <div>
-                <%= error[0] %>
-              </div>
-              <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
-            </div>
-            <% } %>
-            </div>
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+      <div><%= error[0] %></div>
+      <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+</div>

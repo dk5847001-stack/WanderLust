@@ -1,125 +1,73 @@
 <% layout("/layouts/boilerplate") -%>
 
-<!-- ✅ MAPLIBRE REQUIRED (IMPORTANT) -->
-<link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
-<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+<section class="page-stack">
+  <section class="hero-card">
+    <div class="section-heading mb-4">
+      <div>
+        <span class="eyebrow mb-3">
+          <i class="bi bi-grid-1x2"></i>
+          Curated inventory
+        </span>
+        <h1 class="page-title headline-gradient">Find the right stay faster with immersive filters.</h1>
+        <p class="page-subtitle mb-0">Browse premium properties, refine by category, and explore every destination with map-backed discovery.</p>
+      </div>
+    </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <div class="listing-shell">
+      <div class="toolbar-grid mb-4">
+        <div class="search-shell">
+          <i class="bi bi-search"></i>
+          <input type="text" id="searchInput" class="form-control" placeholder="Search by title, location, or country">
+        </div>
 
-<style>
-/* 🔥 FILTER BAR */
-#filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
+        <div class="meta-row justify-content-lg-end">
+          <span class="stat-pill"><i class="bi bi-lightning-charge"></i> Live filtering</span>
+          <span class="stat-pill"><i class="bi bi-phone"></i> Responsive cards</span>
+        </div>
+      </div>
 
-.filter {
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: #f1f1f1;
-  cursor: pointer;
-  transition: .3s;
-  font-size: 14px;
-}
+      <div id="filters" class="filter-bar mb-4">
+        <% const filters = ["Trending","Rooms","Cities","Mountains","Pools","Camping","Farms","Homes"]; %>
+        <button class="filter-chip active" data-category="" type="button">All</button>
+        <% filters.forEach(f => { %>
+          <button class="filter-chip" data-category="<%= f %>" type="button"><%= f %></button>
+        <% }) %>
+      </div>
 
-.filter:hover {
-  background: #0d6efd;
-  color: white;
-}
+      <div class="listing-grid" id="listingContainer"></div>
+    </div>
+  </section>
 
-.filter.active {
-  background: #0d6efd;
-  color: white;
-  font-weight: 600;
-}
-
-/* 🔥 CARD */
-.listing-card {
-  border-radius: 18px;
-  overflow: hidden;
-  transition: .3s;
-}
-
-.listing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.listing-img {
-  height: 200px;
-  object-fit: cover;
-}
-
-/* 🔥 PRICE */
-.price {
-  font-weight: bold;
-  color: #198754;
-}
-
-/* 🔥 EMPTY */
-.empty {
-  text-align: center;
-  margin-top: 50px;
-  color: gray;
-}
-</style>
-
-<div class="container py-4">
-
-  <!-- 🔍 SEARCH -->
-  <input 
-    type="text"
-    id="searchInput"
-    class="form-control rounded-pill mb-3"
-    placeholder="🔍 Search location, country, title..."
-  >
-
-  <!-- 🎯 FILTERS -->
-  <div id="filters" class="mb-4">
-
-    <% const filters = ["Trending","Rooms","Cities","Mountains","Pools","Camping","Farms","Homes"]; %>
-
-    <div class="filter active" data-category="">All</div>
-
-    <% filters.forEach(f => { %>
-      <div class="filter" data-category="<%= f %>"><%= f %></div>
-    <% }) %>
-
-  </div>
-
-  <!-- LISTINGS -->
-  <div class="row g-4" id="listingContainer"></div>
-
-  <!-- MAP -->
-  <h5 class="mt-5">📍 Explore on Map</h5>
-  <div id="map" style="height:400px; border-radius:14px;"></div>
-
-</div>
+  <section class="map-shell position-relative">
+    <div class="section-heading">
+      <div>
+        <span class="mini-label">Geo view</span>
+        <h2>Explore the collection on the map</h2>
+      </div>
+      <p class="muted-copy mb-0">Use location context to spot clusters, cities, and destination-ready options faster.</p>
+    </div>
+    <div class="map-frame" id="map"></div>
+  </section>
+</section>
 
 <script>
 let currentCategory = "";
 let currentSearch = "";
-
 let map;
 let markers = [];
 
-// 🔥 DEBOUNCE
-function debounce(fn, delay){
+function debounce(fn, delay) {
   let timeout;
-  return (...args)=>{
+  return (...args) => {
     clearTimeout(timeout);
-    timeout = setTimeout(()=>fn(...args), delay);
-  }
+    timeout = setTimeout(() => fn(...args), delay);
+  };
 }
 
-// ================= FETCH =================
 async function fetchListings() {
   try {
-    const res = await fetch(`/listings/api?category=${currentCategory}&search=${currentSearch}`);
+    const res = await fetch(`/listings/api?category=${encodeURIComponent(currentCategory)}&search=${encodeURIComponent(currentSearch)}`);
     const data = await res.json();
-
     renderListings(data);
     updateMap(data);
   } catch (err) {
@@ -127,65 +75,56 @@ async function fetchListings() {
   }
 }
 
-// ================= RENDER =================
 function renderListings(listings) {
   const container = document.getElementById("listingContainer");
 
   if (!listings.length) {
     container.innerHTML = `
-      <div class="empty">
-        <i class="fa fa-search fa-2x mb-2"></i>
-        <p>No listings found</p>
+      <div class="empty-state glass-panel" style="grid-column: 1 / -1;">
+        <i class="bi bi-search-heart"></i>
+        <h4 class="mt-3">No listings matched your search</h4>
+        <p class="muted-copy mb-0">Try a broader keyword or switch categories to continue exploring.</p>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = listings.map(l => `
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card listing-card shadow-sm">
-
-        <img src="${l.image?.url || 'https://via.placeholder.com/300'}" class="listing-img w-100">
-
-        <div class="card-body">
-          <h6 class="fw-bold">${l.title}</h6>
-          <p class="text-muted mb-1">${l.location}, ${l.country}</p>
-          <p class="price">₹ ${l.price} / night</p>
-
-          <a href="/listings/${l._id}" class="btn btn-sm btn-dark w-100">
-            View Details
-          </a>
-        </div>
-
+  container.innerHTML = listings.map((listing) => `
+    <article class="listing-card">
+      <div class="listing-card-media">
+        <img src="${listing.image?.url || 'https://via.placeholder.com/600x400'}" alt="${listing.title}">
       </div>
-    </div>
+      <div class="listing-card-body">
+        <div class="meta-row mb-2">
+          <span class="category-pill">${listing.category || "Featured"}</span>
+        </div>
+        <h5 class="fw-semibold mb-2">${listing.title}</h5>
+        <p class="muted-copy mb-3">${listing.location}, ${listing.country}</p>
+        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">
+          <span class="price-tag">&#8377; ${Number(listing.price).toLocaleString("en-IN")} / night</span>
+          <a href="/listings/${listing._id}" class="btn btn-dark btn-sm">View Details</a>
+        </div>
+      </div>
+    </article>
   `).join("");
 }
 
-// ================= FILTER =================
-document.querySelectorAll(".filter").forEach(btn => {
-  btn.addEventListener("click", () => {
-
-    currentCategory = btn.dataset.category;
-
-    document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
-    btn.classList.add("active");
-
+document.querySelectorAll(".filter-chip").forEach((button) => {
+  button.addEventListener("click", () => {
+    currentCategory = button.dataset.category;
+    document.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.remove("active"));
+    button.classList.add("active");
     fetchListings();
   });
 });
 
-// ================= SEARCH =================
-const searchHandler = debounce((e)=>{
-  currentSearch = e.target.value;
+document.getElementById("searchInput").addEventListener("input", debounce((event) => {
+  currentSearch = event.target.value.trim();
   fetchListings();
-}, 400);
+}, 350));
 
-document.getElementById("searchInput").addEventListener("input", searchHandler);
-
-// ================= MAP =================
 function initMap() {
-  const apiKey = "FmtEvoD5gfMXGun2J9YQ"; // ⚠️ replace this
+  const apiKey = "FmtEvoD5gfMXGun2J9YQ";
 
   map = new maplibregl.Map({
     container: "map",
@@ -193,31 +132,34 @@ function initMap() {
     center: [78.9629, 20.5937],
     zoom: 4
   });
+
+  map.addControl(new maplibregl.NavigationControl(), "top-right");
 }
 
 function updateMap(listings) {
-  if (!map) return;
+  if (!map) {
+    return;
+  }
 
-  markers.forEach(m => m.remove());
+  markers.forEach((marker) => marker.remove());
   markers = [];
 
-  listings.forEach(l => {
-    if (!l.geometry || !l.geometry.coordinates) return;
+  listings.forEach((listing) => {
+    if (!listing.geometry || !listing.geometry.coordinates) {
+      return;
+    }
 
-    const marker = new maplibregl.Marker({ color: "#ff385c" })
-      .setLngLat(l.geometry.coordinates)
-      .setPopup(
-        new maplibregl.Popup().setHTML(`<b>${l.title}</b>`)
-      )
+    const marker = new maplibregl.Marker({ color: "#35d0ff" })
+      .setLngLat(listing.geometry.coordinates)
+      .setPopup(new maplibregl.Popup().setHTML(`<strong>${listing.title}</strong><br>${listing.location}`))
       .addTo(map);
 
     markers.push(marker);
   });
 }
 
-// ================= INIT =================
-window.onload = () => {
-  initMap();      // ✅ map start
-  fetchListings(); // ✅ auto load listings
-};
+window.addEventListener("load", () => {
+  initMap();
+  fetchListings();
+});
 </script>

@@ -1,48 +1,14 @@
 <% layout("/layouts/boilerplate") -%>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-
-    <div class="card shadow-lg border-0" style="max-width: 500px; width: 100%;">
-        
-        <!-- Header -->
-        <div class="card-header bg-danger text-white text-center py-3">
-            <h4 class="mb-0 fw-bold">
-                ⚠️ Error Occurred
-            </h4>
-        </div>
-
-        <!-- Body -->
-        <div class="card-body text-center p-4">
-
-            <!-- Icon -->
-            <div class="mb-3">
-                <div class="rounded-circle bg-danger bg-opacity-10 d-inline-flex align-items-center justify-content-center" 
-                     style="width: 70px; height: 70px;">
-                    <span style="font-size: 2rem;">🚨</span>
-                </div>
-            </div>
-
-            <!-- Message -->
-            <h5 class="fw-semibold text-danger mb-3">
-                <%= message %>
-            </h5>
-
-            <p class="text-muted mb-4">
-                Something went wrong. Please try again or go back to the previous page.
-            </p>
-
-            <!-- Buttons -->
-            <div class="d-flex gap-2 justify-content-center">
-                <a href="javascript:history.back()" class="btn btn-outline-secondary">
-                    Go Back
-                </a>
-                <a href="/" class="btn btn-danger">
-                    Home
-                </a>
-            </div>
-
-        </div>
-
+<section class="error-wrap">
+  <div class="error-shell text-center">
+    <span class="eyebrow mb-3"><i class="bi bi-exclamation-octagon"></i> Something went wrong</span>
+    <h2 class="headline-gradient mb-3">An error interrupted this experience.</h2>
+    <p class="text-danger fw-semibold mb-3"><%= message %></p>
+    <p class="muted-copy mb-4">Please try again, go back, or return to the homepage to continue exploring the platform.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="javascript:history.back()" class="btn btn-outline-secondary">Go Back</a>
+      <a href="/" class="btn btn-primary">Home</a>
     </div>
-
-</div>
+  </div>
+</section>
