@@ -35,3 +35,155 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+/* ===================== navbar ================= */
+/* 🌌 Navbar Glass Effect */
+.futuristic-navbar {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+/* 🚀 Logo */
+.brand-logo {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #ff385c !important;
+}
+
+.brand-logo span {
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 🔥 Nav Links Hover Animation */
+.nav-hover {
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-hover::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, #ff385c, #ff7a18);
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+.nav-hover:hover::after {
+  width: 100%;
+}
+
+.nav-hover:hover {
+  color: #ff385c !important;
+}
+
+/* 🔍 Search */
+.futuristic-search {
+  border-radius: 50px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+}
+
+.search-btn {
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  color: white;
+  border: none;
+}
+
+/* 💎 Buttons */
+.btn-gradient {
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* 👤 Dropdown */
+.user-dropdown {
+  background: rgba(255,255,255,0.7);
+  border-radius: 50px;
+}
+
+.futuristic-dropdown {
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* 🔔 Notification Dot */
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  height: 8px;
+  width: 8px;
+  background: red;
+  border-radius: 50%;
+}
+
+/* 📱 Toggler */
+.custom-toggler {
+  border: none;
+}
+
+/* ====================== footer ================= */
+
+
+
+
+
+
+:root {
+  --primary: #ff385c;
+  --secondary: #ff7a18;
+  --glass: rgba(255,255,255,0.65);
+  --blur: blur(12px);
+}
+
+/* 🌍 Body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #eef1f5);
+}
+
+/* 💎 Glass Card */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* 🔥 Gradient Button */
+.btn-gradient {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+}

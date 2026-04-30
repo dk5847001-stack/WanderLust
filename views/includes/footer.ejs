@@ -1,40 +1,228 @@
-<footer class="bg-white border-top mt-auto py-4">
+<style>
+  /* 🌌 FOOTER BASE */
+.ultra-footer {
+  padding: 80px 0;
+  position: relative;
+}
+
+/* ✨ GLASS CARD */
+.glass-card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* 🚀 CTA */
+.footer-cta h3 {
+  font-size: 1.8rem;
+}
+
+/* 🌈 BRAND */
+.footer-brand {
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 📊 STATS */
+.footer-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.footer-stats div {
+  text-align: center;
+}
+
+.footer-stats strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+/* 🔗 LINKS */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ff385c;
+  transform: translateX(5px);
+}
+
+/* 📩 FORM */
+.footer-form {
+  display: flex;
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.footer-form input {
+  border: none;
+  padding: 12px;
+  flex: 1;
+}
+
+.footer-form button {
+  border: none;
+  padding: 12px 18px;
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  color: white;
+}
+
+/* ➖ */
+.footer-divider {
+  margin: 30px 0;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+}
+
+/* 🔻 */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* 🌐 SOCIAL */
+.footer-socials a {
+  margin-left: 12px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.footer-socials a:hover {
+  color: #ff385c;
+}
+
+/* 🔝 BACK TO TOP */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff385c, #ff7a18);
+  color: white;
+  display: none;
+}
+</style>
+<footer class="ultra-footer">
+
+  <!-- 🔝 BACK TO TOP -->
+  <button id="backToTop" class="back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
   <div class="container">
-    <div class="row g-4 align-items-start">
-      <div class="col-md-4">
-        <h5 class="fw-bold mb-2">WanderLust</h5>
-        <p class="text-muted mb-0">Explore stays, destinations, and travel experiences with a simple Bootstrap-powered interface.</p>
-      </div>
 
-      <div class="col-md-4">
-        <h6 class="fw-semibold mb-3">Quick Links</h6>
-        <ul class="list-unstyled mb-0">
-          <li class="mb-2"><a href="/" class="text-decoration-none">Home</a></li>
-          <li class="mb-2"><a href="/listings" class="text-decoration-none">Listings</a></li>
-          <li class="mb-2"><a href="/listings/new" class="text-decoration-none">Add Listing</a></li>
-          <li><a href="/message" class="text-decoration-none">Contact</a></li>
-        </ul>
-      </div>
+    <!-- ✨ CTA SECTION -->
+    <div class="footer-cta glass-card text-center mb-5">
+      <h3 class="fw-bold">Start Your Journey Today ✈️</h3>
+      <p class="text-muted">List your property or explore amazing destinations</p>
+      <a href="/listings/new" class="btn btn-gradient mt-2">Add Listing</a>
+    </div>
 
-      <div class="col-md-4">
-        <h6 class="fw-semibold mb-3">Subscribe</h6>
-        <form method="post" action="/subscriber">
-          <div class="input-group">
-            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-            <button type="submit" class="btn btn-primary">Subscribe</button>
+    <!-- 🌌 MAIN FOOTER -->
+    <div class="footer-main glass-card">
+
+      <div class="row g-4">
+
+        <!-- BRAND -->
+        <div class="col-md-4">
+          <h4 class="footer-brand">
+            <i class="fa-regular fa-compass me-2"></i> WanderLust
+          </h4>
+          <p class="footer-desc">
+            Discover curated stays, luxury destinations & seamless travel experiences.
+          </p>
+
+          <!-- 📊 STATS -->
+          <div class="footer-stats">
+            <div><strong>500+</strong><span>Listings</span></div>
+            <div><strong>120+</strong><span>Users</span></div>
+            <div><strong>1k+</strong><span>Reviews</span></div>
           </div>
-        </form>
+        </div>
+
+        <!-- LINKS -->
+        <div class="col-md-2">
+          <h6 class="footer-heading">Explore</h6>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/listings">Listings</a></li>
+            <li><a href="/message">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-2">
+          <h6 class="footer-heading">Account</h6>
+          <ul class="footer-links">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- SUBSCRIBE -->
+        <div class="col-md-4">
+          <h6 class="footer-heading">Newsletter</h6>
+
+          <form action="/subscriber" method="POST" class="footer-form">
+            <input type="email" name="email" placeholder="Enter your email..." required>
+            <button type="submit">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+
+          <small class="text-muted">Get latest updates & offers</small>
+        </div>
+
       </div>
+
+      <!-- DIVIDER -->
+      <div class="footer-divider"></div>
+
+      <!-- BOTTOM -->
+      <div class="footer-bottom">
+
+        <p>© 2026 WanderLust • Built with ❤️</p>
+
+        <div class="footer-socials">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+
+      </div>
+
     </div>
 
-    <hr>
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
-      <p class="text-muted small mb-0">© 2026 WanderLust</p>
-      <div class="d-flex gap-3">
-        <a href="#" class="text-muted"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="text-muted"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#" class="text-muted"><i class="fa-brands fa-facebook"></i></a>
-      </div>
-    </div>
   </div>
+
 </footer>
+
+<script>
+  // 🔝 Back to top
+const btn = document.getElementById("backToTop");
+
+window.onscroll = () => {
+  btn.style.display = window.scrollY > 300 ? "block" : "none";
+};
+
+btn.onclick = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+</script>

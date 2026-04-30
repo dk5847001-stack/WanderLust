@@ -1,50 +1,104 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+<style>
+  nav{
+    background-color: aliceblue;
+    box-shadow: 0 0 10px rgb(54, 54, 54);
+  }
+</style>
+<nav class="navbar navbar-expand-lg futuristic-navbar sticky-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/">
-      <i class="fa-regular fa-compass text-danger me-2"></i>WanderLust
+
+    <!-- LOGO -->
+    <a class="navbar-brand brand-logo" href="/">
+      <i class="fa-regular fa-compass me-2"></i>
+      <span>WanderLust</span>
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <!-- TOGGLER -->
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- NAV CONTENT -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <!-- LEFT MENU -->
+      <ul class="navbar-nav me-auto align-items-lg-center gap-lg-2">
+
         <li class="nav-item">
-          <a class="nav-link" href="/listings">All Listings</a>
+          <a class="nav-link nav-hover" href="/listings">
+            <i class="fa-solid fa-globe me-1"></i> Explore
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add Listing</a>
+          <a class="nav-link nav-hover" href="/listings/new">
+            <i class="fa-solid fa-plus me-1"></i> Add
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/subscriber">Subscribers</a>
+          <a class="nav-link nav-hover" href="/subscriber">
+            <i class="fa-solid fa-users me-1"></i> Community
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/message">Contact</a>
+          <a class="nav-link nav-hover" href="/message">
+            <i class="fa-solid fa-envelope me-1"></i> Contact
+          </a>
         </li>
+
         <% if(currUser){ %>
-          <li class="nav-item">
-            <a class="nav-link" href="/message/read">Messages</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link nav-hover position-relative" href="/message/read">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-dot"></span>
+          </a>
+        </li>
         <% } %>
+
       </ul>
 
-      <form class="d-flex my-3 my-lg-0 me-lg-3" role="search" action="/listings" method="get">
-        <input class="form-control me-2" type="search" name="search" placeholder="Search listings">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <!-- SEARCH BAR -->
+      <form class="d-flex futuristic-search me-lg-3" role="search" action="/listings" method="get">
+        <input class="form-control search-input" type="search" name="search" placeholder="Search destinations...">
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
       </form>
 
-      <div class="d-flex align-items-center gap-2 flex-wrap">
+      <!-- USER AREA -->
+      <div class="d-flex align-items-center gap-2">
+
         <% if(!currUser){ %>
-          <a class="btn btn-outline-primary" href="/register">Sign Up</a>
-          <a class="btn btn-primary" href="/login">Login</a>
+
+          <a class="btn btn-glass" href="/register">Sign Up</a>
+          <a class="btn btn-gradient" href="/login">Login</a>
+
         <% } else { %>
-          <span class="badge text-bg-light border text-dark px-3 py-2"><%= currUser.username %></span>
-          <form action="/logout" method="POST" onsubmit="return confirm('Are you sure you want to logout?')">
-            <button class="btn btn-outline-danger" type="submit">Logout</button>
-          </form>
+
+          <div class="dropdown">
+            <button class="btn user-dropdown dropdown-toggle" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-user-circle me-1"></i>
+              <%= currUser.username %>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end futuristic-dropdown">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">My Listings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="/logout" method="POST">
+                  <button class="dropdown-item text-danger">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+
         <% } %>
+
       </div>
+
     </div>
   </div>
 </nav>
