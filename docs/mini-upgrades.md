@@ -40,3 +40,4 @@
 - 2026-05-14 mini upgrade 38: Noted register feedback behavior.
 - 2026-05-14 mini upgrade 39: Documented current user local exposure.
 - 2026-05-14 mini upgrade 40: Recorded success flash local exposure.
+- 2026-05-14 mini upgrade 41: Captured error flash local exposure.
