@@ -72,3 +72,4 @@
 - 2026-05-14 mini upgrade 70: Noted subscriber schema email field.
 - 2026-05-14 mini upgrade 71: Documented message schema contact fields.
 - 2026-05-14 mini upgrade 72: Recorded user schema passport plugin.
+- 2026-05-14 mini upgrade 73: Captured async wrapper utility purpose.
