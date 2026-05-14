@@ -18,3 +18,4 @@
 - 2026-05-14 mini upgrade 16: Recorded review nested route structure.
 - 2026-05-14 mini upgrade 17: Captured subscriber module responsibility.
 - 2026-05-14 mini upgrade 18: Noted message module responsibility.
+- 2026-05-14 mini upgrade 19: Documented user route responsibility.
