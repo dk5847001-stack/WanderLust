@@ -110,3 +110,4 @@
 - 2026-05-14 mini upgrade 108: Recorded admin flow coverage.
 - 2026-05-14 mini upgrade 109: Captured guest browsing coverage.
 - 2026-05-14 mini upgrade 110: Noted authenticated listing flow coverage.
+- 2026-05-14 mini upgrade 111: Documented review flow coverage.
