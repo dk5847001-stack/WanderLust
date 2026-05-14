@@ -63,3 +63,4 @@
 - 2026-05-14 mini upgrade 61: Captured 404 page role.
 - 2026-05-14 mini upgrade 62: Noted listing schema image metadata.
 - 2026-05-14 mini upgrade 63: Documented listing schema location fields.
+- 2026-05-14 mini upgrade 64: Recorded listing schema geometry fields.
