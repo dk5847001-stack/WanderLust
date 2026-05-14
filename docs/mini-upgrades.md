@@ -95,3 +95,4 @@
 - 2026-05-14 mini upgrade 93: Captured dependency surface inventory.
 - 2026-05-14 mini upgrade 94: Noted local upload workspace ignore rule.
 - 2026-05-14 mini upgrade 95: Documented node_modules ignore rule.
+- 2026-05-14 mini upgrade 96: Recorded dotenv file ignore rule.
