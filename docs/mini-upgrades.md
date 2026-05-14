@@ -26,3 +26,4 @@
 - 2026-05-14 mini upgrade 24: Recorded price filter support.
 - 2026-05-14 mini upgrade 25: Captured title search support.
 - 2026-05-14 mini upgrade 26: Noted location search support.
+- 2026-05-14 mini upgrade 27: Documented country search support.
