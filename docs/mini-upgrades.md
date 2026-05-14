@@ -97,3 +97,4 @@
 - 2026-05-14 mini upgrade 95: Documented node_modules ignore rule.
 - 2026-05-14 mini upgrade 96: Recorded dotenv file ignore rule.
 - 2026-05-14 mini upgrade 97: Captured debug log ignore rule.
+- 2026-05-14 mini upgrade 98: Noted Mac metadata ignore rule.
