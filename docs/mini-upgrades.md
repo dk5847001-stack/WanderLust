@@ -86,3 +86,4 @@
 - 2026-05-14 mini upgrade 84: Recorded environment variable dependency list.
 - 2026-05-14 mini upgrade 85: Captured SECRET configuration expectation.
 - 2026-05-14 mini upgrade 86: Noted MONGO_URI configuration expectation.
+- 2026-05-14 mini upgrade 87: Documented Cloudinary credential expectation.
