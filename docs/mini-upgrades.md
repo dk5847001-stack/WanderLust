@@ -28,3 +28,4 @@
 - 2026-05-14 mini upgrade 26: Noted location search support.
 - 2026-05-14 mini upgrade 27: Documented country search support.
 - 2026-05-14 mini upgrade 28: Recorded review author protection.
+- 2026-05-14 mini upgrade 29: Captured listing owner protection.
