@@ -70,3 +70,4 @@
 - 2026-05-14 mini upgrade 68: Recorded review schema comment field.
 - 2026-05-14 mini upgrade 69: Captured review schema author field.
 - 2026-05-14 mini upgrade 70: Noted subscriber schema email field.
+- 2026-05-14 mini upgrade 71: Documented message schema contact fields.
