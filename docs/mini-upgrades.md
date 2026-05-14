@@ -12,3 +12,4 @@
 - 2026-05-14 mini upgrade 10: Captured JSON body parsing behavior.
 - 2026-05-14 mini upgrade 11: Noted 404 render fallback.
 - 2026-05-14 mini upgrade 12: Documented validation error formatting.
+- 2026-05-14 mini upgrade 13: Recorded Joi details error handling.
