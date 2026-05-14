@@ -92,3 +92,4 @@
 - 2026-05-14 mini upgrade 90: Noted package repository metadata.
 - 2026-05-14 mini upgrade 91: Documented ISC license metadata.
 - 2026-05-14 mini upgrade 92: Recorded Node commonjs module type.
+- 2026-05-14 mini upgrade 93: Captured dependency surface inventory.
