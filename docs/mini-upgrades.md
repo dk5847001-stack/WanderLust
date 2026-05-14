@@ -53,3 +53,4 @@
 - 2026-05-14 mini upgrade 51: Documented listing edit view role.
 - 2026-05-14 mini upgrade 52: Recorded message form view role.
 - 2026-05-14 mini upgrade 53: Captured admin message view role.
+- 2026-05-14 mini upgrade 54: Noted subscriber table view role.
