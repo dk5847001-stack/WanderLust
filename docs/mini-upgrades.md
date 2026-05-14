@@ -21,3 +21,4 @@
 - 2026-05-14 mini upgrade 19: Documented user route responsibility.
 - 2026-05-14 mini upgrade 20: Recorded Cloudinary upload dependency.
 - 2026-05-14 mini upgrade 21: Captured Multer storage expectation.
+- 2026-05-14 mini upgrade 22: Noted MapTiler geocoding dependency.
