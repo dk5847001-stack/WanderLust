@@ -15,3 +15,4 @@
 - 2026-05-14 mini upgrade 13: Recorded Joi details error handling.
 - 2026-05-14 mini upgrade 14: Captured server listen host binding.
 - 2026-05-14 mini upgrade 15: Documented listing route ownership expectations.
+- 2026-05-14 mini upgrade 16: Recorded review nested route structure.
