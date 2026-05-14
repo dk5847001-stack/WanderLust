@@ -61,3 +61,4 @@
 - 2026-05-14 mini upgrade 59: Documented flash include role.
 - 2026-05-14 mini upgrade 60: Recorded error page role.
 - 2026-05-14 mini upgrade 61: Captured 404 page role.
+- 2026-05-14 mini upgrade 62: Noted listing schema image metadata.
