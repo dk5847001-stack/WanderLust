@@ -45,3 +45,4 @@
 - 2026-05-14 mini upgrade 43: Documented Bootstrap UI dependency.
 - 2026-05-14 mini upgrade 44: Recorded rating stylesheet purpose.
 - 2026-05-14 mini upgrade 45: Captured shared utility stylesheet purpose.
+- 2026-05-14 mini upgrade 46: Noted browser script asset purpose.
