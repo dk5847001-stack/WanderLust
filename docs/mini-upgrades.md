@@ -20,3 +20,4 @@
 - 2026-05-14 mini upgrade 18: Noted message module responsibility.
 - 2026-05-14 mini upgrade 19: Documented user route responsibility.
 - 2026-05-14 mini upgrade 20: Recorded Cloudinary upload dependency.
+- 2026-05-14 mini upgrade 21: Captured Multer storage expectation.
