@@ -41,3 +41,4 @@
 - 2026-05-14 mini upgrade 39: Documented current user local exposure.
 - 2026-05-14 mini upgrade 40: Recorded success flash local exposure.
 - 2026-05-14 mini upgrade 41: Captured error flash local exposure.
+- 2026-05-14 mini upgrade 42: Noted EJS Mate layout setup.
