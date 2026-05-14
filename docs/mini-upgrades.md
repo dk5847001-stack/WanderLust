@@ -38,3 +38,4 @@
 - 2026-05-14 mini upgrade 36: Recorded login redirect behavior.
 - 2026-05-14 mini upgrade 37: Captured logout feedback behavior.
 - 2026-05-14 mini upgrade 38: Noted register feedback behavior.
+- 2026-05-14 mini upgrade 39: Documented current user local exposure.
