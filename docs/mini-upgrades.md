@@ -33,3 +33,4 @@
 - 2026-05-14 mini upgrade 31: Documented subscriber edit flow.
 - 2026-05-14 mini upgrade 32: Recorded subscriber delete flow.
 - 2026-05-14 mini upgrade 33: Captured contact message listing flow.
+- 2026-05-14 mini upgrade 34: Noted contact message edit flow.
