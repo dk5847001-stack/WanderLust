@@ -106,3 +106,4 @@
 - 2026-05-14 mini upgrade 104: Recorded README environment coverage.
 - 2026-05-14 mini upgrade 105: Captured README troubleshooting coverage.
 - 2026-05-14 mini upgrade 106: Noted README deployment coverage.
+- 2026-05-14 mini upgrade 107: Documented README maintenance coverage.
