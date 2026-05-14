@@ -9,3 +9,4 @@
 - 2026-05-14 mini upgrade 7: Noted static asset directory behavior.
 - 2026-05-14 mini upgrade 8: Documented method override usage.
 - 2026-05-14 mini upgrade 9: Recorded URL encoded body parsing behavior.
+- 2026-05-14 mini upgrade 10: Captured JSON body parsing behavior.
