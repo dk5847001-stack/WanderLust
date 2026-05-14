@@ -88,3 +88,4 @@
 - 2026-05-14 mini upgrade 86: Noted MONGO_URI configuration expectation.
 - 2026-05-14 mini upgrade 87: Documented Cloudinary credential expectation.
 - 2026-05-14 mini upgrade 88: Recorded MapTiler token expectation.
+- 2026-05-14 mini upgrade 89: Captured npm start entry point.
