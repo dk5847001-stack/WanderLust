@@ -36,3 +36,4 @@
 - 2026-05-14 mini upgrade 34: Noted contact message edit flow.
 - 2026-05-14 mini upgrade 35: Documented contact message delete flow.
 - 2026-05-14 mini upgrade 36: Recorded login redirect behavior.
+- 2026-05-14 mini upgrade 37: Captured logout feedback behavior.
