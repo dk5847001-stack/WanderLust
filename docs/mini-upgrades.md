@@ -79,3 +79,4 @@
 - 2026-05-14 mini upgrade 77: Captured review Joi schema role.
 - 2026-05-14 mini upgrade 78: Noted middleware auth guard role.
 - 2026-05-14 mini upgrade 79: Documented middleware owner guard role.
+- 2026-05-14 mini upgrade 80: Recorded middleware review author guard role.
