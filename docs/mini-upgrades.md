@@ -59,3 +59,4 @@
 - 2026-05-14 mini upgrade 57: Captured navbar include role.
 - 2026-05-14 mini upgrade 58: Noted footer include role.
 - 2026-05-14 mini upgrade 59: Documented flash include role.
+- 2026-05-14 mini upgrade 60: Recorded error page role.
