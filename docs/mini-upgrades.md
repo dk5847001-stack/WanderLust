@@ -83,3 +83,4 @@
 - 2026-05-14 mini upgrade 81: Captured controller separation pattern.
 - 2026-05-14 mini upgrade 82: Noted route separation pattern.
 - 2026-05-14 mini upgrade 83: Documented model separation pattern.
+- 2026-05-14 mini upgrade 84: Recorded environment variable dependency list.
