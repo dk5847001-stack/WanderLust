@@ -24,3 +24,4 @@
 - 2026-05-14 mini upgrade 22: Noted MapTiler geocoding dependency.
 - 2026-05-14 mini upgrade 23: Documented listing category support.
 - 2026-05-14 mini upgrade 24: Recorded price filter support.
+- 2026-05-14 mini upgrade 25: Captured title search support.
