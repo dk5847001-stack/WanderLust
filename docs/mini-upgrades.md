@@ -56,3 +56,4 @@
 - 2026-05-14 mini upgrade 54: Noted subscriber table view role.
 - 2026-05-14 mini upgrade 55: Documented login view role.
 - 2026-05-14 mini upgrade 56: Recorded register view role.
+- 2026-05-14 mini upgrade 57: Captured navbar include role.
