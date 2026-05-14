@@ -77,3 +77,4 @@
 - 2026-05-14 mini upgrade 75: Documented validation middleware role.
 - 2026-05-14 mini upgrade 76: Recorded listing Joi schema role.
 - 2026-05-14 mini upgrade 77: Captured review Joi schema role.
+- 2026-05-14 mini upgrade 78: Noted middleware auth guard role.
