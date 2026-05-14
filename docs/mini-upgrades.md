@@ -89,3 +89,4 @@
 - 2026-05-14 mini upgrade 87: Documented Cloudinary credential expectation.
 - 2026-05-14 mini upgrade 88: Recorded MapTiler token expectation.
 - 2026-05-14 mini upgrade 89: Captured npm start entry point.
+- 2026-05-14 mini upgrade 90: Noted package repository metadata.
