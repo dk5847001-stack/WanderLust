@@ -32,3 +32,4 @@
 - 2026-05-14 mini upgrade 30: Noted cascade review cleanup behavior.
 - 2026-05-14 mini upgrade 31: Documented subscriber edit flow.
 - 2026-05-14 mini upgrade 32: Recorded subscriber delete flow.
+- 2026-05-14 mini upgrade 33: Captured contact message listing flow.
