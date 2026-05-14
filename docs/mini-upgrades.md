@@ -103,3 +103,4 @@
 - 2026-05-14 mini upgrade 101: Captured README setup guidance coverage.
 - 2026-05-14 mini upgrade 102: Noted README route overview coverage.
 - 2026-05-14 mini upgrade 103: Documented README model overview coverage.
+- 2026-05-14 mini upgrade 104: Recorded README environment coverage.
