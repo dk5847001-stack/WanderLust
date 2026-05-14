@@ -48,3 +48,4 @@
 - 2026-05-14 mini upgrade 46: Noted browser script asset purpose.
 - 2026-05-14 mini upgrade 47: Documented home view role.
 - 2026-05-14 mini upgrade 48: Recorded listing index view role.
+- 2026-05-14 mini upgrade 49: Captured listing detail view role.
