@@ -49,3 +49,4 @@
 - 2026-05-14 mini upgrade 47: Documented home view role.
 - 2026-05-14 mini upgrade 48: Recorded listing index view role.
 - 2026-05-14 mini upgrade 49: Captured listing detail view role.
+- 2026-05-14 mini upgrade 50: Noted listing create view role.
