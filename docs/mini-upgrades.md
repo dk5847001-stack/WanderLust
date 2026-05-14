@@ -100,3 +100,4 @@
 - 2026-05-14 mini upgrade 98: Noted Mac metadata ignore rule.
 - 2026-05-14 mini upgrade 99: Documented README feature inventory.
 - 2026-05-14 mini upgrade 100: Recorded README architecture summary.
+- 2026-05-14 mini upgrade 101: Captured README setup guidance coverage.
