@@ -108,3 +108,4 @@
 - 2026-05-14 mini upgrade 106: Noted README deployment coverage.
 - 2026-05-14 mini upgrade 107: Documented README maintenance coverage.
 - 2026-05-14 mini upgrade 108: Recorded admin flow coverage.
+- 2026-05-14 mini upgrade 109: Captured guest browsing coverage.
