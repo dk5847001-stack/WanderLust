@@ -10,3 +10,4 @@
 - 2026-05-14 mini upgrade 8: Documented method override usage.
 - 2026-05-14 mini upgrade 9: Recorded URL encoded body parsing behavior.
 - 2026-05-14 mini upgrade 10: Captured JSON body parsing behavior.
+- 2026-05-14 mini upgrade 11: Noted 404 render fallback.
