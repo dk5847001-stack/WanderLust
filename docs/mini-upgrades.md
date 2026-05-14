@@ -74,3 +74,4 @@
 - 2026-05-14 mini upgrade 72: Recorded user schema passport plugin.
 - 2026-05-14 mini upgrade 73: Captured async wrapper utility purpose.
 - 2026-05-14 mini upgrade 74: Noted ExpressError utility purpose.
+- 2026-05-14 mini upgrade 75: Documented validation middleware role.
