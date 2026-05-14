@@ -30,3 +30,4 @@
 - 2026-05-14 mini upgrade 28: Recorded review author protection.
 - 2026-05-14 mini upgrade 29: Captured listing owner protection.
 - 2026-05-14 mini upgrade 30: Noted cascade review cleanup behavior.
+- 2026-05-14 mini upgrade 31: Documented subscriber edit flow.
