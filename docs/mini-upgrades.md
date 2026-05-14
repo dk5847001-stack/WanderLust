@@ -66,3 +66,4 @@
 - 2026-05-14 mini upgrade 64: Recorded listing schema geometry fields.
 - 2026-05-14 mini upgrade 65: Captured listing schema owner field.
 - 2026-05-14 mini upgrade 66: Noted listing schema reviews relation.
+- 2026-05-14 mini upgrade 67: Documented review schema rating field.
