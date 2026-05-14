@@ -68,3 +68,4 @@
 - 2026-05-14 mini upgrade 66: Noted listing schema reviews relation.
 - 2026-05-14 mini upgrade 67: Documented review schema rating field.
 - 2026-05-14 mini upgrade 68: Recorded review schema comment field.
+- 2026-05-14 mini upgrade 69: Captured review schema author field.
