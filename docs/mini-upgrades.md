@@ -266,3 +266,4 @@
 - 2026-05-20 mini upgrade 264: Noted validation error status expectation.
 - 2026-05-20 mini upgrade 265: Documented ExpressError message field usage.
 - 2026-05-20 mini upgrade 266: Recorded ExpressError status code usage.
+- 2026-05-20 mini upgrade 267: Captured model listing owner reference.
