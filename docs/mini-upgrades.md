@@ -269,3 +269,4 @@
 - 2026-05-20 mini upgrade 267: Captured model listing owner reference.
 - 2026-05-20 mini upgrade 268: Noted model listing review references.
 - 2026-05-20 mini upgrade 269: Documented model listing image metadata.
+- 2026-05-20 mini upgrade 270: Recorded model listing geometry metadata.
