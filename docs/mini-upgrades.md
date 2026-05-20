@@ -129,3 +129,4 @@
 - 2026-05-20 mini upgrade 127: Recorded review delete controller boundary.
 - 2026-05-20 mini upgrade 128: Captured review redirect behavior.
 - 2026-05-20 mini upgrade 129: Noted review population expectation.
+- 2026-05-20 mini upgrade 130: Documented subscriber create controller boundary.
