@@ -159,3 +159,4 @@
 - 2026-05-20 mini upgrade 157: Noted custom ExpressError status handling.
 - 2026-05-20 mini upgrade 158: Documented Cloudinary configuration module role.
 - 2026-05-20 mini upgrade 159: Recorded Multer Cloudinary storage export.
+- 2026-05-20 mini upgrade 160: Captured dotenv bootstrap order.
