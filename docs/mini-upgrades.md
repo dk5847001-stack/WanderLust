@@ -151,3 +151,4 @@
 - 2026-05-20 mini upgrade 149: Noted listing schema category storage.
 - 2026-05-20 mini upgrade 150: Documented listing schema image object shape.
 - 2026-05-20 mini upgrade 151: Recorded listing schema coordinate shape.
+- 2026-05-20 mini upgrade 152: Captured review schema relationship shape.
