@@ -241,3 +241,4 @@
 - 2026-05-20 mini upgrade 239: Captured review form rating submission behavior.
 - 2026-05-20 mini upgrade 240: Noted subscriber form email capture behavior.
 - 2026-05-20 mini upgrade 241: Documented contact form message capture behavior.
+- 2026-05-20 mini upgrade 242: Recorded navbar authenticated state expectation.
