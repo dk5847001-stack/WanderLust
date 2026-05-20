@@ -143,3 +143,4 @@
 - 2026-05-20 mini upgrade 141: Noted logout controller redirect behavior.
 - 2026-05-20 mini upgrade 142: Documented middleware redirect capture behavior.
 - 2026-05-20 mini upgrade 143: Recorded middleware login guard response.
+- 2026-05-20 mini upgrade 144: Captured middleware listing owner lookup.
