@@ -236,3 +236,4 @@
 - 2026-05-20 mini upgrade 234: Recorded listing index filtering role.
 - 2026-05-20 mini upgrade 235: Captured listing detail review display role.
 - 2026-05-20 mini upgrade 236: Noted listing form shared field coverage.
+- 2026-05-20 mini upgrade 237: Documented edit form image replacement behavior.
