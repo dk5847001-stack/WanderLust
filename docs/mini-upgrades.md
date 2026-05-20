@@ -295,3 +295,4 @@
 - 2026-05-20 mini upgrade 293: Documented database connection readiness.
 - 2026-05-20 mini upgrade 294: Recorded database connection error handling.
 - 2026-05-20 mini upgrade 295: Captured session store database dependency.
+- 2026-05-20 mini upgrade 296: Noted session secret environment dependency.
