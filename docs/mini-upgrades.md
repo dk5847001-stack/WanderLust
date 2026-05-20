@@ -154,3 +154,4 @@
 - 2026-05-20 mini upgrade 152: Captured review schema relationship shape.
 - 2026-05-20 mini upgrade 153: Noted subscriber schema uniqueness expectation.
 - 2026-05-20 mini upgrade 154: Documented message schema admin workflow support.
+- 2026-05-20 mini upgrade 155: Recorded user model plugin dependency.
