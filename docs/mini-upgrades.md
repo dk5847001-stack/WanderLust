@@ -214,3 +214,4 @@
 - 2026-05-20 mini upgrade 212: Captured image upload acceptance note.
 - 2026-05-20 mini upgrade 213: Noted geocoding acceptance note.
 - 2026-05-20 mini upgrade 214: Documented search acceptance note.
+- 2026-05-20 mini upgrade 215: Recorded filtering acceptance note.
