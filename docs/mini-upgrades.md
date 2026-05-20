@@ -242,3 +242,4 @@
 - 2026-05-20 mini upgrade 240: Noted subscriber form email capture behavior.
 - 2026-05-20 mini upgrade 241: Documented contact form message capture behavior.
 - 2026-05-20 mini upgrade 242: Recorded navbar authenticated state expectation.
+- 2026-05-20 mini upgrade 243: Captured navbar guest state expectation.
