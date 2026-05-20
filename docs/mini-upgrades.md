@@ -224,3 +224,4 @@
 - 2026-05-20 mini upgrade 222: Recorded review author failure redirect.
 - 2026-05-20 mini upgrade 223: Captured missing listing lookup expectation.
 - 2026-05-20 mini upgrade 224: Noted missing review lookup expectation.
+- 2026-05-20 mini upgrade 225: Documented subscriber duplicate email expectation.
