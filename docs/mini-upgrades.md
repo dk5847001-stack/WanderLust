@@ -305,3 +305,4 @@
 - 2026-05-20 mini upgrade 303: Captured ignored upload workspace reminder.
 - 2026-05-20 mini upgrade 304: Noted ignored dependency directory reminder.
 - 2026-05-20 mini upgrade 305: Documented package start command role.
+- 2026-05-20 mini upgrade 306: Recorded package repository metadata role.
