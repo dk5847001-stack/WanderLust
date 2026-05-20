@@ -204,3 +204,4 @@
 - 2026-05-20 mini upgrade 202: Documented admin message maintenance note.
 - 2026-05-20 mini upgrade 203: Recorded subscriber maintenance note.
 - 2026-05-20 mini upgrade 204: Captured review moderation maintenance note.
+- 2026-05-20 mini upgrade 205: Noted listing ownership maintenance note.
