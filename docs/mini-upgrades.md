@@ -272,3 +272,4 @@
 - 2026-05-20 mini upgrade 270: Recorded model listing geometry metadata.
 - 2026-05-20 mini upgrade 271: Captured model review author reference.
 - 2026-05-20 mini upgrade 272: Noted model user passport plugin usage.
+- 2026-05-20 mini upgrade 273: Documented model subscriber email field.
