@@ -131,3 +131,4 @@
 - 2026-05-20 mini upgrade 129: Noted review population expectation.
 - 2026-05-20 mini upgrade 130: Documented subscriber create controller boundary.
 - 2026-05-20 mini upgrade 131: Recorded subscriber edit controller boundary.
+- 2026-05-20 mini upgrade 132: Captured subscriber update controller boundary.
