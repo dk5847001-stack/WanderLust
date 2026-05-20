@@ -176,3 +176,4 @@
 - 2026-05-20 mini upgrade 174: Documented final 404 middleware placement.
 - 2026-05-20 mini upgrade 175: Recorded final error middleware placement.
 - 2026-05-20 mini upgrade 176: Captured validation error message joining.
+- 2026-05-20 mini upgrade 177: Noted Joi details message joining.
