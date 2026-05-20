@@ -218,3 +218,4 @@
 - 2026-05-20 mini upgrade 216: Captured error page acceptance note.
 - 2026-05-20 mini upgrade 217: Documented route-level listing review handoff.
 - 2026-05-20 mini upgrade 218: Recorded listing creation flash feedback expectation.
+- 2026-05-20 mini upgrade 219: Captured listing update flash feedback expectation.
