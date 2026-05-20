@@ -216,3 +216,4 @@
 - 2026-05-20 mini upgrade 214: Documented search acceptance note.
 - 2026-05-20 mini upgrade 215: Recorded filtering acceptance note.
 - 2026-05-20 mini upgrade 216: Captured error page acceptance note.
+- 2026-05-20 mini upgrade 217: Documented route-level listing review handoff.
