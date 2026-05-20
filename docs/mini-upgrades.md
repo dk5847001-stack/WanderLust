@@ -230,3 +230,4 @@
 - 2026-05-20 mini upgrade 228: Noted contact message cleanup expectation.
 - 2026-05-20 mini upgrade 229: Documented user registration validation boundary.
 - 2026-05-20 mini upgrade 230: Recorded user login validation boundary.
+- 2026-05-20 mini upgrade 231: Captured logout session cleanup expectation.
