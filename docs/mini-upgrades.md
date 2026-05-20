@@ -138,3 +138,4 @@
 - 2026-05-20 mini upgrade 136: Captured message edit controller boundary.
 - 2026-05-20 mini upgrade 137: Noted message update controller boundary.
 - 2026-05-20 mini upgrade 138: Documented message delete controller boundary.
+- 2026-05-20 mini upgrade 139: Recorded login controller session behavior.
