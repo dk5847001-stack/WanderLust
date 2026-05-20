@@ -248,3 +248,4 @@
 - 2026-05-20 mini upgrade 246: Recorded 404 view fallback behavior.
 - 2026-05-20 mini upgrade 247: Captured static stylesheet loading expectation.
 - 2026-05-20 mini upgrade 248: Noted browser script initialization expectation.
+- 2026-05-20 mini upgrade 249: Documented Bootstrap asset dependency.
