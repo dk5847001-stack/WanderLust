@@ -234,3 +234,4 @@
 - 2026-05-20 mini upgrade 232: Noted flash message lifecycle across redirects.
 - 2026-05-20 mini upgrade 233: Documented home page listing discovery role.
 - 2026-05-20 mini upgrade 234: Recorded listing index filtering role.
+- 2026-05-20 mini upgrade 235: Captured listing detail review display role.
