@@ -238,3 +238,4 @@
 - 2026-05-20 mini upgrade 236: Noted listing form shared field coverage.
 - 2026-05-20 mini upgrade 237: Documented edit form image replacement behavior.
 - 2026-05-20 mini upgrade 238: Recorded create form image upload expectation.
+- 2026-05-20 mini upgrade 239: Captured review form rating submission behavior.
