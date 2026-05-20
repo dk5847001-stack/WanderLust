@@ -292,3 +292,4 @@
 - 2026-05-20 mini upgrade 290: Recorded category query matching.
 - 2026-05-20 mini upgrade 291: Captured price query matching.
 - 2026-05-20 mini upgrade 292: Noted empty query fallback behavior.
+- 2026-05-20 mini upgrade 293: Documented database connection readiness.
