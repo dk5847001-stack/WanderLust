@@ -256,3 +256,4 @@
 - 2026-05-20 mini upgrade 254: Recorded controller flash consistency.
 - 2026-05-20 mini upgrade 255: Captured controller database write boundary.
 - 2026-05-20 mini upgrade 256: Noted controller database read boundary.
+- 2026-05-20 mini upgrade 257: Documented middleware next error forwarding.
