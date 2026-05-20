@@ -284,3 +284,4 @@
 - 2026-05-20 mini upgrade 282: Recorded Cloudinary folder storage expectation.
 - 2026-05-20 mini upgrade 283: Captured Multer parser storage expectation.
 - 2026-05-20 mini upgrade 284: Noted upload middleware request shape.
+- 2026-05-20 mini upgrade 285: Documented MapTiler token dependency.
