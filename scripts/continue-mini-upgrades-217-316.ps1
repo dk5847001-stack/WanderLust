@@ -117,7 +117,16 @@ $logPath = Join-Path $docsDir "mini-upgrades.md"
 New-Item -ItemType Directory -Force -Path $docsDir | Out-Null
 
 $startNumber = 217
-for ($i = 0; $i -lt $updates.Count; $i++) {
+$lastNumber = 216
+if (Test-Path $logPath) {
+    $lastEntry = Select-String -Path $logPath -Pattern "mini upgrade (\d+):" | Select-Object -Last 1
+    if ($lastEntry -and $lastEntry.Matches.Count -gt 0) {
+        $lastNumber = [int]$lastEntry.Matches[0].Groups[1].Value
+    }
+}
+
+$skipCount = [Math]::Max(0, $lastNumber - $startNumber + 1)
+for ($i = $skipCount; $i -lt $updates.Count; $i++) {
     $number = $startNumber + $i
     $entry = "- 2026-05-20 mini upgrade ${number}: $($updates[$i])."
     Add-Content -Path $logPath -Value $entry -Encoding UTF8
