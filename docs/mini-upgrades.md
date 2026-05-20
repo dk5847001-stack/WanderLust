@@ -169,3 +169,4 @@
 - 2026-05-20 mini upgrade 167: Recorded view locals middleware placement.
 - 2026-05-20 mini upgrade 168: Captured root route render behavior.
 - 2026-05-20 mini upgrade 169: Noted listing router mount path.
+- 2026-05-20 mini upgrade 170: Documented review router merge path.
