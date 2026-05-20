@@ -202,3 +202,4 @@
 - 2026-05-20 mini upgrade 200: Captured deployment database readiness.
 - 2026-05-20 mini upgrade 201: Noted deployment secret readiness.
 - 2026-05-20 mini upgrade 202: Documented admin message maintenance note.
+- 2026-05-20 mini upgrade 203: Recorded subscriber maintenance note.
