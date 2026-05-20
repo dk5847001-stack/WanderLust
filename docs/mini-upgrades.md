@@ -220,3 +220,4 @@
 - 2026-05-20 mini upgrade 218: Recorded listing creation flash feedback expectation.
 - 2026-05-20 mini upgrade 219: Captured listing update flash feedback expectation.
 - 2026-05-20 mini upgrade 220: Noted listing deletion flash feedback expectation.
+- 2026-05-20 mini upgrade 221: Documented listing ownership failure redirect.
