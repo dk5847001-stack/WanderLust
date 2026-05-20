@@ -303,3 +303,4 @@
 - 2026-05-20 mini upgrade 301: Documented dotenv local bootstrap role.
 - 2026-05-20 mini upgrade 302: Recorded ignored environment file reminder.
 - 2026-05-20 mini upgrade 303: Captured ignored upload workspace reminder.
+- 2026-05-20 mini upgrade 304: Noted ignored dependency directory reminder.
