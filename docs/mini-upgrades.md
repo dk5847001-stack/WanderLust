@@ -314,3 +314,4 @@
 - 2026-05-20 mini upgrade 312: Noted README troubleshooting verification note.
 - 2026-05-20 mini upgrade 313: Documented deployment secret checklist.
 - 2026-05-20 mini upgrade 314: Recorded deployment database checklist.
+- 2026-05-20 mini upgrade 315: Captured deployment upload checklist.
