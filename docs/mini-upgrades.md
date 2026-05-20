@@ -276,3 +276,4 @@
 - 2026-05-20 mini upgrade 274: Recorded model message contact fields.
 - 2026-05-20 mini upgrade 275: Captured schema listing required fields.
 - 2026-05-20 mini upgrade 276: Noted schema review required fields.
+- 2026-05-20 mini upgrade 277: Documented schema listing price validation.
