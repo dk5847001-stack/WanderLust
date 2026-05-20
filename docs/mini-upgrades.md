@@ -309,3 +309,4 @@
 - 2026-05-20 mini upgrade 307: Captured package CommonJS type role.
 - 2026-05-20 mini upgrade 308: Noted dependency inventory maintenance.
 - 2026-05-20 mini upgrade 309: Documented README setup verification note.
+- 2026-05-20 mini upgrade 310: Recorded README environment verification note.
