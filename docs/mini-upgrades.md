@@ -260,3 +260,4 @@
 - 2026-05-20 mini upgrade 258: Recorded middleware session dependency.
 - 2026-05-20 mini upgrade 259: Captured middleware current user local binding.
 - 2026-05-20 mini upgrade 260: Noted middleware success flash local binding.
+- 2026-05-20 mini upgrade 261: Documented middleware error flash local binding.
