@@ -213,3 +213,4 @@
 - 2026-05-20 mini upgrade 211: Recorded flash feedback acceptance note.
 - 2026-05-20 mini upgrade 212: Captured image upload acceptance note.
 - 2026-05-20 mini upgrade 213: Noted geocoding acceptance note.
+- 2026-05-20 mini upgrade 214: Documented search acceptance note.
