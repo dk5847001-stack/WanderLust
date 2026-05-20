@@ -253,3 +253,4 @@
 - 2026-05-20 mini upgrade 251: Captured EJS layout inheritance expectation.
 - 2026-05-20 mini upgrade 252: Noted controller async wrapper usage.
 - 2026-05-20 mini upgrade 253: Documented controller redirect consistency.
+- 2026-05-20 mini upgrade 254: Recorded controller flash consistency.
