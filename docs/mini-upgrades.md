@@ -146,3 +146,4 @@
 - 2026-05-20 mini upgrade 144: Captured middleware listing owner lookup.
 - 2026-05-20 mini upgrade 145: Noted middleware review author lookup.
 - 2026-05-20 mini upgrade 146: Documented validation middleware failure path.
+- 2026-05-20 mini upgrade 147: Recorded listing schema required fields.
