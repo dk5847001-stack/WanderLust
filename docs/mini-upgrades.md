@@ -210,3 +210,4 @@
 - 2026-05-20 mini upgrade 208: Captured review acceptance note.
 - 2026-05-20 mini upgrade 209: Noted contact form acceptance note.
 - 2026-05-20 mini upgrade 210: Documented subscriber form acceptance note.
+- 2026-05-20 mini upgrade 211: Recorded flash feedback acceptance note.
