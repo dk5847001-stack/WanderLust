@@ -288,3 +288,4 @@
 - 2026-05-20 mini upgrade 286: Recorded geocoding coordinate persistence.
 - 2026-05-20 mini upgrade 287: Captured search query title matching.
 - 2026-05-20 mini upgrade 288: Noted search query location matching.
+- 2026-05-20 mini upgrade 289: Documented search query country matching.
