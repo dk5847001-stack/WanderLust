@@ -140,3 +140,4 @@
 - 2026-05-20 mini upgrade 138: Documented message delete controller boundary.
 - 2026-05-20 mini upgrade 139: Recorded login controller session behavior.
 - 2026-05-20 mini upgrade 140: Captured registration controller session behavior.
+- 2026-05-20 mini upgrade 141: Noted logout controller redirect behavior.
