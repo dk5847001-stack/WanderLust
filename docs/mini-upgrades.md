@@ -196,3 +196,4 @@
 - 2026-05-20 mini upgrade 194: Documented troubleshooting database checks.
 - 2026-05-20 mini upgrade 195: Recorded troubleshooting session checks.
 - 2026-05-20 mini upgrade 196: Captured troubleshooting upload checks.
+- 2026-05-20 mini upgrade 197: Noted troubleshooting map token checks.
