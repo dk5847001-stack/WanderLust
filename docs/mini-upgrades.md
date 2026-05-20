@@ -228,3 +228,4 @@
 - 2026-05-20 mini upgrade 226: Recorded subscriber admin table workflow.
 - 2026-05-20 mini upgrade 227: Captured contact message admin workflow.
 - 2026-05-20 mini upgrade 228: Noted contact message cleanup expectation.
+- 2026-05-20 mini upgrade 229: Documented user registration validation boundary.
