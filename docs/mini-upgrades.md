@@ -264,3 +264,4 @@
 - 2026-05-20 mini upgrade 262: Recorded validation listing body expectation.
 - 2026-05-20 mini upgrade 263: Captured validation review body expectation.
 - 2026-05-20 mini upgrade 264: Noted validation error status expectation.
+- 2026-05-20 mini upgrade 265: Documented ExpressError message field usage.
