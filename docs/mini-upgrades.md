@@ -226,3 +226,4 @@
 - 2026-05-20 mini upgrade 224: Noted missing review lookup expectation.
 - 2026-05-20 mini upgrade 225: Documented subscriber duplicate email expectation.
 - 2026-05-20 mini upgrade 226: Recorded subscriber admin table workflow.
+- 2026-05-20 mini upgrade 227: Captured contact message admin workflow.
