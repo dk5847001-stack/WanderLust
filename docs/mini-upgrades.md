@@ -222,3 +222,4 @@
 - 2026-05-20 mini upgrade 220: Noted listing deletion flash feedback expectation.
 - 2026-05-20 mini upgrade 221: Documented listing ownership failure redirect.
 - 2026-05-20 mini upgrade 222: Recorded review author failure redirect.
+- 2026-05-20 mini upgrade 223: Captured missing listing lookup expectation.
