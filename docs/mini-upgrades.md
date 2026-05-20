@@ -186,3 +186,4 @@
 - 2026-05-20 mini upgrade 184: Captured request logging output shape.
 - 2026-05-20 mini upgrade 185: Noted maintainers should avoid committing secrets.
 - 2026-05-20 mini upgrade 186: Documented local upload workspace purpose.
+- 2026-05-20 mini upgrade 187: Recorded README setup section dependency context.
