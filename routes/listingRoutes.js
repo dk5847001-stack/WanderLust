@@ -57,6 +57,7 @@ router.route("/:id")
     validateListing,
     asyncWrap(listingController.updateListing)
     
+    
 )
 .delete(
     isLoggedIn,
