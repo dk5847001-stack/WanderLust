@@ -178,3 +178,4 @@
 - 2026-05-20 mini upgrade 176: Captured validation error message joining.
 - 2026-05-20 mini upgrade 177: Noted Joi details message joining.
 - 2026-05-20 mini upgrade 178: Documented server listen fallback port.
+- 2026-05-20 mini upgrade 179: Recorded public asset mount directory.
