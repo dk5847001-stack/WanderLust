@@ -145,3 +145,4 @@
 - 2026-05-20 mini upgrade 143: Recorded middleware login guard response.
 - 2026-05-20 mini upgrade 144: Captured middleware listing owner lookup.
 - 2026-05-20 mini upgrade 145: Noted middleware review author lookup.
+- 2026-05-20 mini upgrade 146: Documented validation middleware failure path.
