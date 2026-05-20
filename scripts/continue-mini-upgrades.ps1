@@ -106,6 +106,12 @@ $updates = @(
     "Captured error page acceptance note"
 )
 
+$startNumber = 188
+$skipCount = $startNumber - 114
+if ($skipCount -gt 0) {
+    $updates = $updates[$skipCount..($updates.Count - 1)]
+}
+
 function Invoke-GitStep {
     param([string[]]$GitArgs)
 
@@ -120,7 +126,7 @@ $logPath = Join-Path $docsDir "mini-upgrades.md"
 New-Item -ItemType Directory -Force -Path $docsDir | Out-Null
 
 for ($i = 0; $i -lt $updates.Count; $i++) {
-    $number = 114 + $i
+    $number = $startNumber + $i
     $entry = "- 2026-05-20 mini upgrade ${number}: $($updates[$i])."
     Add-Content -Path $logPath -Value $entry -Encoding UTF8
 
