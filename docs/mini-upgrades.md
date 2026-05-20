@@ -290,3 +290,4 @@
 - 2026-05-20 mini upgrade 288: Noted search query location matching.
 - 2026-05-20 mini upgrade 289: Documented search query country matching.
 - 2026-05-20 mini upgrade 290: Recorded category query matching.
+- 2026-05-20 mini upgrade 291: Captured price query matching.
