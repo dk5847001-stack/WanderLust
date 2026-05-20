@@ -189,3 +189,4 @@
 - 2026-05-20 mini upgrade 187: Recorded README setup section dependency context.
 - 2026-05-20 mini upgrade 188: Captured README environment variable context.
 - 2026-05-20 mini upgrade 189: Noted README route inventory context.
+- 2026-05-20 mini upgrade 190: Documented README controller inventory context.
