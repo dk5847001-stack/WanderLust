@@ -306,3 +306,4 @@
 - 2026-05-20 mini upgrade 304: Noted ignored dependency directory reminder.
 - 2026-05-20 mini upgrade 305: Documented package start command role.
 - 2026-05-20 mini upgrade 306: Recorded package repository metadata role.
+- 2026-05-20 mini upgrade 307: Captured package CommonJS type role.
