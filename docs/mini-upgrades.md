@@ -166,3 +166,4 @@
 - 2026-05-20 mini upgrade 164: Captured session saveUninitialized setting.
 - 2026-05-20 mini upgrade 165: Noted flash middleware placement.
 - 2026-05-20 mini upgrade 166: Documented passport middleware placement.
+- 2026-05-20 mini upgrade 167: Recorded view locals middleware placement.
