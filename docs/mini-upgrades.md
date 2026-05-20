@@ -232,3 +232,4 @@
 - 2026-05-20 mini upgrade 230: Recorded user login validation boundary.
 - 2026-05-20 mini upgrade 231: Captured logout session cleanup expectation.
 - 2026-05-20 mini upgrade 232: Noted flash message lifecycle across redirects.
+- 2026-05-20 mini upgrade 233: Documented home page listing discovery role.
