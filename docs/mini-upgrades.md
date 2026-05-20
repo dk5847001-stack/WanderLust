@@ -298,3 +298,4 @@
 - 2026-05-20 mini upgrade 296: Noted session secret environment dependency.
 - 2026-05-20 mini upgrade 297: Documented cookie age maintenance note.
 - 2026-05-20 mini upgrade 298: Recorded cookie http only maintenance note.
+- 2026-05-20 mini upgrade 299: Captured local development port fallback.
