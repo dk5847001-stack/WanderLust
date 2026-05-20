@@ -174,3 +174,4 @@
 - 2026-05-20 mini upgrade 172: Captured message router mount path.
 - 2026-05-20 mini upgrade 173: Noted user router mount path.
 - 2026-05-20 mini upgrade 174: Documented final 404 middleware placement.
+- 2026-05-20 mini upgrade 175: Recorded final error middleware placement.
