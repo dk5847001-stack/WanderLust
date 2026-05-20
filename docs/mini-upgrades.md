@@ -180,3 +180,4 @@
 - 2026-05-20 mini upgrade 178: Documented server listen fallback port.
 - 2026-05-20 mini upgrade 179: Recorded public asset mount directory.
 - 2026-05-20 mini upgrade 180: Captured JavaScript asset mount directory.
+- 2026-05-20 mini upgrade 181: Noted urlencoded parser extended option.
