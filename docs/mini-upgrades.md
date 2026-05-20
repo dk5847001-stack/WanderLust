@@ -279,3 +279,4 @@
 - 2026-05-20 mini upgrade 277: Documented schema listing price validation.
 - 2026-05-20 mini upgrade 278: Recorded schema listing image validation.
 - 2026-05-20 mini upgrade 279: Captured schema review rating validation.
+- 2026-05-20 mini upgrade 280: Noted schema review comment validation.
