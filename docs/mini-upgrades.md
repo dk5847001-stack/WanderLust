@@ -301,3 +301,4 @@
 - 2026-05-20 mini upgrade 299: Captured local development port fallback.
 - 2026-05-20 mini upgrade 300: Noted production environment port support.
 - 2026-05-20 mini upgrade 301: Documented dotenv local bootstrap role.
+- 2026-05-20 mini upgrade 302: Recorded ignored environment file reminder.
