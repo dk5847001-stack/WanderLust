@@ -133,3 +133,4 @@
 - 2026-05-20 mini upgrade 131: Recorded subscriber edit controller boundary.
 - 2026-05-20 mini upgrade 132: Captured subscriber update controller boundary.
 - 2026-05-20 mini upgrade 133: Noted subscriber delete controller boundary.
+- 2026-05-20 mini upgrade 134: Documented message create controller boundary.
