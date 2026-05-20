@@ -114,3 +114,4 @@
 - 2026-05-14 mini upgrade 112: Recorded subscriber flow coverage.
 - 2026-05-14 mini upgrade 113: Captured contact flow coverage.
 - 2026-05-20 mini upgrade 114: Documented controller input handling boundaries.
+- 2026-05-20 mini upgrade 115: Recorded listing controller create flow expectation.
