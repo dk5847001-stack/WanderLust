@@ -250,3 +250,4 @@
 - 2026-05-20 mini upgrade 248: Noted browser script initialization expectation.
 - 2026-05-20 mini upgrade 249: Documented Bootstrap asset dependency.
 - 2026-05-20 mini upgrade 250: Recorded EJS partial reuse expectation.
+- 2026-05-20 mini upgrade 251: Captured EJS layout inheritance expectation.
