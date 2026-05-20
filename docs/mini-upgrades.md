@@ -117,3 +117,4 @@
 - 2026-05-20 mini upgrade 115: Recorded listing controller create flow expectation.
 - 2026-05-20 mini upgrade 116: Captured listing controller update flow expectation.
 - 2026-05-20 mini upgrade 117: Noted listing controller delete flow expectation.
+- 2026-05-20 mini upgrade 118: Documented listing image upload lifecycle.
