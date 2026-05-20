@@ -240,3 +240,4 @@
 - 2026-05-20 mini upgrade 238: Recorded create form image upload expectation.
 - 2026-05-20 mini upgrade 239: Captured review form rating submission behavior.
 - 2026-05-20 mini upgrade 240: Noted subscriber form email capture behavior.
+- 2026-05-20 mini upgrade 241: Documented contact form message capture behavior.
