@@ -244,3 +244,4 @@
 - 2026-05-20 mini upgrade 242: Recorded navbar authenticated state expectation.
 - 2026-05-20 mini upgrade 243: Captured navbar guest state expectation.
 - 2026-05-20 mini upgrade 244: Noted footer shared layout expectation.
+- 2026-05-20 mini upgrade 245: Documented error view status display behavior.
