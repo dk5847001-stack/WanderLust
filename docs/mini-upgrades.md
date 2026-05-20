@@ -195,3 +195,4 @@
 - 2026-05-20 mini upgrade 193: Noted README view inventory context.
 - 2026-05-20 mini upgrade 194: Documented troubleshooting database checks.
 - 2026-05-20 mini upgrade 195: Recorded troubleshooting session checks.
+- 2026-05-20 mini upgrade 196: Captured troubleshooting upload checks.
