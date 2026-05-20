@@ -315,3 +315,4 @@
 - 2026-05-20 mini upgrade 313: Documented deployment secret checklist.
 - 2026-05-20 mini upgrade 314: Recorded deployment database checklist.
 - 2026-05-20 mini upgrade 315: Captured deployment upload checklist.
+- 2026-05-20 mini upgrade 316: Noted deployment static asset checklist.
