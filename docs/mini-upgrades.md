@@ -257,3 +257,4 @@
 - 2026-05-20 mini upgrade 255: Captured controller database write boundary.
 - 2026-05-20 mini upgrade 256: Noted controller database read boundary.
 - 2026-05-20 mini upgrade 257: Documented middleware next error forwarding.
+- 2026-05-20 mini upgrade 258: Recorded middleware session dependency.
