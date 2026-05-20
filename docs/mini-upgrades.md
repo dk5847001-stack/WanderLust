@@ -207,3 +207,4 @@
 - 2026-05-20 mini upgrade 205: Noted listing ownership maintenance note.
 - 2026-05-20 mini upgrade 206: Documented guest browsing acceptance note.
 - 2026-05-20 mini upgrade 207: Recorded authenticated listing acceptance note.
+- 2026-05-20 mini upgrade 208: Captured review acceptance note.
