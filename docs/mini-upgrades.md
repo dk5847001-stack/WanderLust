@@ -162,3 +162,4 @@
 - 2026-05-20 mini upgrade 160: Captured dotenv bootstrap order.
 - 2026-05-20 mini upgrade 161: Noted Mongo session crypto secret dependency.
 - 2026-05-20 mini upgrade 162: Documented cookie max age setting.
+- 2026-05-20 mini upgrade 163: Recorded session resave setting.
