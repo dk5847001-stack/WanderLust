@@ -123,3 +123,4 @@
 - 2026-05-20 mini upgrade 121: Noted listing query composition responsibilities.
 - 2026-05-20 mini upgrade 122: Documented listing search parameter handling.
 - 2026-05-20 mini upgrade 123: Recorded category filter parameter handling.
+- 2026-05-20 mini upgrade 124: Captured price filter parameter handling.
