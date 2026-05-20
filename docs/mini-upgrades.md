@@ -126,3 +126,4 @@
 - 2026-05-20 mini upgrade 124: Captured price filter parameter handling.
 - 2026-05-20 mini upgrade 125: Noted empty search result behavior.
 - 2026-05-20 mini upgrade 126: Documented review creation controller boundary.
+- 2026-05-20 mini upgrade 127: Recorded review delete controller boundary.
