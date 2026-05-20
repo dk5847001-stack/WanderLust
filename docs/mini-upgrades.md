@@ -312,3 +312,4 @@
 - 2026-05-20 mini upgrade 310: Recorded README environment verification note.
 - 2026-05-20 mini upgrade 311: Captured README route verification note.
 - 2026-05-20 mini upgrade 312: Noted README troubleshooting verification note.
+- 2026-05-20 mini upgrade 313: Documented deployment secret checklist.
