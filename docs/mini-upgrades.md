@@ -184,3 +184,4 @@
 - 2026-05-20 mini upgrade 182: Documented JSON parser availability.
 - 2026-05-20 mini upgrade 183: Recorded method override query key.
 - 2026-05-20 mini upgrade 184: Captured request logging output shape.
+- 2026-05-20 mini upgrade 185: Noted maintainers should avoid committing secrets.
