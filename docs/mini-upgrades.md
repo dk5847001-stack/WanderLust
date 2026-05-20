@@ -187,3 +187,4 @@
 - 2026-05-20 mini upgrade 185: Noted maintainers should avoid committing secrets.
 - 2026-05-20 mini upgrade 186: Documented local upload workspace purpose.
 - 2026-05-20 mini upgrade 187: Recorded README setup section dependency context.
+- 2026-05-20 mini upgrade 188: Captured README environment variable context.
