@@ -318,3 +318,4 @@
 - 2026-05-20 mini upgrade 316: Noted deployment static asset checklist.
 - 2026-06-15 mini upgrade 317: Documented health check endpoint readiness.
 - 2026-06-15 mini upgrade 318: Recorded graceful shutdown maintenance expectation.
+- 2026-06-15 mini upgrade 319: Captured startup configuration validation need.
