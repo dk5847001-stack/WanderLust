@@ -380,3 +380,4 @@
 - 2026-06-15 mini upgrade 378: Recorded currency formatting consistency.
 - 2026-06-15 mini upgrade 379: Captured timezone handling review.
 - 2026-06-15 mini upgrade 380: Noted locale ready text organization.
+- 2026-06-15 mini upgrade 381: Documented structured logging opportunity.
