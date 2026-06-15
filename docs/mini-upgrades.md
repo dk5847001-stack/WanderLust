@@ -355,3 +355,4 @@
 - 2026-06-15 mini upgrade 353: Documented contact form spam protection need.
 - 2026-06-15 mini upgrade 354: Recorded subscriber form abuse protection need.
 - 2026-06-15 mini upgrade 355: Captured CSRF protection review.
+- 2026-06-15 mini upgrade 356: Noted input sanitization review.
