@@ -337,3 +337,4 @@
 - 2026-06-15 mini upgrade 335: Captured category allowlist maintenance.
 - 2026-06-15 mini upgrade 336: Noted price filter numeric coercion.
 - 2026-06-15 mini upgrade 337: Documented malformed identifier handling.
+- 2026-06-15 mini upgrade 338: Recorded missing resource response consistency.
