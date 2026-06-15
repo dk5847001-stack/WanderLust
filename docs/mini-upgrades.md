@@ -368,3 +368,4 @@
 - 2026-06-15 mini upgrade 366: Recorded keyboard navigation verification.
 - 2026-06-15 mini upgrade 367: Captured focus state visibility expectation.
 - 2026-06-15 mini upgrade 368: Noted color contrast verification.
+- 2026-06-15 mini upgrade 369: Documented flash message live region opportunity.
