@@ -339,3 +339,4 @@
 - 2026-06-15 mini upgrade 337: Documented malformed identifier handling.
 - 2026-06-15 mini upgrade 338: Recorded missing resource response consistency.
 - 2026-06-15 mini upgrade 339: Captured duplicate submission prevention.
+- 2026-06-15 mini upgrade 340: Noted idempotent delete behavior review.
