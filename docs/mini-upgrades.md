@@ -391,3 +391,4 @@
 - 2026-06-15 mini upgrade 389: Documented authorization regression test need.
 - 2026-06-15 mini upgrade 390: Recorded validation regression test need.
 - 2026-06-15 mini upgrade 391: Captured upload flow test opportunity.
+- 2026-06-15 mini upgrade 392: Noted geocoding failure test opportunity.
