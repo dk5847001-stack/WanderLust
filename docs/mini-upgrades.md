@@ -362,3 +362,4 @@
 - 2026-06-15 mini upgrade 360: Noted uploaded file size validation.
 - 2026-06-15 mini upgrade 361: Documented Cloudinary deletion lifecycle review.
 - 2026-06-15 mini upgrade 362: Recorded orphaned image cleanup expectation.
+- 2026-06-15 mini upgrade 363: Captured image transformation optimization.
