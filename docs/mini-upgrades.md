@@ -359,3 +359,4 @@
 - 2026-06-15 mini upgrade 357: Documented MongoDB operator injection review.
 - 2026-06-15 mini upgrade 358: Recorded reflected content escaping expectation.
 - 2026-06-15 mini upgrade 359: Captured uploaded file type validation.
+- 2026-06-15 mini upgrade 360: Noted uploaded file size validation.
