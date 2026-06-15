@@ -385,3 +385,4 @@
 - 2026-06-15 mini upgrade 383: Captured lockfile update discipline.
 - 2026-06-15 mini upgrade 384: Noted Node.js runtime version documentation.
 - 2026-06-15 mini upgrade 385: Documented environment example file need.
+- 2026-06-15 mini upgrade 386: Recorded test database isolation requirement.
