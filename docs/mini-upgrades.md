@@ -328,3 +328,4 @@
 - 2026-06-15 mini upgrade 326: Recorded MongoDB retry strategy expectation.
 - 2026-06-15 mini upgrade 327: Captured database index review cadence.
 - 2026-06-15 mini upgrade 328: Noted listing search index opportunity.
+- 2026-06-15 mini upgrade 329: Documented subscriber email index verification.
