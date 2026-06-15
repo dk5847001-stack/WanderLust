@@ -348,3 +348,4 @@
 - 2026-06-15 mini upgrade 346: Recorded HTTP status code consistency review.
 - 2026-06-15 mini upgrade 347: Captured cache control policy review.
 - 2026-06-15 mini upgrade 348: Noted static asset cache lifetime review.
+- 2026-06-15 mini upgrade 349: Documented compression middleware opportunity.
