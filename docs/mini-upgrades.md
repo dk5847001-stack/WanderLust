@@ -349,3 +349,4 @@
 - 2026-06-15 mini upgrade 347: Captured cache control policy review.
 - 2026-06-15 mini upgrade 348: Noted static asset cache lifetime review.
 - 2026-06-15 mini upgrade 349: Documented compression middleware opportunity.
+- 2026-06-15 mini upgrade 350: Recorded security header middleware opportunity.
