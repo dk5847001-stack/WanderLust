@@ -322,3 +322,4 @@
 - 2026-06-15 mini upgrade 320: Noted production trust proxy review.
 - 2026-06-15 mini upgrade 321: Documented secure cookie environment toggle.
 - 2026-06-15 mini upgrade 322: Recorded same site cookie policy review.
+- 2026-06-15 mini upgrade 323: Captured session name hardening recommendation.
