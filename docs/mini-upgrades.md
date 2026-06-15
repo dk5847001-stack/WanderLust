@@ -353,3 +353,4 @@
 - 2026-06-15 mini upgrade 351: Captured request rate limiting opportunity.
 - 2026-06-15 mini upgrade 352: Noted authentication rate limiting priority.
 - 2026-06-15 mini upgrade 353: Documented contact form spam protection need.
+- 2026-06-15 mini upgrade 354: Recorded subscriber form abuse protection need.
