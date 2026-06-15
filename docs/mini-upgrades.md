@@ -324,3 +324,4 @@
 - 2026-06-15 mini upgrade 322: Recorded same site cookie policy review.
 - 2026-06-15 mini upgrade 323: Captured session name hardening recommendation.
 - 2026-06-15 mini upgrade 324: Noted session secret rotation procedure.
+- 2026-06-15 mini upgrade 325: Documented MongoDB connection timeout review.
