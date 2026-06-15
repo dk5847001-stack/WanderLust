@@ -340,3 +340,4 @@
 - 2026-06-15 mini upgrade 338: Recorded missing resource response consistency.
 - 2026-06-15 mini upgrade 339: Captured duplicate submission prevention.
 - 2026-06-15 mini upgrade 340: Noted idempotent delete behavior review.
+- 2026-06-15 mini upgrade 341: Documented controller return after redirect rule.
