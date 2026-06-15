@@ -373,3 +373,4 @@
 - 2026-06-15 mini upgrade 371: Captured responsive listing card verification.
 - 2026-06-15 mini upgrade 372: Noted mobile navigation verification.
 - 2026-06-15 mini upgrade 373: Documented empty state copy review.
+- 2026-06-15 mini upgrade 374: Recorded loading state feedback opportunity.
