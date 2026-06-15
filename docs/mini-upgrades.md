@@ -396,3 +396,4 @@
 - 2026-06-15 mini upgrade 394: Recorded session persistence test need.
 - 2026-06-15 mini upgrade 395: Captured deployment smoke test checklist.
 - 2026-06-15 mini upgrade 396: Noted backup and restore verification.
+- 2026-06-15 mini upgrade 397: Documented monitoring and alerting baseline.
