@@ -371,3 +371,4 @@
 - 2026-06-15 mini upgrade 369: Documented flash message live region opportunity.
 - 2026-06-15 mini upgrade 370: Recorded validation summary accessibility need.
 - 2026-06-15 mini upgrade 371: Captured responsive listing card verification.
+- 2026-06-15 mini upgrade 372: Noted mobile navigation verification.
