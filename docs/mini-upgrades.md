@@ -388,3 +388,4 @@
 - 2026-06-15 mini upgrade 386: Recorded test database isolation requirement.
 - 2026-06-15 mini upgrade 387: Captured controller unit test opportunity.
 - 2026-06-15 mini upgrade 388: Noted route integration test opportunity.
+- 2026-06-15 mini upgrade 389: Documented authorization regression test need.
