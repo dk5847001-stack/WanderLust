@@ -365,3 +365,4 @@
 - 2026-06-15 mini upgrade 363: Captured image transformation optimization.
 - 2026-06-15 mini upgrade 364: Noted image alternative text requirement.
 - 2026-06-15 mini upgrade 365: Documented form label accessibility review.
+- 2026-06-15 mini upgrade 366: Recorded keyboard navigation verification.
