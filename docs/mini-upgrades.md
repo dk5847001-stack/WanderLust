@@ -321,3 +321,4 @@
 - 2026-06-15 mini upgrade 319: Captured startup configuration validation need.
 - 2026-06-15 mini upgrade 320: Noted production trust proxy review.
 - 2026-06-15 mini upgrade 321: Documented secure cookie environment toggle.
+- 2026-06-15 mini upgrade 322: Recorded same site cookie policy review.
