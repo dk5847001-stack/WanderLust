@@ -326,3 +326,4 @@
 - 2026-06-15 mini upgrade 324: Noted session secret rotation procedure.
 - 2026-06-15 mini upgrade 325: Documented MongoDB connection timeout review.
 - 2026-06-15 mini upgrade 326: Recorded MongoDB retry strategy expectation.
+- 2026-06-15 mini upgrade 327: Captured database index review cadence.
