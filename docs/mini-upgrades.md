@@ -358,3 +358,4 @@
 - 2026-06-15 mini upgrade 356: Noted input sanitization review.
 - 2026-06-15 mini upgrade 357: Documented MongoDB operator injection review.
 - 2026-06-15 mini upgrade 358: Recorded reflected content escaping expectation.
+- 2026-06-15 mini upgrade 359: Captured uploaded file type validation.
