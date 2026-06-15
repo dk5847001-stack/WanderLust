@@ -351,3 +351,4 @@
 - 2026-06-15 mini upgrade 349: Documented compression middleware opportunity.
 - 2026-06-15 mini upgrade 350: Recorded security header middleware opportunity.
 - 2026-06-15 mini upgrade 351: Captured request rate limiting opportunity.
+- 2026-06-15 mini upgrade 352: Noted authentication rate limiting priority.
