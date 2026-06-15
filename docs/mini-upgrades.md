@@ -334,3 +334,4 @@
 - 2026-06-15 mini upgrade 332: Noted pagination requirement for admin tables.
 - 2026-06-15 mini upgrade 333: Documented query parameter normalization.
 - 2026-06-15 mini upgrade 334: Recorded search input length boundary.
+- 2026-06-15 mini upgrade 335: Captured category allowlist maintenance.
