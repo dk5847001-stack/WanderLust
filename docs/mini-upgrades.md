@@ -343,3 +343,4 @@
 - 2026-06-15 mini upgrade 341: Documented controller return after redirect rule.
 - 2026-06-15 mini upgrade 342: Recorded async error propagation convention.
 - 2026-06-15 mini upgrade 343: Captured centralized error logging need.
+- 2026-06-15 mini upgrade 344: Noted production error detail suppression.
