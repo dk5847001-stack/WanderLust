@@ -316,3 +316,4 @@
 - 2026-05-20 mini upgrade 314: Recorded deployment database checklist.
 - 2026-05-20 mini upgrade 315: Captured deployment upload checklist.
 - 2026-05-20 mini upgrade 316: Noted deployment static asset checklist.
+- 2026-06-15 mini upgrade 317: Documented health check endpoint readiness.
