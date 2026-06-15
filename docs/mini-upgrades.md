@@ -394,3 +394,4 @@
 - 2026-06-15 mini upgrade 392: Noted geocoding failure test opportunity.
 - 2026-06-15 mini upgrade 393: Documented search filter test matrix.
 - 2026-06-15 mini upgrade 394: Recorded session persistence test need.
+- 2026-06-15 mini upgrade 395: Captured deployment smoke test checklist.
