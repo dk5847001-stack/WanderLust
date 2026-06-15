@@ -382,3 +382,4 @@
 - 2026-06-15 mini upgrade 380: Noted locale ready text organization.
 - 2026-06-15 mini upgrade 381: Documented structured logging opportunity.
 - 2026-06-15 mini upgrade 382: Recorded dependency audit cadence.
+- 2026-06-15 mini upgrade 383: Captured lockfile update discipline.
