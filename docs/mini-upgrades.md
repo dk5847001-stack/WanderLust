@@ -377,3 +377,4 @@
 - 2026-06-15 mini upgrade 375: Captured destructive action confirmation need.
 - 2026-06-15 mini upgrade 376: Noted admin table action labeling.
 - 2026-06-15 mini upgrade 377: Documented date formatting consistency.
+- 2026-06-15 mini upgrade 378: Recorded currency formatting consistency.
