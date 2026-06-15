@@ -345,3 +345,4 @@
 - 2026-06-15 mini upgrade 343: Captured centralized error logging need.
 - 2026-06-15 mini upgrade 344: Noted production error detail suppression.
 - 2026-06-15 mini upgrade 345: Documented request correlation identifier opportunity.
+- 2026-06-15 mini upgrade 346: Recorded HTTP status code consistency review.
