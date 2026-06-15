@@ -375,3 +375,4 @@
 - 2026-06-15 mini upgrade 373: Documented empty state copy review.
 - 2026-06-15 mini upgrade 374: Recorded loading state feedback opportunity.
 - 2026-06-15 mini upgrade 375: Captured destructive action confirmation need.
+- 2026-06-15 mini upgrade 376: Noted admin table action labeling.
