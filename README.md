@@ -2,7 +2,6 @@
 
 
 
-
 # WanderLust
 
 WanderLust is a full-stack travel listing platform built with Node.js, Express, MongoDB, EJS, and Passport authentication. It allows users to browse stays, create and manage listings, upload listing images, leave reviews, and interact through subscriber and contact flows.
